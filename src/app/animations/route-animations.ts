@@ -7,7 +7,13 @@ import {
 } from '@angular/animations';
 
 export const slideInAnimation = trigger('routeAnimations', [
-  // Subtle fade with gentle movement
+  // No animation for first page load
+  transition('void => none', []),
+  transition('none => void', []),
+  transition('* => none', []),
+  transition('none => *', []),
+
+  // Subtle fade with gentle movement for all other transitions
   transition('* => *', [
     // Set initial styles for both entering and leaving components
     query(

@@ -14,6 +14,9 @@ export class RouteAnimationService {
   private animationTypeSubject = new BehaviorSubject<string>('slide');
   public animationType$ = this.animationTypeSubject.asObservable();
 
+  private isFirstLoad = true;
+  private hasNavigated = false;
+
   private animationConfigs: Record<string, AnimationConfig> = {
     slide: {
       name: 'slide',
@@ -64,5 +67,35 @@ export class RouteAnimationService {
 
     // Default slide animation
     return 'slide';
+  }
+
+  /**
+   * Check if this is the first page load (no animations should occur)
+   */
+  isFirstPageLoad(): boolean {
+    return this.isFirstLoad;
+  }
+
+  /**
+   * Mark that navigation has occurred (enables animations for future navigations)
+   */
+  markNavigationOccurred(): void {
+    this.isFirstLoad = false;
+    this.hasNavigated = true;
+  }
+
+  /**
+   * Check if animations should be enabled
+   */
+  shouldAnimate(): boolean {
+    return !this.isFirstLoad && this.hasNavigated;
+  }
+
+  /**
+   * Reset the first load state (useful for testing or special cases)
+   */
+  resetFirstLoadState(): void {
+    this.isFirstLoad = true;
+    this.hasNavigated = false;
   }
 }
