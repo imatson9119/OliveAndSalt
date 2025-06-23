@@ -1,0 +1,114 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1>Gallery</h1>
+    <p class="lead">
+      A visual journey through the artistry and passion that goes into every
+      Olive &amp; Salt meal experience.
+    </p>
+  </div>
+</section>
+
+<!-- Gallery Navigation -->
+<section class="gallery-nav">
+  <div class="container">
+    <div class="nav-buttons">
+      <button
+        *ngFor="let gallery of galleries"
+        [class.active]="selectedCategory === gallery.category"
+        (click)="selectCategory(gallery.category)"
+      >
+        {{ gallery.category }}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Content -->
+<section class="gallery-content">
+  <div class="container">
+    <div *ngFor="let gallery of galleries">
+      <div
+        *ngIf="selectedCategory === gallery.category"
+        class="gallery-section"
+      >
+        <div class="gallery-header">
+          <h2>{{ gallery.category }}</h2>
+          <p>{{ gallery.description }}</p>
+        </div>
+
+        <div class="image-grid">
+          <div
+            *ngFor="let image of gallery.images"
+            class="image-card"
+            (click)="openLightbox(image)"
+            (keyup.enter)="openLightbox(image)"
+            (keyup.space)="openLightbox(image)"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="'View larger image of ' + image.title"
+          >
+            <div class="image-placeholder">
+              <span class="image-title">{{ image.title }}</span>
+            </div>
+            <div class="image-info">
+              <h3>{{ image.title }}</h3>
+              <p>{{ image.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div
+  class="lightbox-overlay"
+  *ngIf="selectedImage"
+  (click)="closeLightbox()"
+  (keyup.escape)="closeLightbox()"
+  tabindex="0"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="'Image viewer for ' + selectedImage.title"
+>
+  <div
+    class="lightbox-content"
+    (click)="$event.stopPropagation()"
+    (keyup.escape)="closeLightbox()"
+    tabindex="0"
+    role="document"
+  >
+    <button
+      class="lightbox-close"
+      (click)="closeLightbox()"
+      (keyup.enter)="closeLightbox()"
+      (keyup.space)="closeLightbox()"
+      tabindex="0"
+      aria-label="Close lightbox"
+    >
+      &times;
+    </button>
+    <div class="lightbox-image">
+      <div class="image-placeholder large">
+        <span>{{ selectedImage.title }}</span>
+      </div>
+    </div>
+    <div class="lightbox-info">
+      <h3>{{ selectedImage.title }}</h3>
+      <p>{{ selectedImage.description }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Inspired by What You See?</h2>
+      <p>Let's create something beautiful together in your kitchen.</p>
+      <a routerLink="/book" class="cta-button">Book Your Experience</a>
+    </div>
+  </div>
+</section>

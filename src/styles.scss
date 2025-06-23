@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Olive and Salt Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap");
+
+:root {
+  /* Brand Colors */
+  --olive-green: #556b2f;
+  --off-white: #faf9f6;
+  --warm-oat: #ede6d6;
+  --sea-salt-gray: #a8a29e;
+  --terracotta-accent: #c57b57;
+
+  /* Primary Color System */
+  --primary-color: var(--olive-green);
+  --primary-dark: #4a5a2a;
+  --primary-light: #677b3f;
+
+  /* Text Colors */
+  --text-primary: #2c2c2c;
+  --text-secondary: #666666;
+  --text-light: #999999;
+
+  /* Background Colors */
+  --bg-primary: var(--off-white);
+  --bg-secondary: var(--warm-oat);
+  --bg-accent: #f8f9fa;
+
+  /* Typography */
+  --font-primary: "Playfair Display", serif;
+  --font-secondary: "Lato", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}

@@ -1,0 +1,133 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Wholesome meals, personally prepared.</h1>
+      <p class="hero-subtitle">
+        Experience the joy of fresh, personalized cuisine crafted in the comfort
+        of your own kitchen. Every meal is tailored to nourish your body and
+        soul.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/book" class="cta-primary">Book Your Chef</a>
+        <a routerLink="/about" class="cta-secondary">Meet Your Chef</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="image-placeholder">
+        <span>Beautiful kitchen scene with fresh ingredients</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Value Propositions -->
+<section class="values">
+  <div class="container">
+    <h2>Why Choose Olive &amp; Salt?</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <h3>Freshness</h3>
+        <p>
+          Seasonal, organic, and locally sourced ingredients that celebrate
+          nature's bounty.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">✨</div>
+        <h3>Personalization</h3>
+        <p>
+          Every meal is tailored to your preferences, dietary needs, and
+          wellness goals.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏠</div>
+        <h3>In-Home Service</h3>
+        <p>
+          Experience restaurant-quality cuisine in the comfort and privacy of
+          your own kitchen.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Preview -->
+<section class="about-preview">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Meet Your Personal Chef</h2>
+        <p>
+          Hi, I'm Sarah. With over 10 years of culinary experience and a passion
+          for holistic nutrition, I believe that every meal should be a
+          celebration of flavor and wellness. My approach combines classical
+          techniques with modern nutritional science to create dishes that not
+          only taste extraordinary but also nourish your body from within.
+        </p>
+        <p>
+          When I cook in your kitchen, I bring not just ingredients and skills,
+          but a philosophy that food is medicine, love is the secret ingredient,
+          and every meal is an opportunity to create something beautiful
+          together.
+        </p>
+        <a routerLink="/about" class="learn-more">Learn More About My Story</a>
+      </div>
+      <div class="about-image">
+        <div class="image-placeholder">
+          <span>Professional photo of Chef Sarah</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-slider">
+      <div
+        class="testimonial-card"
+        *ngFor="let testimonial of testimonials; let i = index"
+        [class.active]="i === currentTestimonial"
+      >
+        <blockquote>
+          <p>"{{ testimonial.text }}"</p>
+        </blockquote>
+        <div class="testimonial-author">
+          <strong>{{ testimonial.author }}</strong>
+          <span class="service">{{ testimonial.service }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-nav">
+      <button
+        *ngFor="let testimonial of testimonials; let i = index"
+        [class.active]="i === currentTestimonial"
+        (click)="currentTestimonial = i"
+        [attr.aria-label]="'View testimonial ' + (i + 1)"
+      >
+        •
+      </button>
+    </div>
+    <a routerLink="/testimonials" class="view-all">View All Testimonials</a>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Transform Your Dining Experience?</h2>
+      <p>
+        Book your personalized consultation today and discover how Olive and
+        Salt can bring restaurant-quality, nutrition-focused meals to your
+        table.
+      </p>
+      <a routerLink="/book" class="cta-button">Start Your Culinary Journey</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,261 @@
+// Success Message
+.success-message {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--off-white) 0%,
+    var(--warm-oat) 100%
+  );
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .success-content {
+    text-align: center;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      color: var(--olive-green);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: var(--font-secondary);
+      line-height: 1.6;
+      color: var(--sea-salt-gray);
+      margin-bottom: 1rem;
+
+      a {
+        color: var(--terracotta-accent);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--olive-green);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--off-white) 0%,
+    var(--warm-oat) 100%
+  );
+  padding: 4rem 2rem;
+  text-align: center;
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    color: var(--olive-green);
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-family: var(--font-secondary);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--sea-salt-gray);
+  }
+}
+
+// Form Section
+.form-section {
+  padding: 3rem 2rem 5rem;
+  background: white;
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .booking-form {
+    .form-section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--warm-oat);
+
+      h2 {
+        font-family: var(--font-primary);
+        font-size: 1.8rem;
+        color: var(--olive-green);
+        margin: 0;
+      }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      &.single {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      &.full-width {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: block;
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        color: var(--olive-green);
+        margin-bottom: 0.5rem;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--warm-oat);
+        border-radius: 8px;
+        font-family: var(--font-secondary);
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--terracotta-accent);
+        }
+
+        &.error {
+          border-color: #e74c3c;
+        }
+
+        &::placeholder {
+          color: var(--sea-salt-gray);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .error-message {
+        color: #e74c3c;
+        font-family: var(--font-secondary);
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .form-submit {
+      text-align: center;
+      margin-top: 3rem;
+
+      .submit-button {
+        background: var(--terracotta-accent);
+        color: white;
+        padding: 1.25rem 3rem;
+        border: none;
+        border-radius: 50px;
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover:not(:disabled) {
+          background: var(--olive-green);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      }
+
+      .form-note {
+        font-family: var(--font-secondary);
+        color: var(--sea-salt-gray);
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+// Mobile Styles
+@media (max-width: 768px) {
+  .success-message {
+    .container {
+      padding: 1rem;
+    }
+
+    .success-content {
+      padding: 2rem 1rem;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .success-icon {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+
+    h1 {
+      font-size: 2.2rem;
+    }
+  }
+
+  .form-section {
+    padding: 2rem 1rem 3rem;
+
+    .booking-form {
+      .form-section-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .form-submit {
+        .submit-button {
+          padding: 1rem 2rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

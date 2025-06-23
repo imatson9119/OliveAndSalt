@@ -1,0 +1,375 @@
+// Hero Section
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--warm-oat) 0%,
+    var(--off-white) 100%
+  );
+  padding: 4rem 2rem;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-text {
+    h1 {
+      font-family: var(--font-primary);
+      font-size: 3rem;
+      color: var(--olive-green);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .lead {
+      font-family: var(--font-secondary);
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: var(--sea-salt-gray);
+    }
+  }
+
+  .hero-image {
+    .image-placeholder {
+      background: var(--off-white);
+      border-radius: 15px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sea-salt-gray);
+      font-family: var(--font-secondary);
+      font-style: italic;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Story Section
+.story {
+  padding: 5rem 2rem;
+  background: white;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .story-content {
+    h2 {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      color: var(--olive-green);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .story-text {
+    p {
+      font-family: var(--font-secondary);
+      line-height: 1.7;
+      color: var(--sea-salt-gray);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  .credentials {
+    background: var(--off-white);
+    padding: 2rem;
+    border-radius: 15px;
+
+    h3 {
+      font-family: var(--font-primary);
+      color: var(--olive-green);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+
+      li {
+        font-family: var(--font-secondary);
+        color: var(--sea-salt-gray);
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+        position: relative;
+
+        &:before {
+          content: "•";
+          color: var(--terracotta-accent);
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Philosophy Section
+.philosophy {
+  padding: 5rem 2rem;
+  background: var(--warm-oat);
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    color: var(--olive-green);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .philosophy-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-family: var(--font-primary);
+      color: var(--olive-green);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-family: var(--font-secondary);
+      line-height: 1.6;
+      color: var(--sea-salt-gray);
+    }
+  }
+}
+
+// Why Section
+.why-section {
+  padding: 5rem 2rem;
+  background: white;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .why-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .why-text {
+    h2 {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      color: var(--olive-green);
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-family: var(--font-secondary);
+      line-height: 1.7;
+      color: var(--sea-salt-gray);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  .why-image {
+    .image-placeholder {
+      background: var(--warm-oat);
+      border-radius: 15px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sea-salt-gray);
+      font-family: var(--font-secondary);
+      font-style: italic;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// CTA Section
+.cta-section {
+  padding: 5rem 2rem;
+  background: var(--olive-green);
+  color: white;
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-content {
+    h2 {
+      font-family: var(--font-primary);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: var(--font-secondary);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .cta-primary {
+        background: var(--terracotta-accent);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: white;
+          color: var(--olive-green);
+          transform: translateY(-2px);
+        }
+      }
+
+      .cta-secondary {
+        background: transparent;
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border: 2px solid white;
+        border-radius: 50px;
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: white;
+          color: var(--olive-green);
+        }
+      }
+    }
+  }
+}
+
+// Mobile Styles
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem;
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+    }
+  }
+
+  .story {
+    padding: 3rem 1rem;
+
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .story-content h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .philosophy {
+    padding: 3rem 1rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .why-section {
+    padding: 3rem 1rem;
+
+    .why-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .why-text h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .cta-section {
+    padding: 3rem 1rem;
+
+    .cta-content {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+}
