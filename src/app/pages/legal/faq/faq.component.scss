@@ -117,14 +117,15 @@
         color: white;
         padding: 1rem 2rem;
         text-decoration: none;
-        border-radius: 50px;
+        border-radius: 12px;
         font-family: var(--font-secondary);
         font-weight: 600;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
         &:hover {
-          background: var(--olive-green);
           transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
       }
 
@@ -134,7 +135,7 @@
         padding: 1rem 2rem;
         text-decoration: none;
         border: 2px solid var(--olive-green);
-        border-radius: 50px;
+        border-radius: 12px;
         font-family: var(--font-secondary);
         font-weight: 600;
         transition: all 0.3s ease;
@@ -142,6 +143,8 @@
         &:hover {
           background: var(--olive-green);
           color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(85, 107, 47, 0.2);
         }
       }
     }

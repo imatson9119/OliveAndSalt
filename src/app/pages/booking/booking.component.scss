@@ -4,11 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    var(--off-white) 0%,
-    var(--warm-oat) 100%
-  );
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
 
   .container {
     max-width: 600px;
@@ -20,7 +17,7 @@
     text-align: center;
     background: white;
     padding: 3rem 2rem;
-    border-radius: 15px;
+    border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
     .success-icon {
@@ -31,187 +28,29 @@
     h1 {
       font-family: var(--font-primary);
       font-size: 2.5rem;
-      color: var(--olive-green);
+      color: #155724;
       margin-bottom: 1rem;
     }
 
     p {
       font-family: var(--font-secondary);
       line-height: 1.6;
-      color: var(--sea-salt-gray);
+      color: var(--text-secondary);
       margin-bottom: 1rem;
 
       a {
-        color: var(--terracotta-accent);
+        color: var(--primary-color);
         text-decoration: none;
 
         &:hover {
-          color: var(--olive-green);
+          color: var(--primary-dark);
           text-decoration: underline;
         }
       }
     }
   }
-}
 
-// Hero Section
-.hero {
-  background: linear-gradient(
-    135deg,
-    var(--off-white) 0%,
-    var(--warm-oat) 100%
-  );
-  padding: 4rem 2rem;
-  text-align: center;
-
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-family: var(--font-primary);
-    font-size: 3rem;
-    color: var(--olive-green);
-    margin-bottom: 1rem;
-  }
-
-  .lead {
-    font-family: var(--font-secondary);
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--sea-salt-gray);
-  }
-}
-
-// Form Section
-.form-section {
-  padding: 3rem 2rem 5rem;
-  background: white;
-
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .booking-form {
-    .form-section-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--warm-oat);
-
-      h2 {
-        font-family: var(--font-primary);
-        font-size: 1.8rem;
-        color: var(--olive-green);
-        margin: 0;
-      }
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-
-      &.single {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .form-group {
-      &.full-width {
-        grid-column: 1 / -1;
-      }
-
-      label {
-        display: block;
-        font-family: var(--font-secondary);
-        font-weight: 600;
-        color: var(--olive-green);
-        margin-bottom: 0.5rem;
-      }
-
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 1rem;
-        border: 2px solid var(--warm-oat);
-        border-radius: 8px;
-        font-family: var(--font-secondary);
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-
-        &:focus {
-          outline: none;
-          border-color: var(--terracotta-accent);
-        }
-
-        &.error {
-          border-color: #e74c3c;
-        }
-
-        &::placeholder {
-          color: var(--sea-salt-gray);
-        }
-      }
-
-      textarea {
-        resize: vertical;
-        min-height: 100px;
-      }
-
-      .error-message {
-        color: #e74c3c;
-        font-family: var(--font-secondary);
-        font-size: 0.875rem;
-        margin-top: 0.5rem;
-      }
-    }
-
-    .form-submit {
-      text-align: center;
-      margin-top: 3rem;
-
-      .submit-button {
-        background: var(--terracotta-accent);
-        color: white;
-        padding: 1.25rem 3rem;
-        border: none;
-        border-radius: 50px;
-        font-family: var(--font-secondary);
-        font-weight: 600;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover:not(:disabled) {
-          background: var(--olive-green);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        &:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-        }
-      }
-
-      .form-note {
-        font-family: var(--font-secondary);
-        color: var(--sea-salt-gray);
-        font-size: 0.9rem;
-        margin-top: 1rem;
-        font-style: italic;
-      }
-    }
-  }
-}
-
-// Mobile Styles
-@media (max-width: 768px) {
-  .success-message {
+  @media (max-width: 768px) {
     .container {
       padding: 1rem;
     }
@@ -228,33 +67,218 @@
       }
     }
   }
+}
 
-  .hero {
-    padding: 3rem 1rem;
+// Hero Section
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--olive-green) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .lead {
+    font-family: var(--font-secondary);
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 768px) {
+    padding: 2.5rem 0;
+
+    .container {
+      padding: 0 1rem;
+    }
 
     h1 {
       font-size: 2.2rem;
     }
+
+    .lead {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// Form Section
+.form-section {
+  padding: 4rem 0;
+  background: var(--bg-primary);
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  .form-section {
-    padding: 2rem 1rem 3rem;
+  .booking-form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(85, 107, 47, 0.1);
+
+    .form-section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(85, 107, 47, 0.1);
+
+      h2 {
+        font-family: var(--font-primary);
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin: 0;
+      }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      &.single {
+        grid-template-columns: 1fr;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      &.full-width {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: block;
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e5e5e5;
+        border-radius: 12px;
+        font-family: var(--font-secondary);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: white;
+
+        &:focus {
+          outline: none;
+          border-color: var(--primary-color);
+          box-shadow: 0 0 0 3px rgba(85, 107, 47, 0.1);
+        }
+
+        &.error {
+          border-color: #e74c3c;
+        }
+
+        &::placeholder {
+          color: var(--text-light);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+        line-height: 1.6;
+      }
+
+      .error-message {
+        color: #e74c3c;
+        font-family: var(--font-secondary);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        font-weight: 500;
+      }
+    }
+
+    .form-submit {
+      text-align: center;
+      margin-top: 3rem;
+
+      .submit-button {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: var(--font-secondary);
+        box-shadow: 0 4px 15px rgba(85, 107, 47, 0.2);
+
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(85, 107, 47, 0.3);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+        }
+      }
+
+      .form-note {
+        font-family: var(--font-secondary);
+        color: var(--text-light);
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        font-style: italic;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+
+    .container {
+      padding: 0 1rem;
+    }
 
     .booking-form {
+      padding: 2rem 1.5rem;
+
       .form-section-header h2 {
         font-size: 1.5rem;
       }
 
       .form-row {
-        grid-template-columns: 1fr;
         gap: 1rem;
-      }
-
-      .form-submit {
-        .submit-button {
-          padding: 1rem 2rem;
-          font-size: 1rem;
-        }
       }
     }
   }
