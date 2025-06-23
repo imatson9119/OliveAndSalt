@@ -1,0 +1,112 @@
+<div
+  class="testimonial-slider"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (keydown)="onKeyDown($event)"
+  tabindex="0"
+  role="region"
+  aria-label="Customer testimonials"
+  [attr.aria-live]="autoPlay ? 'polite' : null"
+>
+  <!-- Slider Container -->
+  <div class="testimonial-slider__container">
+    <!-- Previous Button -->
+    <button
+      *ngIf="showNavigation && testimonials.length > 1"
+      class="testimonial-slider__nav testimonial-slider__nav--prev"
+      (click)="previousSlide()"
+      [attr.aria-label]="
+        'Previous testimonial, currently showing ' +
+        (currentIndex() + 1) +
+        ' of ' +
+        testimonials.length
+      "
+      [disabled]="isTransitioning()"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="15,18 9,12 15,6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Testimonials Track -->
+    <div class="testimonial-slider__track">
+      <div
+        class="testimonial-slider__slides"
+        [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'"
+      >
+        <div
+          class="testimonial-slider__slide"
+          *ngFor="let testimonial of testimonials; let i = index"
+          [attr.aria-hidden]="i !== currentIndex()"
+          [attr.aria-label]="
+            'Testimonial ' + (i + 1) + ' of ' + testimonials.length
+          "
+        >
+          <app-testimonial-card
+            [testimonial]="testimonial"
+            [variant]="variant"
+            [showPhoto]="true"
+            alignment="center"
+          >
+          </app-testimonial-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Button -->
+    <button
+      *ngIf="showNavigation && testimonials.length > 1"
+      class="testimonial-slider__nav testimonial-slider__nav--next"
+      (click)="nextSlide()"
+      [attr.aria-label]="
+        'Next testimonial, currently showing ' +
+        (currentIndex() + 1) +
+        ' of ' +
+        testimonials.length
+      "
+      [disabled]="isTransitioning()"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="9,18 15,12 9,6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dots Indicator -->
+  <div
+    class="testimonial-slider__dots"
+    *ngIf="showDots && testimonials.length > 1"
+    role="tablist"
+    aria-label="Testimonial navigation"
+  >
+    <button
+      *ngFor="let testimonial of testimonials; let i = index"
+      class="testimonial-slider__dot"
+      [class.testimonial-slider__dot--active]="i === currentIndex()"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Go to testimonial ' + (i + 1)"
+      [attr.aria-selected]="i === currentIndex()"
+      role="tab"
+      [disabled]="isTransitioning()"
+    ></button>
+  </div>
+
+  <!-- Screen Reader Status -->
+  <div class="sr-only" aria-live="polite" aria-atomic="true">
+    Showing testimonial {{ currentIndex() + 1 }} of {{ testimonials.length }}
+  </div>
+</div>

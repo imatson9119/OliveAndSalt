@@ -1,0 +1,60 @@
+<div
+  class="testimonial-card"
+  [class.testimonial-card--quote]="variant === 'quote'"
+  [class.testimonial-card--center]="alignment === 'center'"
+  [class.testimonial-card--right]="alignment === 'right'"
+>
+  <!-- Quote Text -->
+  <blockquote class="testimonial-card__quote">
+    <div class="testimonial-card__quote-mark" aria-hidden="true">"</div>
+    <p class="testimonial-card__text">{{ testimonial.content }}</p>
+  </blockquote>
+
+  <!-- Author Info -->
+  <footer class="testimonial-card__footer">
+    <div class="testimonial-card__author">
+      <!-- Author Photo -->
+      <div
+        class="testimonial-card__photo"
+        *ngIf="showPhoto && testimonial.photo"
+      >
+        <img
+          [src]="testimonial.photo"
+          [alt]="testimonial.name"
+          class="testimonial-card__photo-img"
+        />
+      </div>
+
+      <!-- Author Details -->
+      <div class="testimonial-card__details">
+        <cite class="testimonial-card__name">{{ testimonial.name }}</cite>
+        <div class="testimonial-card__location" *ngIf="testimonial.location">
+          {{ testimonial.location }}
+        </div>
+        <div class="testimonial-card__service" *ngIf="testimonial.serviceType">
+          {{ testimonial.serviceType }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating Stars -->
+    <div
+      class="testimonial-card__rating"
+      *ngIf="testimonial.rating"
+      [attr.aria-label]="testimonial.rating + ' out of 5 stars'"
+    >
+      <span
+        class="testimonial-card__stars"
+        [attr.data-rating]="testimonial.rating"
+      >
+        <span
+          class="testimonial-card__star"
+          *ngFor="let star of [1, 2, 3, 4, 5]"
+          [class.testimonial-card__star--filled]="star <= testimonial.rating"
+          aria-hidden="true"
+          >★</span
+        >
+      </span>
+    </div>
+  </footer>
+</div>

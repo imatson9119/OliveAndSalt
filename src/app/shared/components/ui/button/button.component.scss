@@ -1,0 +1,224 @@
+// Button Component Styles - Olive and Salt Brand
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+
+  &:focus {
+    outline: 2px solid var(--olive-green);
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  // Size variants
+  &--small {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.875rem;
+    min-height: 32px;
+  }
+
+  &--medium {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1rem;
+    min-height: 44px;
+  }
+
+  &--large {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.125rem;
+    min-height: 52px;
+  }
+
+  // Color variants
+  &--primary {
+    background-color: var(--olive-green);
+    color: var(--cream-white);
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      background-color: var(--terracotta);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--soft-gray);
+    color: var(--charcoal);
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      background-color: var(--mid-gray);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: var(--olive-green);
+    border: 2px solid var(--olive-green);
+
+    &:hover:not(:disabled) {
+      background-color: var(--olive-green);
+      color: var(--cream-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    color: var(--olive-green);
+    box-shadow: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+
+    &:hover:not(:disabled) {
+      background-color: rgba(99, 123, 47, 0.1);
+      color: var(--terracotta);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(99, 123, 47, 0.2);
+    }
+  }
+
+  &--danger {
+    background-color: #dc3545;
+    color: var(--cream-white);
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      background-color: #c82333;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  // States
+  &--disabled,
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  &--loading {
+    cursor: not-allowed;
+
+    .button-text {
+      opacity: 0.7;
+    }
+  }
+
+  // Icon styles
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-left {
+      margin-right: var(--spacing-xs);
+      margin-left: -2px;
+    }
+
+    &-right {
+      margin-left: var(--spacing-xs);
+      margin-right: -2px;
+    }
+  }
+
+  // Loading spinner
+  .loading-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: var(--spacing-xs);
+  }
+
+  // Full width modifier
+  &--full-width {
+    width: 100%;
+  }
+
+  // Icon only modifier
+  &--icon-only {
+    padding: var(--spacing-sm);
+
+    &.btn--small {
+      padding: var(--spacing-xs);
+    }
+
+    &.btn--large {
+      padding: var(--spacing-md);
+    }
+
+    .button-text {
+      display: none;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+  .btn {
+    &--small {
+      min-height: 36px;
+    }
+
+    &--medium {
+      min-height: 48px;
+    }
+
+    &--large {
+      min-height: 56px;
+    }
+  }
+}

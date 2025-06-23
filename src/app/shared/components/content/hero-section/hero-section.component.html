@@ -1,0 +1,143 @@
+<section
+  class="hero"
+  [class]="heroClasses"
+  [attr.aria-label]="content.title || 'Hero section'"
+>
+  <!-- Background Image -->
+  <div
+    *ngIf="content.backgroundImage"
+    class="hero__background"
+    [style.background-image]="'url(' + content.backgroundImage + ')'"
+    [attr.aria-hidden]="'true'"
+  ></div>
+
+  <!-- Background Video (if provided) -->
+  <video
+    *ngIf="content.backgroundVideo"
+    class="hero__background-video"
+    [src]="content.backgroundVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    [attr.aria-hidden]="'true'"
+  ></video>
+
+  <!-- Overlay -->
+  <div
+    *ngIf="content.overlay"
+    class="hero__overlay"
+    [style.background-color]="content.overlayColor || 'rgba(0, 0, 0, 0.4)'"
+    [style.opacity]="content.overlayOpacity || 0.6"
+    [attr.aria-hidden]="'true'"
+  ></div>
+
+  <!-- Content Container -->
+  <div class="hero__container">
+    <div
+      class="hero__content"
+      [class]="'hero__content--' + (content.alignment || 'center')"
+    >
+      <!-- Eyebrow/Subtitle -->
+      <p
+        *ngIf="content.eyebrow"
+        class="hero__eyebrow"
+        [innerHTML]="content.eyebrow"
+      ></p>
+
+      <!-- Main Title -->
+      <h1
+        *ngIf="content.title"
+        class="hero__title"
+        [innerHTML]="content.title"
+      ></h1>
+
+      <!-- Subtitle -->
+      <p
+        *ngIf="content.subtitle"
+        class="hero__subtitle"
+        [innerHTML]="content.subtitle"
+      ></p>
+
+      <!-- Description -->
+      <div
+        *ngIf="content.description"
+        class="hero__description"
+        [innerHTML]="content.description"
+      ></div>
+
+      <!-- Call to Action Buttons -->
+      <div
+        *ngIf="content.primaryCta || content.secondaryCta"
+        class="hero__actions"
+      >
+        <!-- Primary CTA -->
+        <a
+          *ngIf="content.primaryCta"
+          [routerLink]="content.primaryCta.route || null"
+          [href]="content.primaryCta.href || null"
+          class="hero__cta hero__cta--primary"
+          [attr.target]="content.primaryCta.external ? '_blank' : null"
+          [attr.rel]="
+            content.primaryCta.external ? 'noopener noreferrer' : null
+          "
+          [attr.aria-label]="
+            content.primaryCta.ariaLabel || content.primaryCta.text
+          "
+        >
+          {{ content.primaryCta.text }}
+        </a>
+
+        <!-- Secondary CTA -->
+        <a
+          *ngIf="content.secondaryCta"
+          [routerLink]="content.secondaryCta.route || null"
+          [href]="content.secondaryCta.href || null"
+          class="hero__cta hero__cta--secondary"
+          [attr.target]="content.secondaryCta.external ? '_blank' : null"
+          [attr.rel]="
+            content.secondaryCta.external ? 'noopener noreferrer' : null
+          "
+          [attr.aria-label]="
+            content.secondaryCta.ariaLabel || content.secondaryCta.text
+          "
+        >
+          {{ content.secondaryCta.text }}
+        </a>
+      </div>
+
+      <!-- Additional Content Slot -->
+      <div *ngIf="hasAdditionalContent" class="hero__additional">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div
+    *ngIf="content.showScrollIndicator !== false"
+    class="hero__scroll-indicator"
+    [attr.aria-label]="'Scroll down for more content'"
+  >
+    <div class="hero__scroll-arrow">
+      <span class="hero__scroll-text">Scroll</span>
+      <svg
+        class="hero__scroll-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M7 10L12 15L17 10"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+</section>

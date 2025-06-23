@@ -1,0 +1,176 @@
+<div class="date-picker">
+  <div class="date-picker__header">
+    <h2 class="date-picker__title">Select Date & Time</h2>
+    <p class="date-picker__subtitle">
+      Choose your preferred date and time for your culinary experience
+    </p>
+  </div>
+
+  <!-- Calendar Section -->
+  <div class="date-picker__calendar-section">
+    <h3 class="date-picker__section-title">Choose Date</h3>
+
+    <div class="date-picker__calendar">
+      <!-- Calendar Header -->
+      <div class="date-picker__calendar-header">
+        <button
+          class="date-picker__nav-button"
+          (click)="previousMonth()"
+          aria-label="Previous month"
+          type="button"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
+        </button>
+
+        <h4 class="date-picker__month-year">{{ currentMonthName }}</h4>
+
+        <button
+          class="date-picker__nav-button"
+          (click)="nextMonth()"
+          aria-label="Next month"
+          type="button"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Days of Week -->
+      <div class="date-picker__days-header">
+        <div class="date-picker__day-name">Sun</div>
+        <div class="date-picker__day-name">Mon</div>
+        <div class="date-picker__day-name">Tue</div>
+        <div class="date-picker__day-name">Wed</div>
+        <div class="date-picker__day-name">Thu</div>
+        <div class="date-picker__day-name">Fri</div>
+        <div class="date-picker__day-name">Sat</div>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div class="date-picker__calendar-grid">
+        <button
+          *ngFor="let day of calendarDays"
+          class="date-picker__day"
+          [class.date-picker__day--today]="day && isToday(day)"
+          [class.date-picker__day--selected]="day && isDateSelected(day)"
+          [class.date-picker__day--available]="day && isDateAvailable(day)"
+          [class.date-picker__day--unavailable]="day && !isDateAvailable(day)"
+          [disabled]="!day || !isDateAvailable(day)"
+          (click)="day && selectDate(day)"
+          [attr.aria-label]="day ? day.toLocaleDateString() : null"
+          type="button"
+        >
+          {{ day?.getDate() }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time Selection Section -->
+  <div class="date-picker__time-section" *ngIf="selectedDate">
+    <h3 class="date-picker__section-title">Choose Time</h3>
+
+    <!-- Time Slot Selection -->
+    <div class="date-picker__time-slots">
+      <button
+        *ngFor="let slot of timeSlotOptions"
+        class="date-picker__time-slot"
+        [class.date-picker__time-slot--selected]="
+          selectedTimeSlot === slot.value
+        "
+        (click)="selectTimeSlot(slot.value)"
+        type="button"
+      >
+        {{ slot.label }}
+      </button>
+    </div>
+
+    <!-- Available Times -->
+    <div
+      class="date-picker__times"
+      *ngIf="selectedTimeSlot !== 'custom' && availableTimeSlots.length > 0"
+    >
+      <div class="date-picker__times-grid">
+        <button
+          *ngFor="let time of availableTimeSlots"
+          class="date-picker__time-button"
+          [class.date-picker__time-button--selected]="selectedTime === time"
+          (click)="selectTime(time)"
+          type="button"
+        >
+          {{ time }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Custom Time Input -->
+    <div
+      class="date-picker__custom-time"
+      *ngIf="selectedTimeSlot === 'custom' && allowCustomTime"
+    >
+      <label class="date-picker__label" for="custom-time">
+        Enter your preferred time
+      </label>
+      <input
+        type="time"
+        id="custom-time"
+        class="date-picker__time-input"
+        [(ngModel)]="customTime"
+        (ngModelChange)="onCustomTimeChange()"
+        min="06:00"
+        max="23:00"
+      />
+      <p class="date-picker__time-note">
+        Please note: Custom times are subject to chef availability and will be
+        confirmed after booking.
+      </p>
+    </div>
+  </div>
+
+  <!-- Selection Summary -->
+  <div class="date-picker__summary" *ngIf="selectedDate && selectedTime">
+    <div class="date-picker__summary-card">
+      <h4 class="date-picker__summary-title">Your Selection</h4>
+      <div class="date-picker__summary-details">
+        <div class="date-picker__summary-item">
+          <span class="date-picker__summary-label">Date:</span>
+          <span class="date-picker__summary-value">{{
+            selectedDate | date : "fullDate"
+          }}</span>
+        </div>
+        <div class="date-picker__summary-item">
+          <span class="date-picker__summary-label">Time:</span>
+          <span class="date-picker__summary-value">{{ selectedTime }}</span>
+        </div>
+        <div class="date-picker__summary-item">
+          <span class="date-picker__summary-label">Meal:</span>
+          <span class="date-picker__summary-value">
+            {{ getSelectedTimeSlotLabel() }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instructions -->
+  <div class="date-picker__instructions" *ngIf="!selectedDate">
+    <p>Please select a date to view available times.</p>
+  </div>
+</div>

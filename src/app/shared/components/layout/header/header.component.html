@@ -1,0 +1,93 @@
+<header class="header" [class.header--scrolled]="isScrolled">
+  <div class="header__container">
+    <!-- Logo -->
+    <div class="header__logo">
+      <a
+        [routerLink]="'/'"
+        class="header__logo-link"
+        [attr.aria-label]="'Go to homepage'"
+      >
+        <span class="header__logo-text">Olive and Salt</span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav
+      class="header__nav header__nav--desktop"
+      [attr.aria-label]="'Main navigation'"
+    >
+      <ul class="header__nav-list">
+        <li *ngFor="let item of navItems" class="header__nav-item">
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="header__nav-link--active"
+            [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+            class="header__nav-link"
+            [class.header__nav-link--cta]="item.isCta"
+            [attr.target]="item.external ? '_blank' : null"
+            [attr.rel]="item.external ? 'noopener noreferrer' : null"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      type="button"
+      class="header__mobile-toggle"
+      [class.header__mobile-toggle--active]="isMobileMenuOpen"
+      [attr.aria-expanded]="isMobileMenuOpen"
+      [attr.aria-label]="
+        isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+      "
+      (click)="toggleMobileMenu()"
+    >
+      <span class="header__hamburger">
+        <span class="header__hamburger-line"></span>
+        <span class="header__hamburger-line"></span>
+        <span class="header__hamburger-line"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div
+    class="header__mobile-menu"
+    [class.header__mobile-menu--open]="isMobileMenuOpen"
+    [attr.aria-hidden]="!isMobileMenuOpen"
+  >
+    <!-- Mobile menu backdrop -->
+    <div
+      *ngIf="isMobileMenuOpen"
+      class="header__mobile-backdrop"
+      (click)="closeMobileMenu()"
+      (keydown.escape)="closeMobileMenu()"
+      tabindex="0"
+    ></div>
+
+    <!-- Mobile menu content -->
+    <nav
+      class="header__nav header__nav--mobile"
+      [attr.aria-label]="'Mobile navigation'"
+    >
+      <ul class="header__mobile-nav-list">
+        <li *ngFor="let item of navItems" class="header__mobile-nav-item">
+          <a
+            [routerLink]="item.route"
+            routerLinkActive="header__mobile-nav-link--active"
+            [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+            class="header__mobile-nav-link"
+            [class.header__mobile-nav-link--cta]="item.isCta"
+            [attr.target]="item.external ? '_blank' : null"
+            [attr.rel]="item.external ? 'noopener noreferrer' : null"
+            (click)="onMobileNavClick()"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

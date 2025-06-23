@@ -1,0 +1,145 @@
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__content">
+      <!-- Main Content Section -->
+      <div class="footer__main">
+        <!-- Brand Section -->
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <span class="footer__logo-text">Olive and Salt</span>
+          </div>
+          <p class="footer__tagline">{{ tagline }}</p>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer__contact">
+          <h3 class="footer__section-title">Get in Touch</h3>
+          <div class="footer__contact-list">
+            <div
+              *ngFor="let contact of contactInfo"
+              class="footer__contact-item"
+            >
+              <a
+                [href]="
+                  contact.type === 'email'
+                    ? 'mailto:' + contact.value
+                    : contact.type === 'phone'
+                    ? 'tel:' + contact.value
+                    : contact.value
+                "
+                class="footer__contact-link"
+                [attr.aria-label]="contact.label + ': ' + contact.value"
+                [attr.target]="contact.type === 'website' ? '_blank' : null"
+                [attr.rel]="
+                  contact.type === 'website' ? 'noopener noreferrer' : null
+                "
+              >
+                <span
+                  class="footer__contact-icon"
+                  [innerHTML]="contact.icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="footer__contact-text">{{ contact.value }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="footer__nav">
+          <h3 class="footer__section-title">Navigation</h3>
+          <ul class="footer__nav-list">
+            <li *ngFor="let item of navigationLinks" class="footer__nav-item">
+              <a
+                [routerLink]="item.route"
+                class="footer__nav-link"
+                [attr.target]="item.external ? '_blank' : null"
+                [attr.rel]="item.external ? 'noopener noreferrer' : null"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer__social">
+          <h3 class="footer__section-title">Follow Us</h3>
+          <div class="footer__social-links">
+            <a
+              *ngFor="let social of socialMediaLinks"
+              [href]="social.url"
+              class="footer__social-link"
+              [attr.aria-label]="'Follow us on ' + social.platform"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span
+                class="footer__social-icon"
+                [innerHTML]="social.icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">{{ social.platform }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup (Optional) -->
+      <div *ngIf="showNewsletter" class="footer__newsletter">
+        <h3 class="footer__section-title">Stay Updated</h3>
+        <p class="footer__newsletter-text">
+          Get the latest updates on seasonal menus and special events.
+        </p>
+        <form
+          class="footer__newsletter-form"
+          (ngSubmit)="onNewsletterSubmit($event)"
+        >
+          <div class="footer__newsletter-input-group">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="footer__newsletter-input"
+              [attr.aria-label]="'Email address for newsletter'"
+              required
+            />
+            <button
+              type="submit"
+              class="footer__newsletter-button"
+              [attr.aria-label]="'Subscribe to newsletter'"
+            >
+              Subscribe
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer__bottom">
+      <div class="footer__bottom-content">
+        <!-- Copyright -->
+        <div class="footer__copyright">
+          <p>&copy; {{ currentYear }} Olive and Salt. All rights reserved.</p>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer__legal">
+          <a
+            *ngFor="let link of legalLinks; let last = last"
+            [routerLink]="link.route"
+            class="footer__legal-link"
+          >
+            {{ link.label
+            }}<span *ngIf="!last" class="footer__legal-separator"> | </span>
+          </a>
+        </div>
+
+        <!-- Made with love -->
+        <div class="footer__credits">
+          <p class="footer__credits-text">Made with ❤️ for home cooking</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

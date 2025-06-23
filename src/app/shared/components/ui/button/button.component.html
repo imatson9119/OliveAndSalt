@@ -1,0 +1,39 @@
+<button
+  [type]="config.type || 'button'"
+  [class]="buttonClasses"
+  [disabled]="config.disabled || loading"
+  [attr.aria-label]="config.ariaLabel || config.text"
+  [attr.title]="config.title"
+  (click)="handleClick($event)"
+>
+  <!-- Loading state -->
+  <span *ngIf="loading" class="button__loading">
+    <span class="button__spinner" aria-hidden="true"></span>
+    <span class="sr-only">Loading...</span>
+  </span>
+
+  <!-- Button content when not loading -->
+  <ng-container *ngIf="!loading">
+    <!-- Leading icon -->
+    <span
+      *ngIf="config.iconLeft"
+      class="button__icon button__icon--left"
+      [innerHTML]="config.iconLeft"
+      aria-hidden="true"
+    ></span>
+
+    <!-- Button text -->
+    <span *ngIf="config.text" class="button__text">{{ config.text }}</span>
+
+    <!-- Projected content -->
+    <ng-content></ng-content>
+
+    <!-- Trailing icon -->
+    <span
+      *ngIf="config.iconRight"
+      class="button__icon button__icon--right"
+      [innerHTML]="config.iconRight"
+      aria-hidden="true"
+    ></span>
+  </ng-container>
+</button>

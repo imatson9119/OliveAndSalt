@@ -1,0 +1,331 @@
+// Footer Component Styles - Olive and Salt Brand
+
+.footer {
+  background-color: var(--olive-green);
+  color: var(--cream-white);
+  margin-top: auto;
+
+  &__content {
+    padding: var(--spacing-2xl) 0 var(--spacing-lg);
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+      text-align: center;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__logo-text {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--cream-white);
+  }
+
+  &__logo-primary {
+    font-weight: 600;
+  }
+
+  &__logo-secondary {
+    font-weight: 400;
+    opacity: 0.9;
+  }
+
+  &__tagline {
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--cream-white);
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__description {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    color: var(--cream-white);
+    opacity: 0.8;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 280px;
+
+    @media (max-width: 768px) {
+      max-width: none;
+    }
+  }
+
+  &__section-title {
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--cream-white);
+    margin: 0 0 var(--spacing-sm) 0;
+    line-height: 1.3;
+  }
+
+  &__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  &__contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    @media (max-width: 768px) {
+      align-items: center;
+    }
+  }
+
+  &__contact-label {
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    color: var(--cream-white);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  &__contact-link {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    color: var(--cream-white);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      color: var(--terracotta);
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid var(--cream-white);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  &__contact-text {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    color: var(--cream-white);
+    opacity: 0.9;
+  }
+
+  &__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  &__nav-link {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    color: var(--cream-white);
+    text-decoration: none;
+    opacity: 0.9;
+    transition: all var(--transition-fast);
+    padding: 2px 0;
+
+    &:hover {
+      opacity: 1;
+      color: var(--terracotta);
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid var(--cream-white);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  &__social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(253, 249, 243, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--cream-white);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background-color: var(--terracotta);
+      transform: translateY(-2px);
+    }
+
+    &:focus {
+      outline: 2px solid var(--cream-white);
+      outline-offset: 2px;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(253, 249, 243, 0.2);
+    gap: var(--spacing-md);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      text-align: center;
+    }
+  }
+
+  &__legal {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+  }
+
+  &__copyright {
+    p {
+      font-family: var(--font-secondary);
+      font-size: 0.75rem;
+      color: var(--cream-white);
+      opacity: 0.7;
+      margin: 0;
+    }
+  }
+
+  &__legal-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  &__legal-link {
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    color: var(--cream-white);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: all var(--transition-fast);
+    padding: 2px 4px;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid var(--cream-white);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    &:not(:last-child)::after {
+      content: "|";
+      margin-left: var(--spacing-sm);
+      opacity: 0.5;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  &__cta {
+    flex-shrink: 0;
+
+    .btn {
+      font-size: 0.875rem;
+      padding: var(--spacing-xs) var(--spacing-md);
+      background-color: var(--terracotta);
+      border-color: var(--terracotta);
+
+      &:hover {
+        background-color: var(--cream-white);
+        color: var(--olive-green);
+        border-color: var(--cream-white);
+      }
+    }
+  }
+}
+
+// Additional spacing for mobile
+@media (max-width: 480px) {
+  .footer {
+    &__content {
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+    }
+
+    &__main {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    &__section-title {
+      font-size: 1rem;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .footer {
+    background-color: var(--charcoal);
+
+    &__bottom {
+      border-top-color: var(--cream-white);
+    }
+  }
+}

@@ -1,0 +1,199 @@
+<div
+  class="form-field"
+  [class.form-field--error]="hasError"
+  [class.form-field--focused]="isFocused"
+>
+  <!-- Label -->
+  <label
+    *ngIf="config.label"
+    [for]="fieldId"
+    class="form-field__label"
+    [class.form-field__label--required]="config.required"
+  >
+    {{ config.label }}
+    <span
+      *ngIf="config.required"
+      class="form-field__required"
+      aria-label="required"
+      >*</span
+    >
+  </label>
+
+  <!-- Input field wrapper -->
+  <div class="form-field__input-wrapper">
+    <!-- Text input types -->
+    <input
+      *ngIf="
+        config.type === 'text' ||
+        config.type === 'email' ||
+        config.type === 'tel' ||
+        config.type === 'password' ||
+        config.type === 'url' ||
+        config.type === 'date' ||
+        config.type === 'time'
+      "
+      [id]="fieldId"
+      [type]="config.type"
+      [placeholder]="config.placeholder"
+      [required]="config.required"
+      [disabled]="config.disabled"
+      [readonly]="config.readonly"
+      [minlength]="config.minLength"
+      [maxlength]="config.maxLength"
+      [min]="config.min"
+      [max]="config.max"
+      [pattern]="config.pattern"
+      [autocomplete]="config.autocomplete"
+      [attr.aria-describedby]="hasError ? fieldId + '-error' : null"
+      [value]="value || ''"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      class="form-field__input"
+    />
+
+    <!-- Number input -->
+    <input
+      *ngIf="config.type === 'number'"
+      [id]="fieldId"
+      type="number"
+      [placeholder]="config.placeholder"
+      [required]="config.required"
+      [disabled]="config.disabled"
+      [readonly]="config.readonly"
+      [min]="config.min"
+      [max]="config.max"
+      [step]="config.step"
+      [attr.aria-describedby]="hasError ? fieldId + '-error' : null"
+      [value]="value || ''"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      class="form-field__input"
+    />
+
+    <!-- Textarea -->
+    <textarea
+      *ngIf="config.type === 'textarea'"
+      [id]="fieldId"
+      [placeholder]="config.placeholder"
+      [required]="config.required"
+      [disabled]="config.disabled"
+      [readonly]="config.readonly"
+      [minlength]="config.minLength"
+      [maxlength]="config.maxLength"
+      [rows]="config.rows || 4"
+      [attr.aria-describedby]="hasError ? fieldId + '-error' : null"
+      [value]="value || ''"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      class="form-field__textarea"
+    ></textarea>
+
+    <!-- Select dropdown -->
+    <select
+      *ngIf="config.type === 'select'"
+      [id]="fieldId"
+      [required]="config.required"
+      [disabled]="config.disabled"
+      [attr.aria-describedby]="hasError ? fieldId + '-error' : null"
+      [value]="value || ''"
+      (change)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      class="form-field__select"
+    >
+      <option value="" *ngIf="config.placeholder">
+        {{ config.placeholder }}
+      </option>
+      <option
+        *ngFor="let option of config.options"
+        [value]="option.value"
+        [disabled]="option.disabled"
+      >
+        {{ option.label }}
+      </option>
+    </select>
+
+    <!-- Checkbox -->
+    <div
+      *ngIf="config.type === 'checkbox'"
+      class="form-field__checkbox-wrapper"
+    >
+      <input
+        [id]="fieldId"
+        type="checkbox"
+        [required]="config.required"
+        [disabled]="config.disabled"
+        [checked]="value === true"
+        [attr.aria-describedby]="hasError ? fieldId + '-error' : null"
+        (change)="onCheckboxChange($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        class="form-field__checkbox"
+      />
+      <label [for]="fieldId" class="form-field__checkbox-label">
+        <span class="form-field__checkbox-indicator"></span>
+        <span class="form-field__checkbox-text">{{ config.label }}</span>
+      </label>
+    </div>
+
+    <!-- Radio group -->
+    <div *ngIf="config.type === 'radio'" class="form-field__radio-group">
+      <div
+        *ngFor="let option of config.options; let i = index"
+        class="form-field__radio-wrapper"
+      >
+        <input
+          [id]="fieldId + '-' + i"
+          type="radio"
+          [name]="fieldId"
+          [value]="option.value"
+          [required]="config.required"
+          [disabled]="config.disabled || option.disabled"
+          [checked]="value === option.value"
+          [attr.aria-describedby]="hasError ? fieldId + '-error' : null"
+          (change)="onRadioChange($event)"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          class="form-field__radio"
+        />
+        <label [for]="fieldId + '-' + i" class="form-field__radio-label">
+          <span class="form-field__radio-indicator"></span>
+          <span class="form-field__radio-text">{{ option.label }}</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help text -->
+  <div *ngIf="config.helpText && !hasError" class="form-field__help">
+    {{ config.helpText }}
+  </div>
+
+  <!-- Error message -->
+  <div
+    *ngIf="hasError"
+    [id]="fieldId + '-error'"
+    class="form-field__error"
+    role="alert"
+    aria-live="polite"
+  >
+    {{ errorMessage }}
+  </div>
+
+  <!-- Character count for text inputs -->
+  <div
+    *ngIf="
+      config.maxLength &&
+      (config.type === 'text' || config.type === 'textarea') &&
+      value
+    "
+    class="form-field__count"
+    [class.form-field__count--warning]="characterCount > config.maxLength * 0.8"
+    [class.form-field__count--error]="characterCount > config.maxLength"
+  >
+    {{ characterCount }}/{{ config.maxLength }}
+  </div>
+</div>

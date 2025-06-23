@@ -1,0 +1,333 @@
+// Header Component Styles - Olive and Salt Brand
+
+.header {
+  background-color: var(--cream-white);
+  border-bottom: 1px solid var(--soft-gray);
+  position: relative;
+  z-index: 100;
+  transition: all var(--transition-normal);
+
+  &--sticky {
+    position: sticky;
+    top: 0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) 0;
+    gap: var(--spacing-md);
+  }
+
+  &__logo {
+    flex-shrink: 0;
+  }
+
+  &__logo-link {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity var(--transition-fast);
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus {
+      outline: 2px solid var(--olive-green);
+      outline-offset: 4px;
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  &__logo-text {
+    font-family: var(--font-primary);
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--olive-green);
+  }
+
+  &__logo-primary {
+    font-weight: 600;
+  }
+
+  &__logo-secondary {
+    font-weight: 400;
+    color: var(--charcoal);
+  }
+
+  &__nav {
+    display: none;
+    flex: 1;
+    justify-content: center;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  &__cta {
+    display: none;
+    flex-shrink: 0;
+
+    @media (min-width: 1024px) {
+      display: block;
+    }
+  }
+
+  &__mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+
+    &:hover {
+      background-color: var(--soft-gray);
+    }
+
+    &:focus {
+      outline: 2px solid var(--olive-green);
+      outline-offset: 2px;
+    }
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__mobile-menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--cream-white);
+    border-top: 1px solid var(--soft-gray);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    z-index: 99;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+
+    &--open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(51, 51, 51, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    z-index: 98;
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+// Desktop Navigation
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-lg);
+  align-items: center;
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+
+    &:hover {
+      color: var(--olive-green);
+    }
+
+    &:focus {
+      outline: 2px solid var(--olive-green);
+      outline-offset: 2px;
+    }
+
+    &--active {
+      color: var(--olive-green);
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        background-color: var(--terracotta);
+        border-radius: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
+// Mobile Navigation
+.mobile-nav {
+  padding: var(--spacing-lg);
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__item {
+    &--cta {
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--soft-gray);
+    }
+  }
+
+  &__link {
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--charcoal);
+    text-decoration: none;
+    padding: var(--spacing-sm) 0;
+    display: block;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+
+    &:hover {
+      color: var(--olive-green);
+    }
+
+    &:focus {
+      outline: 2px solid var(--olive-green);
+      outline-offset: 2px;
+    }
+
+    &--active {
+      color: var(--olive-green);
+      font-weight: 600;
+    }
+  }
+}
+
+// Hamburger Menu Animation
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  width: 24px;
+  height: 18px;
+  position: relative;
+
+  &__line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--charcoal);
+    transition: all var(--transition-fast);
+    transform-origin: center;
+
+    &:nth-child(1) {
+      margin-bottom: 4px;
+    }
+
+    &:nth-child(2) {
+      margin-bottom: 4px;
+    }
+  }
+
+  .header__mobile-toggle--active & {
+    &__line {
+      &:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+// Button styles specific to header
+.btn--cta {
+  font-size: 0.875rem;
+  padding: var(--spacing-xs) var(--spacing-md);
+  white-space: nowrap;
+}
+
+// Mobile optimization
+@media (max-width: 1023px) {
+  .header {
+    &__content {
+      padding: var(--spacing-sm) 0;
+    }
+
+    &__logo-text {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Prevent scrolling when mobile menu is open
+.mobile-menu-open {
+  overflow: hidden;
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .header {
+    border-bottom-width: 2px;
+    border-bottom-color: var(--charcoal);
+  }
+
+  .nav-list__link--active::after,
+  .hamburger__line {
+    background-color: var(--charcoal);
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .header__mobile-menu,
+  .header__mobile-backdrop,
+  .hamburger__line {
+    transition: none;
+  }
+}

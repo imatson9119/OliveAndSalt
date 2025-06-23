@@ -1,0 +1,163 @@
+<app-modal
+  [isOpen]="isOpen"
+  (closeRequested)="close()"
+  size="full"
+  [showHeader]="false"
+  [showFooter]="false"
+  [closeOnBackdropClick]="true"
+  [closeOnEscape]="true"
+>
+  <div
+    class="gallery-lightbox"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <!-- Close Button -->
+    <button
+      class="gallery-lightbox__close"
+      (click)="close()"
+      aria-label="Close lightbox"
+      type="button"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Main Content Area -->
+    <div class="gallery-lightbox__content">
+      <!-- Previous Button -->
+      <button
+        class="gallery-lightbox__nav gallery-lightbox__nav--prev"
+        (click)="previous()"
+        [disabled]="images.length <= 1"
+        [attr.aria-label]="
+          'Previous image, currently showing ' +
+          (currentIndex + 1) +
+          ' of ' +
+          images.length
+        "
+        *ngIf="images.length > 1"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Image Container -->
+      <div class="gallery-lightbox__image-container" *ngIf="currentImage">
+        <img
+          class="gallery-lightbox__image"
+          [src]="currentImage.src"
+          [alt]="currentImage.alt || currentImage.caption || ''"
+          (load)="onImageLoad()"
+          (error)="onImageError()"
+        />
+
+        <!-- Image Info -->
+        <div
+          class="gallery-lightbox__info"
+          *ngIf="currentImage.caption || currentImage.category"
+        >
+          <div class="gallery-lightbox__caption" *ngIf="currentImage.caption">
+            {{ currentImage.caption }}
+          </div>
+          <div class="gallery-lightbox__metadata">
+            <span
+              class="gallery-lightbox__category"
+              *ngIf="currentImage.category"
+            >
+              {{ currentImage.category }}
+            </span>
+            <span class="gallery-lightbox__counter">
+              {{ currentIndex + 1 }} of {{ images.length }}
+            </span>
+            <span class="gallery-lightbox__date" *ngIf="currentImage.date">
+              {{ currentImage.date | date : "mediumDate" }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <button
+        class="gallery-lightbox__nav gallery-lightbox__nav--next"
+        (click)="next()"
+        [disabled]="images.length <= 1"
+        [attr.aria-label]="
+          'Next image, currently showing ' +
+          (currentIndex + 1) +
+          ' of ' +
+          images.length
+        "
+        *ngIf="images.length > 1"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Thumbnail Navigation -->
+    <div
+      class="gallery-lightbox__thumbnails"
+      *ngIf="showThumbnails && images.length > 1"
+    >
+      <div class="gallery-lightbox__thumbnails-track">
+        <button
+          class="gallery-lightbox__thumbnail"
+          *ngFor="let image of images; let i = index"
+          [class.gallery-lightbox__thumbnail--active]="i === currentIndex"
+          (click)="goToImage(i)"
+          [attr.aria-label]="
+            'Go to image ' +
+            (i + 1) +
+            ': ' +
+            (image.alt || image.caption || 'Gallery image')
+          "
+          type="button"
+        >
+          <img
+            [src]="image.thumbnail || image.src"
+            [alt]=""
+            class="gallery-lightbox__thumbnail-img"
+          />
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="gallery-lightbox__loading" *ngIf="images.length === 0">
+      <div class="gallery-lightbox__spinner"></div>
+      <p>Loading images...</p>
+    </div>
+
+    <!-- Screen Reader Status -->
+    <div class="sr-only" aria-live="polite" aria-atomic="true">
+      Image {{ currentIndex + 1 }} of {{ images.length }}
+      <span *ngIf="currentImage?.caption">: {{ currentImage?.caption }}</span>
+    </div>
+  </div>
+</app-modal>

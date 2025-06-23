@@ -1,0 +1,239 @@
+<div class="service-selection">
+  <div class="service-selection__header">
+    <h2 class="service-selection__title">Choose Your Experience</h2>
+    <p class="service-selection__subtitle">
+      Select the perfect culinary experience for your occasion
+    </p>
+  </div>
+
+  <!-- Service Grid -->
+  <div
+    class="service-selection__services"
+    [class.service-selection__services--list]="layout === 'list'"
+    [class.service-selection__services--grid]="layout === 'grid'"
+  >
+    <div
+      class="service-selection__service"
+      *ngFor="let service of services"
+      [class.service-selection__service--selected]="
+        selectedService?.id === service.id
+      "
+    >
+      <app-service-card
+        [service]="service"
+        [showPricing]="showPricing"
+        [isSelected]="selectedService?.id === service.id"
+        (serviceClick)="onServiceSelect(service)"
+      >
+      </app-service-card>
+    </div>
+  </div>
+
+  <!-- Service Configuration -->
+  <div class="service-selection__configuration" *ngIf="selectedService">
+    <div class="service-selection__config-card">
+      <h3 class="service-selection__config-title">Customize Your Experience</h3>
+
+      <!-- Guest Count -->
+      <div class="service-selection__config-section">
+        <label class="service-selection__label" for="guests">
+          Number of Guests
+        </label>
+        <select
+          id="guests"
+          class="service-selection__select"
+          [(ngModel)]="selectedGuests"
+          (ngModelChange)="onGuestsChange()"
+          [attr.aria-describedby]="
+            selectedService.pricePerGuest ? 'guest-pricing-info' : null
+          "
+        >
+          <option *ngFor="let count of getGuestOptions()" [value]="count">
+            {{ count }} {{ count === 1 ? "guest" : "guests" }}
+          </option>
+        </select>
+        <div
+          id="guest-pricing-info"
+          class="service-selection__info"
+          *ngIf="selectedService.pricePerGuest && selectedGuests > 2"
+        >
+          Additional guests: ${{ selectedService.pricePerGuest }} each
+        </div>
+      </div>
+
+      <!-- Service Options -->
+      <div
+        class="service-selection__config-section"
+        *ngIf="selectedService.options && selectedService.options.length > 0"
+      >
+        <h4 class="service-selection__options-title">Additional Options</h4>
+
+        <div class="service-selection__options">
+          <div
+            class="service-selection__option"
+            *ngFor="let option of selectedService.options"
+          >
+            <!-- Boolean Options (Checkboxes) -->
+            <div
+              class="service-selection__checkbox-option"
+              *ngIf="option.type === 'boolean'"
+            >
+              <label class="service-selection__checkbox-label">
+                <input
+                  type="checkbox"
+                  class="service-selection__checkbox"
+                  [checked]="selectedOptions[option.key]"
+                  (change)="onCheckboxChange(option.key, $event)"
+                />
+                <span class="service-selection__checkbox-text">
+                  {{ option.label }}
+                  <span
+                    class="service-selection__option-price"
+                    *ngIf="option.price"
+                  >
+                    (+${{ option.price }})
+                  </span>
+                </span>
+              </label>
+              <p
+                class="service-selection__option-description"
+                *ngIf="option.description"
+              >
+                {{ option.description }}
+              </p>
+            </div>
+
+            <!-- Number Options -->
+            <div
+              class="service-selection__number-option"
+              *ngIf="option.type === 'number'"
+            >
+              <label class="service-selection__label" [for]="option.key">
+                {{ option.label }}
+                <span
+                  class="service-selection__option-price"
+                  *ngIf="option.price"
+                >
+                  (${{ option.price }} each)
+                </span>
+              </label>
+              <input
+                type="number"
+                [id]="option.key"
+                class="service-selection__number-input"
+                [value]="selectedOptions[option.key] || 0"
+                [min]="option.min || 0"
+                [max]="option.max || 10"
+                (input)="onNumberInputChange(option.key, $event)"
+              />
+              <p
+                class="service-selection__option-description"
+                *ngIf="option.description"
+              >
+                {{ option.description }}
+              </p>
+            </div>
+
+            <!-- Select Options -->
+            <div
+              class="service-selection__select-option"
+              *ngIf="option.type === 'select'"
+            >
+              <label class="service-selection__label" [for]="option.key">
+                {{ option.label }}
+              </label>
+              <select
+                [id]="option.key"
+                class="service-selection__select"
+                [value]="selectedOptions[option.key] || ''"
+                (change)="onSelectChange(option.key, $event)"
+              >
+                <option value="">Choose an option</option>
+                <option
+                  *ngFor="let choice of option.choices"
+                  [value]="choice.value"
+                >
+                  {{ choice.label }}
+                  <span *ngIf="choice.price">(+${{ choice.price }})</span>
+                </option>
+              </select>
+              <p
+                class="service-selection__option-description"
+                *ngIf="option.description"
+              >
+                {{ option.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Special Requests -->
+      <div class="service-selection__config-section">
+        <label class="service-selection__label" for="special-requests">
+          Special Requests or Dietary Restrictions
+        </label>
+        <textarea
+          id="special-requests"
+          class="service-selection__textarea"
+          [(ngModel)]="specialRequests"
+          (ngModelChange)="onSpecialRequestsChange()"
+          placeholder="Please let us know about any allergies, dietary preferences, or special requests..."
+          rows="4"
+        ></textarea>
+      </div>
+
+      <!-- Price Summary -->
+      <div class="service-selection__price-summary" *ngIf="showPricing">
+        <div class="service-selection__price-line">
+          <span class="service-selection__price-label">Base Service:</span>
+          <span class="service-selection__price-value"
+            >${{ selectedService.basePrice || 0 }}</span
+          >
+        </div>
+
+        <div
+          class="service-selection__price-line"
+          *ngIf="selectedService.pricePerGuest && selectedGuests > 2"
+        >
+          <span class="service-selection__price-label">
+            Additional Guests ({{ selectedGuests - 2 }}):
+          </span>
+          <span class="service-selection__price-value">
+            ${{ (selectedGuests - 2) * selectedService.pricePerGuest }}
+          </span>
+        </div>
+
+        <div
+          class="service-selection__price-line"
+          *ngFor="let option of selectedService.options"
+          [hidden]="!selectedOptions[option.key] || !option.price"
+        >
+          <span class="service-selection__price-label"
+            >{{ option.label }}:</span
+          >
+          <span class="service-selection__price-value">
+            ${{ getOptionPrice(option.key, option.price || 0) }}
+          </span>
+        </div>
+
+        <div class="service-selection__price-total">
+          <span class="service-selection__price-label">Estimated Total:</span>
+          <span class="service-selection__price-value"
+            >${{ calculateEstimatedPrice() }}</span
+          >
+        </div>
+
+        <p class="service-selection__price-note">
+          *Final pricing may vary based on specific requirements and market
+          costs
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="service-selection__empty" *ngIf="services.length === 0">
+    <p>No services available at this time. Please check back later.</p>
+  </div>
+</div>

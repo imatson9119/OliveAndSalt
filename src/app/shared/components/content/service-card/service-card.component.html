@@ -1,0 +1,138 @@
+<article
+  class="service-card"
+  [class.service-card--featured]="service.featured"
+  [class.service-card--horizontal]="layout === 'horizontal'"
+  [attr.aria-label]="'Service: ' + service.title"
+>
+  <!-- Service Image -->
+  <div class="service-card__image-container">
+    <img
+      [src]="service.image"
+      [alt]="service.imageAlt || service.title"
+      class="service-card__image"
+      [attr.loading]="'lazy'"
+    />
+
+    <!-- Featured Badge -->
+    <div *ngIf="service.featured" class="service-card__badge">
+      <span class="service-card__badge-text">Featured</span>
+    </div>
+
+    <!-- Price Display (on image for featured) -->
+    <div
+      *ngIf="service.featured && service.basePrice"
+      class="service-card__price-overlay"
+    >
+      <span class="service-card__price-text">Starting at</span>
+      <span class="service-card__price-amount">${{ service.basePrice }}</span>
+    </div>
+  </div>
+
+  <!-- Service Content -->
+  <div class="service-card__content">
+    <!-- Header -->
+    <header class="service-card__header">
+      <h3 class="service-card__title">{{ service.title }}</h3>
+
+      <!-- Price (for non-featured cards) -->
+      <div
+        *ngIf="!service.featured && service.basePrice"
+        class="service-card__price"
+      >
+        <span class="service-card__price-label">Starting at</span>
+        <span class="service-card__price-value">${{ service.basePrice }}</span>
+        <span *ngIf="service.pricePerGuest" class="service-card__price-note">
+          + ${{ service.pricePerGuest }}/guest
+        </span>
+      </div>
+    </header>
+
+    <!-- Description -->
+    <p class="service-card__description">{{ service.description }}</p>
+
+    <!-- Features List -->
+    <div
+      *ngIf="service.features && service.features.length > 0"
+      class="service-card__features"
+    >
+      <h4 class="service-card__features-title">What's Included:</h4>
+      <ul class="service-card__features-list">
+        <li
+          *ngFor="let feature of service.features"
+          class="service-card__feature-item"
+        >
+          <span class="service-card__feature-icon" aria-hidden="true">✓</span>
+          <span class="service-card__feature-text">{{ feature }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Service Options Preview -->
+    <div
+      *ngIf="service.options && service.options.length > 0"
+      class="service-card__options"
+    >
+      <h4 class="service-card__options-title">Customization Options:</h4>
+      <div class="service-card__options-preview">
+        <span
+          *ngFor="let option of service.options.slice(0, 3); let last = last"
+          class="service-card__option-tag"
+        >
+          {{ option.name }}<span *ngIf="!last">, </span>
+        </span>
+        <span
+          *ngIf="service.options.length > 3"
+          class="service-card__options-more"
+        >
+          +{{ service.options.length - 3 }} more
+        </span>
+      </div>
+    </div>
+
+    <!-- Ideal For -->
+    <div *ngIf="service.idealFor" class="service-card__ideal-for">
+      <span class="service-card__ideal-label">Perfect for:</span>
+      <span class="service-card__ideal-text">{{ service.idealFor }}</span>
+    </div>
+
+    <!-- Actions -->
+    <div class="service-card__actions">
+      <!-- Primary Action -->
+      <button
+        type="button"
+        class="service-card__cta service-card__cta--primary"
+        (click)="onBookService()"
+        [attr.aria-label]="'Book ' + service.title + ' service'"
+      >
+        {{ service.ctaText || "Book Now" }}
+      </button>
+
+      <!-- Secondary Action -->
+      <button
+        *ngIf="showLearnMore"
+        type="button"
+        class="service-card__cta service-card__cta--secondary"
+        (click)="onLearnMore()"
+        [attr.aria-label]="'Learn more about ' + service.title"
+      >
+        Learn More
+      </button>
+    </div>
+
+    <!-- Additional Info -->
+    <div
+      *ngIf="service.duration || service.guestRange"
+      class="service-card__meta"
+    >
+      <div *ngIf="service.duration" class="service-card__meta-item">
+        <span class="service-card__meta-icon" aria-hidden="true">🕒</span>
+        <span class="service-card__meta-text">{{ service.duration }}</span>
+      </div>
+
+      <div *ngIf="service.guestRange" class="service-card__meta-item">
+        <span class="service-card__meta-icon" aria-hidden="true">👥</span>
+        <span class="service-card__meta-text">{{ service.guestRange }}</span>
+      </div>
+    </div>
+  </div>
+</article>
