@@ -5,11 +5,13 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
+    data: { animation: 'HomePage' },
   },
   {
     path: 'about',
     loadComponent: () =>
       import('./pages/about/about.component').then((m) => m.AboutComponent),
+    data: { animation: 'AboutPage' },
   },
   {
     path: 'services',
@@ -17,6 +19,7 @@ export const routes: Routes = [
       import('./pages/services/services.component').then(
         (m) => m.ServicesComponent,
       ),
+    data: { animation: 'ServicesPage' },
   },
   {
     path: 'book',
@@ -24,6 +27,7 @@ export const routes: Routes = [
       import('./pages/booking/booking.component').then(
         (m) => m.BookingComponent,
       ),
+    data: { animation: 'BookingPage' },
   },
   {
     path: 'gallery',
@@ -31,6 +35,7 @@ export const routes: Routes = [
       import('./pages/gallery/gallery.component').then(
         (m) => m.GalleryComponent,
       ),
+    data: { animation: 'GalleryPage' },
   },
   {
     path: 'testimonials',
@@ -38,6 +43,7 @@ export const routes: Routes = [
       import('./pages/testimonials/testimonials.component').then(
         (m) => m.TestimonialsComponent,
       ),
+    data: { animation: 'TestimonialsPage' },
   },
   {
     path: 'contact',
@@ -45,6 +51,7 @@ export const routes: Routes = [
       import('./pages/contact/contact.component').then(
         (m) => m.ContactComponent,
       ),
+    data: { animation: 'ContactPage' },
   },
   {
     path: 'privacy',
@@ -52,6 +59,7 @@ export const routes: Routes = [
       import('./pages/legal/privacy/privacy.component').then(
         (m) => m.PrivacyComponent,
       ),
+    data: { animation: 'PrivacyPage' },
   },
   {
     path: 'terms',
@@ -59,11 +67,13 @@ export const routes: Routes = [
       import('./pages/legal/terms/terms.component').then(
         (m) => m.TermsComponent,
       ),
+    data: { animation: 'TermsPage' },
   },
   {
     path: 'faq',
     loadComponent: () =>
       import('./pages/legal/faq/faq.component').then((m) => m.FaqComponent),
+    data: { animation: 'FaqPage' },
   },
   {
     path: '**',
