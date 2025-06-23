@@ -15,49 +15,49 @@ export const routes: Routes = [
     path: 'services',
     loadComponent: () =>
       import('./pages/services/services.component').then(
-        (m) => m.ServicesComponent
+        (m) => m.ServicesComponent,
       ),
   },
   {
     path: 'book',
     loadComponent: () =>
       import('./pages/booking/booking.component').then(
-        (m) => m.BookingComponent
+        (m) => m.BookingComponent,
       ),
   },
   {
     path: 'gallery',
     loadComponent: () =>
       import('./pages/gallery/gallery.component').then(
-        (m) => m.GalleryComponent
+        (m) => m.GalleryComponent,
       ),
   },
   {
     path: 'testimonials',
     loadComponent: () =>
       import('./pages/testimonials/testimonials.component').then(
-        (m) => m.TestimonialsComponent
+        (m) => m.TestimonialsComponent,
       ),
   },
   {
     path: 'contact',
     loadComponent: () =>
       import('./pages/contact/contact.component').then(
-        (m) => m.ContactComponent
+        (m) => m.ContactComponent,
       ),
   },
   {
     path: 'privacy',
     loadComponent: () =>
       import('./pages/legal/privacy/privacy.component').then(
-        (m) => m.PrivacyComponent
+        (m) => m.PrivacyComponent,
       ),
   },
   {
     path: 'terms',
     loadComponent: () =>
       import('./pages/legal/terms/terms.component').then(
-        (m) => m.TermsComponent
+        (m) => m.TermsComponent,
       ),
   },
   {

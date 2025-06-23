@@ -99,7 +99,7 @@ export class TestimonialsComponent {
       this.filteredTestimonials = this.testimonials;
     } else {
       this.filteredTestimonials = this.testimonials.filter(
-        (t) => t.service === service
+        (t) => t.service === service,
       );
     }
   }
