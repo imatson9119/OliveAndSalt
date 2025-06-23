@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Olive and Salt Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap");
+
+:root {
+  /* Brand Colors */
+  --olive-green: #556b2f;
+  --off-white: #faf9f6;
+  --warm-oat: #ede6d6;
+  --sea-salt-gray: #a8a29e;
+  --terracotta-accent: #c57b57;
+
+  /* Typography */
+  --font-primary: "Playfair Display", serif;
+  --font-secondary: "Lato", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

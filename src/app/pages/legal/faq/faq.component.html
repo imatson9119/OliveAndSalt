@@ -1,0 +1,37 @@
+<section class="faq-page">
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+    <p class="lead">
+      Find answers to common questions about Olive &amp; Salt's culinary
+      services.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <button
+          class="faq-question"
+          (click)="toggleFaq(i)"
+          [attr.aria-expanded]="faq.isOpen"
+        >
+          <span>{{ faq.question }}</span>
+          <span class="faq-icon" [class.open]="faq.isOpen">+</span>
+        </button>
+        <div class="faq-answer" [class.open]="faq.isOpen">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-cta">
+      <h2>Still Have Questions?</h2>
+      <p>
+        I'm here to help! Reach out for personalized answers to your culinary
+        service questions.
+      </p>
+      <div class="cta-buttons">
+        <a routerLink="/contact" class="cta-primary">Contact Me</a>
+        <a routerLink="/book" class="cta-secondary">Book Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
