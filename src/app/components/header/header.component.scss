@@ -74,6 +74,7 @@
             border-radius: 25px;
             font-weight: 600;
             transition: all 0.3s ease;
+            white-space: nowrap;
 
             &:hover {
               background: var(--olive-green);
