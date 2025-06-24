@@ -26,6 +26,7 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
   private timeoutId: number | null = null;
   private hasAnimated = false;
+  private originalTransition: string = '';
 
   private el = inject(ElementRef<HTMLElement>);
   private renderer = inject(Renderer2);
@@ -57,6 +58,9 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
 
     if (!this.enabled) return;
 
+    // Store the original transition before we modify it
+    this.storeOriginalTransition();
+
     // Set initial styles
     this.setInitialStyles();
   }
@@ -83,11 +87,19 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  private storeOriginalTransition(): void {
+    const element = this.el.nativeElement;
+    const computedStyles = window.getComputedStyle(element);
+    this.originalTransition = computedStyles.transition || '';
+  }
+
   private setInitialStyles(): void {
     const element = this.el.nativeElement;
 
     // Set initial opacity and transform
     this.renderer.setStyle(element, 'opacity', '0');
+
+    // Temporarily disable transitions for initial setup
     this.renderer.setStyle(element, 'transition', 'none');
 
     // Set initial transform based on direction
@@ -129,6 +141,45 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  private mergeTransitions(): string {
+    const duration =
+      typeof this.fadeDuration === 'string'
+        ? parseInt(this.fadeDuration, 10)
+        : this.fadeDuration;
+
+    const fadeTransitions = [
+      `opacity ${duration}ms ${this.fadeEasing}`,
+      `transform ${duration}ms ${this.fadeEasing}`,
+    ];
+
+    // If there are existing transitions, parse and merge them
+    if (
+      this.originalTransition &&
+      this.originalTransition !== 'all 0s ease 0s'
+    ) {
+      const existingTransitions = this.parseTransitions(
+        this.originalTransition,
+      );
+      const mergedTransitions = new Set([
+        ...existingTransitions,
+        ...fadeTransitions,
+      ]);
+      return Array.from(mergedTransitions).join(', ');
+    }
+
+    return fadeTransitions.join(', ');
+  }
+
+  private parseTransitions(transitionString: string): string[] {
+    // Parse existing transitions and filter out opacity/transform if they exist
+    // to avoid duplicates (our fade transitions will take precedence)
+    return transitionString
+      .split(',')
+      .map((t) => t.trim())
+      .filter((t) => t !== 'all 0s ease 0s' && t !== 'none')
+      .filter((t) => !t.startsWith('opacity') && !t.startsWith('transform'));
+  }
+
   private setupIntersectionObserver(): void {
     if (typeof IntersectionObserver === 'undefined') {
       // Fallback for environments without IntersectionObserver
@@ -164,18 +215,14 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
     const element = this.el.nativeElement;
 
     // Ensure numeric values
-    const duration =
-      typeof this.fadeDuration === 'string'
-        ? parseInt(this.fadeDuration, 10)
-        : this.fadeDuration;
     const delay =
       typeof this.fadeDelay === 'string'
         ? parseInt(this.fadeDelay, 10)
         : this.fadeDelay;
 
-    // Set up transition
-    const transition = `opacity ${duration}ms ${this.fadeEasing}, transform ${duration}ms ${this.fadeEasing}`;
-    this.renderer.setStyle(element, 'transition', transition);
+    // Set up merged transitions (preserving existing ones)
+    const mergedTransition = this.mergeTransitions();
+    this.renderer.setStyle(element, 'transition', mergedTransition);
 
     // Apply animation with delay
     this.timeoutId = window.setTimeout(() => {
