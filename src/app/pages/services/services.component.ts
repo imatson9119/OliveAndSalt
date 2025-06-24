@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives';
+import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
   selector: 'app-services',
@@ -10,7 +11,9 @@ import { FadeInDirective } from '../../directives';
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss',
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit, OnDestroy {
+  private structuredDataService = inject(StructuredDataService);
+
   services = [
     {
       id: 'weekly-meals',
@@ -80,4 +83,16 @@ export class ServicesComponent {
       price: '$100',
     },
   ];
+
+  ngOnInit() {
+    // Add structured data for services page
+    const servicesPageSchema =
+      this.structuredDataService.getServicesPageSchema();
+    this.structuredDataService.insertStructuredData(servicesPageSchema);
+  }
+
+  ngOnDestroy() {
+    // Clean up structured data
+    this.structuredDataService.removeStructuredData();
+  }
 }

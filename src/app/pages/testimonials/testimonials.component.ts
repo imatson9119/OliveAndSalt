@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives';
+import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
   selector: 'app-testimonials',
@@ -10,7 +11,9 @@ import { FadeInDirective } from '../../directives';
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
 })
-export class TestimonialsComponent {
+export class TestimonialsComponent implements OnInit, OnDestroy {
+  private structuredDataService = inject(StructuredDataService);
+
   testimonials = [
     {
       text: "Sarah transformed our weekly meal routine completely. As busy professionals, we struggled to eat well, but now we come home to incredible, healthy meals that taste like they're from a five-star restaurant. The personalization is incredible – she remembers every preference and dietary need.",
@@ -108,5 +111,18 @@ export class TestimonialsComponent {
 
   getStars(rating: number): string[] {
     return Array(rating).fill('⭐');
+  }
+
+  ngOnInit() {
+    // Add structured data for testimonials page (Reviews)
+    const reviewsSchema = this.structuredDataService.getReviewsSchema(
+      this.testimonials,
+    );
+    this.structuredDataService.insertStructuredData(reviewsSchema);
+  }
+
+  ngOnDestroy() {
+    // Clean up structured data
+    this.structuredDataService.removeStructuredData();
   }
 }

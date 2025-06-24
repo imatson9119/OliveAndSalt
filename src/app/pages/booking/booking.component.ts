@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives';
+import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
   selector: 'app-booking',
@@ -15,8 +16,9 @@ import { FadeInDirective } from '../../directives';
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.scss',
 })
-export class BookingComponent {
+export class BookingComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
+  private structuredDataService = inject(StructuredDataService);
 
   bookingForm: FormGroup;
   isSubmitted = false;
@@ -47,6 +49,18 @@ export class BookingComponent {
       budget: [''],
       additionalInfo: [''],
     });
+  }
+
+  ngOnInit() {
+    // Add structured data for booking page (Services and Local Business)
+    const servicesPageSchema =
+      this.structuredDataService.getServicesPageSchema();
+    this.structuredDataService.insertStructuredData(servicesPageSchema);
+  }
+
+  ngOnDestroy() {
+    // Clean up structured data
+    this.structuredDataService.removeStructuredData();
   }
 
   onSubmit() {

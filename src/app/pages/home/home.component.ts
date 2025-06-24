@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives';
+import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { FadeInDirective } from '../../directives';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   testimonials = [
     {
       text: 'The personalized meals Sarah creates have transformed my relationship with food. Every dish is not only delicious but perfectly aligned with my dietary goals.',
@@ -30,11 +31,28 @@ export class HomeComponent implements OnInit {
   ];
 
   currentTestimonial = 0;
+  private testimonialInterval: ReturnType<typeof setInterval> | undefined;
+  private structuredDataService = inject(StructuredDataService);
 
   ngOnInit() {
-    setInterval(() => {
+    // Add structured data for home page
+    const homePageSchema = this.structuredDataService.getHomePageSchema(
+      this.testimonials,
+    );
+    this.structuredDataService.insertStructuredData(homePageSchema);
+
+    // Start testimonial rotation
+    this.testimonialInterval = setInterval(() => {
       this.currentTestimonial =
         (this.currentTestimonial + 1) % this.testimonials.length;
     }, 5000);
+  }
+
+  ngOnDestroy() {
+    // Clean up interval and structured data
+    if (this.testimonialInterval) {
+      clearInterval(this.testimonialInterval);
+    }
+    this.structuredDataService.removeStructuredData();
   }
 }

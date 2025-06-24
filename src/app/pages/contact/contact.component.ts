@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives';
+import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,8 +17,9 @@ import { FadeInDirective } from '../../directives';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
+  private structuredDataService = inject(StructuredDataService);
 
   contactForm: FormGroup;
   isSubmitted = false;
@@ -30,6 +32,18 @@ export class ContactComponent {
       subject: ['', [Validators.required]],
       message: ['', [Validators.required, Validators.minLength(10)]],
     });
+  }
+
+  ngOnInit() {
+    // Add structured data for contact page (Local Business with contact info)
+    const localBusinessSchema =
+      this.structuredDataService.getLocalBusinessSchema();
+    this.structuredDataService.insertStructuredData(localBusinessSchema);
+  }
+
+  ngOnDestroy() {
+    // Clean up structured data
+    this.structuredDataService.removeStructuredData();
   }
 
   onSubmit() {

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StructuredDataService } from '../../../services/structured-data.service';
 
 @Component({
   selector: 'app-faq',
@@ -8,7 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.scss',
 })
-export class FaqComponent {
+export class FaqComponent implements OnInit, OnDestroy {
+  private structuredDataService = inject(StructuredDataService);
+
   faqs = [
     {
       question: 'How far in advance should I book your services?',
@@ -74,5 +77,16 @@ export class FaqComponent {
 
   toggleFaq(index: number): void {
     this.faqs[index].isOpen = !this.faqs[index].isOpen;
+  }
+
+  ngOnInit() {
+    // Add FAQ structured data
+    const faqSchema = this.structuredDataService.getFAQSchema();
+    this.structuredDataService.insertStructuredData(faqSchema);
+  }
+
+  ngOnDestroy() {
+    // Clean up structured data
+    this.structuredDataService.removeStructuredData();
   }
 }
