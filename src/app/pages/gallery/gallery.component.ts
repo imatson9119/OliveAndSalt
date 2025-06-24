@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 
 @Component({
@@ -10,7 +11,34 @@ import { FadeInDirective } from '../../directives';
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
+  private meta = inject(Meta);
+  private title = inject(Title);
+
+  ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle('Gallery | Personal Chef Portfolio | Olive & Salt');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Explore our culinary portfolio featuring artfully plated dishes, behind-the-scenes prep work, and in-home cooking experiences. See the artistry of personal chef service.',
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'personal chef portfolio, food photography, plated dishes, culinary gallery, chef portfolio',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Culinary Portfolio | Olive & Salt Gallery',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Beautiful food photography showcasing artfully prepared meals and professional culinary techniques.',
+    });
+  }
+
   galleries = [
     {
       category: 'Plated Dishes',

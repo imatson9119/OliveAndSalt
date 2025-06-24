@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
@@ -19,6 +20,8 @@ import { StructuredDataService } from '../../services/structured-data.service';
 export class BookingComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private structuredDataService = inject(StructuredDataService);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   bookingForm: FormGroup;
   isSubmitted = false;
@@ -52,6 +55,28 @@ export class BookingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle('Book Your Personal Chef Experience | Olive & Salt');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Ready to transform your dining experience? Book Emma Matson for weekly meal service, special events, or wellness meal planning. Easy online booking available.',
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'book personal chef, schedule meal service, private chef booking, cooking service appointment',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Book Personal Chef Service | Olive & Salt',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Schedule your personalized culinary experience with Emma Matson. Easy online booking for all services.',
+    });
+
     // Add structured data for booking page (Services and Local Business)
     const servicesPageSchema =
       this.structuredDataService.getServicesPageSchema();

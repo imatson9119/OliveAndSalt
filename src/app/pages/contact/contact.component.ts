@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
@@ -20,6 +21,8 @@ import { StructuredDataService } from '../../services/structured-data.service';
 export class ContactComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private structuredDataService = inject(StructuredDataService);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   contactForm: FormGroup;
   isSubmitted = false;
@@ -35,6 +38,30 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle(
+      'Contact Olive & Salt | Personal Chef Services in Grapevine, TX',
+    );
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Get in touch with Emma Matson to discuss your personal chef needs. Serving Grapevine and surrounding areas. Call (409) 594-5718 or email hello@olive-and-salt.com.',
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'contact personal chef, Grapevine TX chef, cooking service contact, chef inquiry',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Contact Olive & Salt | Personal Chef',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Contact Emma Matson for personal chef services in Grapevine, TX and surrounding areas.',
+    });
+
     // Add structured data for contact page (Local Business with contact info)
     const localBusinessSchema =
       this.structuredDataService.getLocalBusinessSchema();

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
@@ -13,6 +14,8 @@ import { StructuredDataService } from '../../services/structured-data.service';
 })
 export class ServicesComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   services = [
     {
@@ -85,6 +88,30 @@ export class ServicesComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle(
+      'Personal Chef Services | Weekly Meals & Special Events | Olive & Salt',
+    );
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Discover our personal chef services: weekly in-home meal prep, special event dinners, and wellness meal planning. Starting at $75 per person for special events.',
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'personal chef services, weekly meal prep, special event catering, wellness meal planning, private chef, Grapevine',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Personal Chef Services | Olive & Salt',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Weekly meal prep, special events, and wellness planning with personalized nutrition-focused cuisine.',
+    });
+
     // Add structured data for services page
     const servicesPageSchema =
       this.structuredDataService.getServicesPageSchema();

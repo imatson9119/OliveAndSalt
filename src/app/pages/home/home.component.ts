@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
@@ -33,8 +34,41 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentTestimonial = 0;
   private testimonialInterval: ReturnType<typeof setInterval> | undefined;
   private structuredDataService = inject(StructuredDataService);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle('Olive & Salt | Personal Chef Service by Emma Matson');
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Fresh, personalized meals prepared in your home. Olive and Salt offers warm, thoughtful private chef experiences with a focus on quality, connection, and culinary storytelling.',
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'personal chef, private chef, meal prep, catering, Grapevine TX, Emma Matson, nutrition, wellness meals',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Olive & Salt | Personal Chef Service',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Personalized meals prepared in your home by chef Emma Matson. Warm, fresh, and unforgettable culinary experiences.',
+    });
+    this.meta.updateTag({
+      name: 'twitter:title',
+      content: 'Olive & Salt | Personal Chef Service',
+    });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content:
+        'Customized meals, hospitality, and fresh ingredients—cooked in your home.',
+    });
+
     // Add structured data for home page
     const homePageSchema = this.structuredDataService.getHomePageSchema(
       this.testimonials,

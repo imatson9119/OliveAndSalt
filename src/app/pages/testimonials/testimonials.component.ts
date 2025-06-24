@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
@@ -13,6 +14,8 @@ import { StructuredDataService } from '../../services/structured-data.service';
 })
 export class TestimonialsComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   testimonials = [
     {
@@ -114,6 +117,30 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle(
+      'Client Testimonials | Olive & Salt Personal Chef Reviews',
+    );
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        "Read what our clients say about their personal chef experiences. Real stories from families who have transformed their dining with Olive & Salt's personalized service.",
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'personal chef reviews, client testimonials, customer feedback, cooking service reviews',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Client Reviews | Olive & Salt Testimonials',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Real client experiences and testimonials from families who love our personal chef services.',
+    });
+
     // Add structured data for testimonials page (Reviews)
     const reviewsSchema = this.structuredDataService.getReviewsSchema(
       this.testimonials,

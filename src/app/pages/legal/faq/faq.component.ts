@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 import { StructuredDataService } from '../../../services/structured-data.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { StructuredDataService } from '../../../services/structured-data.service
 })
 export class FaqComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   faqs = [
     {
@@ -80,6 +83,30 @@ export class FaqComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Update page title and meta tags
+    this.title.setTitle(
+      'FAQ | Frequently Asked Questions | Olive & Salt Personal Chef',
+    );
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Find answers to common questions about our personal chef services, pricing, dietary accommodations, service areas, and booking process.',
+    });
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'personal chef FAQ, cooking service questions, chef service information, dietary restrictions',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'FAQ | Olive & Salt Personal Chef',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        'Frequently asked questions about personal chef services, pricing, and accommodations.',
+    });
+
     // Add FAQ structured data
     const faqSchema = this.structuredDataService.getFAQSchema();
     this.structuredDataService.insertStructuredData(faqSchema);
