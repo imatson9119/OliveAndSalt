@@ -1,8 +1,8 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="container">
-    <h1>Gallery</h1>
-    <p class="lead">
+    <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">Gallery</h1>
+    <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
       A visual journey through the artistry and passion that goes into every
       Olive &amp; Salt meal experience.
     </p>
@@ -12,7 +12,7 @@
 <!-- Gallery Navigation -->
 <section class="gallery-nav">
   <div class="container">
-    <div class="nav-buttons">
+    <div class="nav-buttons" appFadeIn [fadeDelay]="300" [fadeDuration]="600">
       <button
         *ngFor="let gallery of galleries"
         [class.active]="selectedCategory === gallery.category"
@@ -32,14 +32,19 @@
         *ngIf="selectedCategory === gallery.category"
         class="gallery-section"
       >
-        <div class="gallery-header">
+        <div
+          class="gallery-header"
+          appFadeIn
+          [fadeDelay]="200"
+          [fadeDuration]="600"
+        >
           <h2>{{ gallery.category }}</h2>
           <p>{{ gallery.description }}</p>
         </div>
 
         <div class="image-grid">
           <div
-            *ngFor="let image of gallery.images"
+            *ngFor="let image of gallery.images; let i = index"
             class="image-card"
             (click)="openLightbox(image)"
             (keyup.enter)="openLightbox(image)"
@@ -47,6 +52,9 @@
             tabindex="0"
             role="button"
             [attr.aria-label]="'View larger image of ' + image.title"
+            appFadeIn
+            [fadeDelay]="300 + i * 100"
+            [fadeDuration]="600"
           >
             <div class="image-placeholder">
               <span class="image-title">{{ image.title }}</span>
@@ -105,7 +113,13 @@
 <!-- CTA Section -->
 <section class="cta-section">
   <div class="container">
-    <div class="cta-content">
+    <div
+      class="cta-content"
+      appFadeIn
+      [fadeDelay]="200"
+      [fadeDuration]="700"
+      fadeDirection="up"
+    >
       <h2>Inspired by What You See?</h2>
       <p>Let's create something beautiful together in your kitchen.</p>
       <a routerLink="/book" class="cta-button">Book Your Experience</a>

@@ -2,7 +2,12 @@
   <!-- Success Message -->
   <div class="success-message" *ngIf="isSubmitted">
     <div class="container">
-      <div class="success-content">
+      <div
+        class="success-content"
+        appFadeIn
+        [fadeDelay]="200"
+        [fadeDuration]="700"
+      >
         <div class="success-icon">✅</div>
         <h1>Thank You!</h1>
         <p>
@@ -24,8 +29,10 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
-        <h1>Book Your Consultation</h1>
-        <p class="lead">
+        <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">
+          Book Your Consultation
+        </h1>
+        <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
           Ready to transform your dining experience? Let's start with a
           conversation about your culinary goals and preferences.
         </p>
@@ -39,6 +46,9 @@
           [formGroup]="bookingForm"
           (ngSubmit)="onSubmit()"
           class="booking-form"
+          appFadeIn
+          [fadeDelay]="300"
+          [fadeDuration]="800"
         >
           <!-- Personal Information -->
           <div class="form-section-header">

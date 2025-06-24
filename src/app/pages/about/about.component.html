@@ -2,14 +2,28 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-text">
-        <h1>Meet Your Personal Chef</h1>
-        <p class="lead">
+      <div
+        class="hero-text"
+        appFadeIn
+        [fadeDelay]="200"
+        [fadeDuration]="700"
+        fadeDirection="left"
+      >
+        <h1 appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+          Meet Your Personal Chef
+        </h1>
+        <p class="lead" appFadeIn [fadeDelay]="600" [fadeDuration]="600">
           Hi, I'm Sarah Thompson, and I believe every meal should be a
           celebration of flavor, nutrition, and the joy of cooking.
         </p>
       </div>
-      <div class="hero-image">
+      <div
+        class="hero-image"
+        appFadeIn
+        [fadeDelay]="300"
+        [fadeDuration]="800"
+        fadeDirection="right"
+      >
         <div class="image-placeholder">
           <span>Professional photo of Chef Sarah in kitchen</span>
         </div>
@@ -22,9 +36,17 @@
 <section class="story">
   <div class="container">
     <div class="story-content">
-      <h2>My Culinary Journey</h2>
+      <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+        My Culinary Journey
+      </h2>
       <div class="story-grid">
-        <div class="story-text">
+        <div
+          class="story-text"
+          appFadeIn
+          [fadeDelay]="200"
+          [fadeDuration]="700"
+          fadeDirection="left"
+        >
           <p>
             With over 15 years of experience in professional kitchens and a
             Master's in Nutritional Science, I've dedicated my career to proving
@@ -47,7 +69,13 @@
             table, prepared in the comfort and privacy of your own kitchen.
           </p>
         </div>
-        <div class="credentials">
+        <div
+          class="credentials"
+          appFadeIn
+          [fadeDelay]="400"
+          [fadeDuration]="700"
+          fadeDirection="right"
+        >
           <h3>Education & Certifications</h3>
           <ul>
             <li>Culinary Institute of America - Culinary Arts Degree</li>
@@ -73,9 +101,16 @@
 <!-- Philosophy Section -->
 <section class="philosophy">
   <div class="container">
-    <h2>My Cooking Philosophy</h2>
+    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+      My Cooking Philosophy
+    </h2>
     <div class="philosophy-grid">
-      <div class="philosophy-card">
+      <div
+        class="philosophy-card"
+        appFadeIn
+        [fadeDelay]="200"
+        [fadeDuration]="600"
+      >
         <i class="material-symbols-outlined icon"> handshake </i>
         <h3>Collaborative Cooking</h3>
         <p>
@@ -84,7 +119,12 @@
           reflect your unique tastes and lifestyle.
         </p>
       </div>
-      <div class="philosophy-card">
+      <div
+        class="philosophy-card"
+        appFadeIn
+        [fadeDelay]="400"
+        [fadeDuration]="600"
+      >
         <i class="material-symbols-outlined icon"> agriculture </i>
         <h3>Sustainable Sourcing</h3>
         <p>
@@ -93,7 +133,12 @@
           ingredients always taste better and feel better.
         </p>
       </div>
-      <div class="philosophy-card">
+      <div
+        class="philosophy-card"
+        appFadeIn
+        [fadeDelay]="600"
+        [fadeDuration]="600"
+      >
         <i class="material-symbols-outlined icon"> restaurant </i>
         <h3>Cooking as Hospitality</h3>
         <p>
@@ -110,7 +155,13 @@
 <section class="why-section">
   <div class="container">
     <div class="why-content">
-      <div class="why-text">
+      <div
+        class="why-text"
+        appFadeIn
+        [fadeDelay]="200"
+        [fadeDuration]="700"
+        fadeDirection="left"
+      >
         <h2>Why "Olive &amp; Salt"?</h2>
         <p>
           The name Olive &amp; Salt represents the foundation of all great
@@ -133,7 +184,13 @@
           nourishing those we care about.
         </p>
       </div>
-      <div class="why-image">
+      <div
+        class="why-image"
+        appFadeIn
+        [fadeDelay]="400"
+        [fadeDuration]="700"
+        fadeDirection="right"
+      >
         <div class="image-placeholder">
           <span
             >Beautiful shot of olive oil and sea salt with fresh
@@ -148,7 +205,13 @@
 <!-- CTA Section -->
 <section class="cta-section">
   <div class="container">
-    <div class="cta-content">
+    <div
+      class="cta-content"
+      appFadeIn
+      [fadeDelay]="200"
+      [fadeDuration]="700"
+      fadeDirection="up"
+    >
       <h2>Ready to Experience the Difference?</h2>
       <p>Let's create something beautiful together in your kitchen.</p>
       <div class="cta-buttons">

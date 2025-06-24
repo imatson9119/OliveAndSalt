@@ -1,8 +1,8 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="container">
-    <h1>Culinary Services</h1>
-    <p class="lead">
+    <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">Culinary Services</h1>
+    <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
       From weekly meal preparation to special events, discover how Olive and
       Salt can transform your dining experience with personalized,
       nutrition-focused cuisine.
@@ -14,7 +14,13 @@
 <section class="services">
   <div class="container">
     <div class="services-grid">
-      <div class="service-card" *ngFor="let service of services">
+      <div
+        class="service-card"
+        *ngFor="let service of services; let i = index"
+        appFadeIn
+        [fadeDelay]="200 + i * 150"
+        [fadeDuration]="700"
+      >
         <div class="service-header">
           <h2>{{ service.title }}</h2>
           <p class="service-description">{{ service.description }}</p>
@@ -47,13 +53,26 @@
 <!-- Add-ons Section -->
 <section class="addons">
   <div class="container">
-    <h2>Optional Add-On Services</h2>
-    <p class="section-subtitle">
+    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+      Optional Add-On Services
+    </h2>
+    <p
+      class="section-subtitle"
+      appFadeIn
+      [fadeDelay]="200"
+      [fadeDuration]="600"
+    >
       Enhance your culinary experience with these additional services
     </p>
 
     <div class="addons-grid">
-      <div class="addon-card" *ngFor="let addon of addOns">
+      <div
+        class="addon-card"
+        *ngFor="let addon of addOns; let i = index"
+        appFadeIn
+        [fadeDelay]="300 + i * 100"
+        [fadeDuration]="600"
+      >
         <h3>{{ addon.title }}</h3>
         <p>{{ addon.description }}</p>
         <div class="addon-price">{{ addon.price }}</div>
@@ -65,9 +84,9 @@
 <!-- Process Section -->
 <section class="process">
   <div class="container">
-    <h2>How It Works</h2>
+    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">How It Works</h2>
     <div class="process-steps">
-      <div class="step">
+      <div class="step" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
         <div class="step-number">1</div>
         <div class="step-content">
           <h3>Consultation</h3>
@@ -78,7 +97,7 @@
         </div>
       </div>
 
-      <div class="step">
+      <div class="step" appFadeIn [fadeDelay]="300" [fadeDuration]="600">
         <div class="step-number">2</div>
         <div class="step-content">
           <h3>Menu Planning</h3>
@@ -89,7 +108,7 @@
         </div>
       </div>
 
-      <div class="step">
+      <div class="step" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
         <div class="step-number">3</div>
         <div class="step-content">
           <h3>Shopping & Prep</h3>
@@ -100,7 +119,7 @@
         </div>
       </div>
 
-      <div class="step">
+      <div class="step" appFadeIn [fadeDelay]="500" [fadeDuration]="600">
         <div class="step-number">4</div>
         <div class="step-content">
           <h3>Cooking & Service</h3>
@@ -111,7 +130,7 @@
         </div>
       </div>
 
-      <div class="step">
+      <div class="step" appFadeIn [fadeDelay]="600" [fadeDuration]="600">
         <div class="step-number">5</div>
         <div class="step-content">
           <h3>Cleanup & Storage</h3>
@@ -128,7 +147,7 @@
 <!-- Testimonial -->
 <section class="testimonial-highlight">
   <div class="container">
-    <blockquote>
+    <blockquote appFadeIn [fadeDelay]="200" [fadeDuration]="700">
       <p>
         "Sarah's weekly meal service has completely transformed how our family
         eats. The quality, creativity, and attention to our dietary needs is
@@ -146,7 +165,13 @@
 <!-- CTA Section -->
 <section class="cta-section">
   <div class="container">
-    <div class="cta-content">
+    <div
+      class="cta-content"
+      appFadeIn
+      [fadeDelay]="200"
+      [fadeDuration]="700"
+      fadeDirection="up"
+    >
       <h2>Ready to Get Started?</h2>
       <p>
         Book your consultation today and take the first step toward transforming

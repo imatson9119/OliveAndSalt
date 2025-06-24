@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FadeInDirective } from '../../directives';
 
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, FadeInDirective],
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
 })

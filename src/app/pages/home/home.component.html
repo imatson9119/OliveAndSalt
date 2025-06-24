@@ -1,19 +1,32 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-text">
-      <h1>Wholesome meals, personally prepared.</h1>
-      <p class="hero-subtitle">
+    <div class="hero-text" appFadeIn [fadeDelay]="200" [fadeDuration]="800">
+      <h1 appFadeIn [fadeDelay]="400" [fadeDuration]="700">
+        Wholesome meals, personally prepared.
+      </h1>
+      <p class="hero-subtitle" appFadeIn [fadeDelay]="600" [fadeDuration]="700">
         Experience the joy of fresh, personalized cuisine crafted in the comfort
         of your own kitchen. Every meal is tailored to nourish your body and
         soul.
       </p>
-      <div class="hero-actions">
+      <div
+        class="hero-actions"
+        appFadeIn
+        [fadeDelay]="800"
+        [fadeDuration]="600"
+      >
         <a routerLink="/book" class="cta-primary">Book Your Chef</a>
         <a routerLink="/about" class="cta-secondary">Meet Your Chef</a>
       </div>
     </div>
-    <div class="hero-image">
+    <div
+      class="hero-image"
+      appFadeIn
+      [fadeDelay]="300"
+      [fadeDuration]="800"
+      fadeDirection="right"
+    >
       <div class="image-placeholder">
         <span>Beautiful kitchen scene with fresh ingredients</span>
       </div>
@@ -24,9 +37,11 @@
 <!-- Value Propositions -->
 <section class="values">
   <div class="container">
-    <h2>Why Choose Olive &amp; Salt?</h2>
+    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+      Why Choose Olive &amp; Salt?
+    </h2>
     <div class="values-grid">
-      <div class="value-card">
+      <div class="value-card" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
         <i class="material-symbols-outlined value-icon"> psychiatry </i>
         <h3>Freshness</h3>
         <p>
@@ -34,7 +49,7 @@
           nature's bounty.
         </p>
       </div>
-      <div class="value-card">
+      <div class="value-card" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
         <i class="material-symbols-outlined value-icon"> fingerprint </i>
         <h3>Personalization</h3>
         <p>
@@ -42,7 +57,7 @@
           wellness goals.
         </p>
       </div>
-      <div class="value-card">
+      <div class="value-card" appFadeIn [fadeDelay]="600" [fadeDuration]="600">
         <i class="material-symbols-outlined value-icon"> home_filled </i>
         <h3>In-Home Service</h3>
         <p>
@@ -58,7 +73,13 @@
 <section class="about-preview">
   <div class="container">
     <div class="about-content">
-      <div class="about-text">
+      <div
+        class="about-text"
+        appFadeIn
+        [fadeDelay]="200"
+        [fadeDuration]="700"
+        fadeDirection="left"
+      >
         <h2>Meet Your Personal Chef</h2>
         <p>
           Hi, I'm Sarah. With over 10 years of culinary experience and a passion
@@ -75,7 +96,13 @@
         </p>
         <a routerLink="/about" class="learn-more">Learn More About My Story</a>
       </div>
-      <div class="about-image">
+      <div
+        class="about-image"
+        appFadeIn
+        [fadeDelay]="400"
+        [fadeDuration]="700"
+        fadeDirection="right"
+      >
         <div class="image-placeholder">
           <span>Professional photo of Chef Sarah</span>
         </div>
@@ -87,8 +114,15 @@
 <!-- Testimonials -->
 <section class="testimonials">
   <div class="container">
-    <h2>What Our Clients Say</h2>
-    <div class="testimonial-slider">
+    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+      What Our Clients Say
+    </h2>
+    <div
+      class="testimonial-slider"
+      appFadeIn
+      [fadeDelay]="300"
+      [fadeDuration]="700"
+    >
       <div
         class="testimonial-card"
         *ngFor="let testimonial of testimonials; let i = index"
@@ -103,7 +137,12 @@
         </div>
       </div>
     </div>
-    <div class="testimonial-nav">
+    <div
+      class="testimonial-nav"
+      appFadeIn
+      [fadeDelay]="500"
+      [fadeDuration]="600"
+    >
       <button
         *ngFor="let testimonial of testimonials; let i = index"
         [class.active]="i === currentTestimonial"
@@ -113,14 +152,27 @@
         •
       </button>
     </div>
-    <a routerLink="/testimonials" class="view-all">View All Testimonials</a>
+    <a
+      routerLink="/testimonials"
+      class="view-all"
+      appFadeIn
+      [fadeDelay]="600"
+      [fadeDuration]="600"
+      >View All Testimonials</a
+    >
   </div>
 </section>
 
 <!-- Call to Action -->
 <section class="cta-section">
   <div class="container">
-    <div class="cta-content">
+    <div
+      class="cta-content"
+      appFadeIn
+      [fadeDelay]="200"
+      [fadeDuration]="700"
+      fadeDirection="up"
+    >
       <h2>Ready to Transform Your Dining Experience?</h2>
       <p>
         Book your personalized consultation today and discover how Olive and

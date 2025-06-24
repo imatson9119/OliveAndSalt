@@ -2,7 +2,12 @@
   <!-- Success Message -->
   <div class="success-message" *ngIf="isSubmitted">
     <div class="container">
-      <div class="success-content">
+      <div
+        class="success-content"
+        appFadeIn
+        [fadeDelay]="200"
+        [fadeDuration]="700"
+      >
         <div class="success-icon">✅</div>
         <h1>Message Sent!</h1>
         <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
@@ -15,8 +20,8 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
-        <h1>Get in Touch</h1>
-        <p class="lead">
+        <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">Get in Touch</h1>
+        <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
           Have questions about my services? Want to discuss a special event? I'd
           love to hear from you.
         </p>
@@ -28,7 +33,13 @@
       <div class="container">
         <div class="contact-grid">
           <!-- Contact Form -->
-          <div class="contact-form-container">
+          <div
+            class="contact-form-container"
+            appFadeIn
+            [fadeDelay]="300"
+            [fadeDuration]="700"
+            fadeDirection="left"
+          >
             <h2>Send a Message</h2>
             <form
               [formGroup]="contactForm"
@@ -105,7 +116,13 @@
           </div>
 
           <!-- Contact Information -->
-          <div class="contact-info">
+          <div
+            class="contact-info"
+            appFadeIn
+            [fadeDelay]="500"
+            [fadeDuration]="700"
+            fadeDirection="right"
+          >
             <h2>Contact Information</h2>
 
             <div class="info-section">
@@ -140,7 +157,7 @@
               <ul class="service-areas">
                 <li>Grapevine</li>
                 <li>Flower Mound</li>
-                <li>Carrollton</li>
+                <li>Coppell</li>
                 <li>Euless</li>
                 <li>Southlake</li>
                 <li>Colleyville</li>

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FadeInDirective } from '../../directives';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, FadeInDirective],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })

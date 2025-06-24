@@ -7,11 +7,12 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { FadeInDirective } from '../../directives';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FadeInDirective],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })

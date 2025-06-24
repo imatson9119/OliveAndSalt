@@ -6,11 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FadeInDirective } from '../../directives';
 
 @Component({
   selector: 'app-booking',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, FadeInDirective],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.scss',
 })

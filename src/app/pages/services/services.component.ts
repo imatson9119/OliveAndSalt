@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FadeInDirective } from '../../directives';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FadeInDirective],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss',
 })
