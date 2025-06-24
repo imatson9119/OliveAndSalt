@@ -26,7 +26,7 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
   private timeoutId: number | null = null;
   private hasAnimated = false;
-  private originalTransition: string = '';
+  private originalTransition = '';
 
   private el = inject(ElementRef<HTMLElement>);
   private renderer = inject(Renderer2);
