@@ -7,12 +7,11 @@ import { ScrollService } from './services/scroll.service';
 import { RouteAnimationService } from './services/route-animation.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  animations: [slideInAnimation],
+    selector: 'app-root',
+    imports: [RouterOutlet, HeaderComponent, FooterComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    animations: [slideInAnimation]
 })
 export class AppComponent {
   private contexts = inject(ChildrenOutletContexts);

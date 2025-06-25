@@ -3,11 +3,10 @@ import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-terms',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './terms.component.html',
-  styleUrl: './terms.component.scss',
+    selector: 'app-terms',
+    imports: [RouterLink],
+    templateUrl: './terms.component.html',
+    styleUrl: './terms.component.scss'
 })
 export class TermsComponent implements OnInit {
   private meta = inject(Meta);

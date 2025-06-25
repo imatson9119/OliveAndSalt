@@ -12,11 +12,10 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'app-header',
+    imports: [RouterLink, RouterLinkActive, CommonModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('navList', { static: false }) navList!: ElementRef;

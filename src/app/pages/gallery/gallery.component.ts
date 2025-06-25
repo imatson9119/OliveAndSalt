@@ -5,11 +5,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 
 @Component({
-  selector: 'app-gallery',
-  standalone: true,
-  imports: [CommonModule, RouterLink, FadeInDirective],
-  templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.scss',
+    selector: 'app-gallery',
+    imports: [CommonModule, RouterLink, FadeInDirective],
+    templateUrl: './gallery.component.html',
+    styleUrl: './gallery.component.scss'
 })
 export class GalleryComponent implements OnInit {
   private meta = inject(Meta);

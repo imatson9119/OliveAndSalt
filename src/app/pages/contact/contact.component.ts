@@ -12,11 +12,10 @@ import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, FadeInDirective],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
+    selector: 'app-contact',
+    imports: [ReactiveFormsModule, CommonModule, RouterLink, FadeInDirective],
+    templateUrl: './contact.component.html',
+    styleUrl: './contact.component.scss'
 })
 export class ContactComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);

@@ -6,11 +6,10 @@ import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
-  selector: 'app-services',
-  standalone: true,
-  imports: [RouterLink, CommonModule, FadeInDirective],
-  templateUrl: './services.component.html',
-  styleUrl: './services.component.scss',
+    selector: 'app-services',
+    imports: [RouterLink, CommonModule, FadeInDirective],
+    templateUrl: './services.component.html',
+    styleUrl: './services.component.scss'
 })
 export class ServicesComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);

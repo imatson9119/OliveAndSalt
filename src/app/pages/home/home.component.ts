@@ -6,11 +6,10 @@ import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [RouterLink, CommonModule, FadeInDirective],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [RouterLink, CommonModule, FadeInDirective],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   testimonials = [

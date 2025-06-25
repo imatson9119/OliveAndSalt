@@ -11,11 +11,10 @@ import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
-  selector: 'app-booking',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FadeInDirective],
-  templateUrl: './booking.component.html',
-  styleUrl: './booking.component.scss',
+    selector: 'app-booking',
+    imports: [ReactiveFormsModule, CommonModule, FadeInDirective],
+    templateUrl: './booking.component.html',
+    styleUrl: './booking.component.scss'
 })
 export class BookingComponent implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
