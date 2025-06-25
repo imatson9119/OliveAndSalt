@@ -123,19 +123,20 @@
       [fadeDelay]="300"
       [fadeDuration]="700"
     >
-      <div
-        class="testimonial-card"
-        *ngFor="let testimonial of testimonials; let i = index"
-        [class.active]="i === currentTestimonial"
-      >
-        <blockquote>
-          <p>"{{ testimonial.text }}"</p>
-        </blockquote>
-        <div class="testimonial-author">
-          <strong>{{ testimonial.author }}</strong>
-          <span class="service">{{ testimonial.service }}</span>
+      @for (testimonial of testimonials; track testimonial) {
+        <div
+          class="testimonial-card"
+          [class.active]="$index === currentTestimonial"
+        >
+          <blockquote>
+            <p>"{{ testimonial.text }}"</p>
+          </blockquote>
+          <div class="testimonial-author">
+            <strong>{{ testimonial.author }}</strong>
+            <span class="service">{{ testimonial.service }}</span>
+          </div>
         </div>
-      </div>
+      }
     </div>
     <div
       class="testimonial-nav"
@@ -143,12 +144,13 @@
       [fadeDelay]="500"
       [fadeDuration]="600"
     >
-      <button
-        *ngFor="let testimonial of testimonials; let i = index"
-        [class.active]="i === currentTestimonial"
-        (click)="currentTestimonial = i"
-        [attr.aria-label]="'View testimonial ' + (i + 1)"
-      ></button>
+      @for (testimonial of testimonials; track testimonial) {
+        <button
+          [class.active]="$index === currentTestimonial"
+          (click)="currentTestimonial = $index"
+          [attr.aria-label]="'View testimonial ' + ($index + 1)"
+        ></button>
+      }
     </div>
     <a
       routerLink="/testimonials"

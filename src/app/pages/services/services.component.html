@@ -14,38 +14,41 @@
 <section class="services">
   <div class="container">
     <div class="services-grid">
-      <div
-        class="service-card"
-        *ngFor="let service of services; let i = index"
-        appFadeIn
-        [fadeDelay]="200 + i * 150"
-        [fadeDuration]="700"
-      >
-        <div class="service-header">
-          <h2>{{ service.title }}</h2>
-          <p class="service-description">{{ service.description }}</p>
-        </div>
-
-        <div class="service-features">
-          <h3>What's Included:</h3>
-          <ul>
-            <li *ngFor="let feature of service.features">{{ feature }}</li>
-          </ul>
-        </div>
-
-        <div class="service-details">
-          <div class="detail-item">
-            <span class="label">Duration:</span>
-            <span class="value">{{ service.duration }}</span>
+      @for (service of services; track service) {
+        <div
+          class="service-card"
+          appFadeIn
+          [fadeDelay]="200 + $index * 150"
+          [fadeDuration]="700"
+        >
+          <div class="service-header">
+            <h2>{{ service.title }}</h2>
+            <p class="service-description">{{ service.description }}</p>
           </div>
-          <div class="detail-item">
-            <span class="label">Investment:</span>
-            <span class="value">{{ service.pricing }}</span>
-          </div>
-        </div>
 
-        <a routerLink="/book" class="service-cta">Book This Service</a>
-      </div>
+          <div class="service-features">
+            <h3>What's Included:</h3>
+            <ul>
+              @for (feature of service.features; track feature) {
+                <li>{{ feature }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="service-details">
+            <div class="detail-item">
+              <span class="label">Duration:</span>
+              <span class="value">{{ service.duration }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Investment:</span>
+              <span class="value">{{ service.pricing }}</span>
+            </div>
+          </div>
+
+          <a routerLink="/book" class="service-cta">Book This Service</a>
+        </div>
+      }
     </div>
   </div>
 </section>
@@ -66,17 +69,18 @@
     </p>
 
     <div class="addons-grid">
-      <div
-        class="addon-card"
-        *ngFor="let addon of addOns; let i = index"
-        appFadeIn
-        [fadeDelay]="300 + i * 100"
-        [fadeDuration]="600"
-      >
-        <h3>{{ addon.title }}</h3>
-        <p>{{ addon.description }}</p>
-        <div class="addon-price">{{ addon.price }}</div>
-      </div>
+      @for (addon of addOns; track addon) {
+        <div
+          class="addon-card"
+          appFadeIn
+          [fadeDelay]="300 + $index * 100"
+          [fadeDuration]="600"
+        >
+          <h3>{{ addon.title }}</h3>
+          <p>{{ addon.description }}</p>
+          <div class="addon-price">{{ addon.price }}</div>
+        </div>
+      }
     </div>
   </div>
 </section>

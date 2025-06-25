@@ -7,19 +7,21 @@
     </p>
 
     <div class="faq-list">
-      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
-        <button
-          class="faq-question"
-          (click)="toggleFaq(i)"
-          [attr.aria-expanded]="faq.isOpen"
-        >
-          <span>{{ faq.question }}</span>
-          <span class="faq-icon" [class.open]="faq.isOpen">+</span>
-        </button>
-        <div class="faq-answer" [class.open]="faq.isOpen">
-          <p>{{ faq.answer }}</p>
+      @for (faq of faqs; track faq) {
+        <div class="faq-item">
+          <button
+            class="faq-question"
+            (click)="toggleFaq($index)"
+            [attr.aria-expanded]="faq.isOpen"
+          >
+            <span>{{ faq.question }}</span>
+            <span class="faq-icon" [class.open]="faq.isOpen">+</span>
+          </button>
+          <div class="faq-answer" [class.open]="faq.isOpen">
+            <p>{{ faq.answer }}</p>
+          </div>
         </div>
-      </div>
+      }
     </div>
 
     <div class="contact-cta">

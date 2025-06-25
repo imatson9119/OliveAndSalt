@@ -1,31 +1,33 @@
 <div class="booking-page">
   <!-- Success Message -->
-  <div class="success-message" *ngIf="isSubmitted">
-    <div class="container">
-      <div
-        class="success-content"
-        appFadeIn
-        [fadeDelay]="200"
-        [fadeDuration]="700"
-      >
-        <div class="success-icon">✅</div>
-        <h1>Thank You!</h1>
-        <p>
-          Your consultation request has been received. I'll be in touch within
-          24 hours to discuss your culinary needs and schedule our first
-          meeting.
-        </p>
-        <p>
-          In the meantime, feel free to explore my
-          <a routerLink="/gallery">gallery</a> or read more
-          <a routerLink="/testimonials">client testimonials</a>.
-        </p>
+  @if (isSubmitted) {
+    <div class="success-message">
+      <div class="container">
+        <div
+          class="success-content"
+          appFadeIn
+          [fadeDelay]="200"
+          [fadeDuration]="700"
+        >
+          <div class="success-icon">✅</div>
+          <h1>Thank You!</h1>
+          <p>
+            Your consultation request has been received. I'll be in touch within
+            24 hours to discuss your culinary needs and schedule our first
+            meeting.
+          </p>
+          <p>
+            In the meantime, feel free to explore my
+            <a routerLink="/gallery">gallery</a> or read more
+            <a routerLink="/testimonials">client testimonials</a>.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  }
 
   <!-- Booking Form -->
-  <div *ngIf="!isSubmitted">
+  @if (!isSubmitted) {
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
@@ -65,9 +67,11 @@
                 [class.error]="getFieldError('name')"
                 placeholder="Your full name"
               />
-              <div class="error-message" *ngIf="getFieldError('name')">
-                {{ getFieldError("name") }}
-              </div>
+              @if (getFieldError("name")) {
+                <div class="error-message">
+                  {{ getFieldError("name") }}
+                </div>
+              }
             </div>
 
             <div class="form-group">
@@ -79,9 +83,11 @@
                 [class.error]="getFieldError('email')"
                 placeholder="your.email@example.com"
               />
-              <div class="error-message" *ngIf="getFieldError('email')">
-                {{ getFieldError("email") }}
-              </div>
+              @if (getFieldError("email")) {
+                <div class="error-message">
+                  {{ getFieldError("email") }}
+                </div>
+              }
             </div>
           </div>
 
@@ -95,9 +101,11 @@
                 [class.error]="getFieldError('phone')"
                 placeholder="(555) 123-4567"
               />
-              <div class="error-message" *ngIf="getFieldError('phone')">
-                {{ getFieldError("phone") }}
-              </div>
+              @if (getFieldError("phone")) {
+                <div class="error-message">
+                  {{ getFieldError("phone") }}
+                </div>
+              }
             </div>
 
             <div class="form-group">
@@ -109,9 +117,11 @@
                 [class.error]="getFieldError('location')"
                 placeholder="City, State"
               />
-              <div class="error-message" *ngIf="getFieldError('location')">
-                {{ getFieldError("location") }}
-              </div>
+              @if (getFieldError("location")) {
+                <div class="error-message">
+                  {{ getFieldError("location") }}
+                </div>
+              }
             </div>
           </div>
 
@@ -129,13 +139,17 @@
                 [class.error]="getFieldError('service')"
               >
                 <option value="">Select a service</option>
-                <option *ngFor="let service of services" [value]="service">
-                  {{ service }}
-                </option>
+                @for (service of services; track service) {
+                  <option [value]="service">
+                    {{ service }}
+                  </option>
+                }
               </select>
-              <div class="error-message" *ngIf="getFieldError('service')">
-                {{ getFieldError("service") }}
-              </div>
+              @if (getFieldError("service")) {
+                <div class="error-message">
+                  {{ getFieldError("service") }}
+                </div>
+              }
             </div>
           </div>
 
@@ -185,9 +199,11 @@
               placeholder="Tell me about your culinary goals - healthier eating, convenience, special occasion, learning new techniques, etc."
               rows="4"
             ></textarea>
-            <div class="error-message" *ngIf="getFieldError('goals')">
-              {{ getFieldError("goals") }}
-            </div>
+            @if (getFieldError("goals")) {
+              <div class="error-message">
+                {{ getFieldError("goals") }}
+              </div>
+            }
           </div>
 
           <div class="form-row">
@@ -217,8 +233,11 @@
           <!-- Submit Button -->
           <div class="form-submit">
             <button type="submit" [disabled]="isLoading" class="submit-button">
-              <span *ngIf="!isLoading">Send Consultation Request</span>
-              <span *ngIf="isLoading">Sending...</span>
+              @if (!isLoading) {
+                <span>Send Consultation Request</span>
+              } @else {
+                <span>Sending...</span>
+              }
             </button>
             <p class="form-note">
               I'll respond within 24 hours to schedule our consultation.
@@ -227,5 +246,5 @@
         </form>
       </div>
     </section>
-  </div>
+  }
 </div>

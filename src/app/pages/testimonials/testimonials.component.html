@@ -26,9 +26,11 @@
         (change)="onServiceFilterChange($event)"
         [value]="selectedService"
       >
-        <option *ngFor="let service of services" [value]="service">
-          {{ service }}
-        </option>
+        @for (service of services; track service) {
+          <option [value]="service">
+            {{ service }}
+          </option>
+        }
       </select>
     </div>
   </div>
@@ -38,32 +40,33 @@
 <section class="testimonials-grid">
   <div class="container">
     <div class="grid">
-      <div
-        *ngFor="let testimonial of filteredTestimonials; let i = index"
-        class="testimonial-card"
-        appFadeIn
-        [fadeDelay]="200 + i * 150"
-        [fadeDuration]="700"
-      >
-        <div class="testimonial-header">
-          <div class="client-info">
-            <div class="client-avatar">
-              <span>{{ testimonial.author.charAt(0) }}</span>
-            </div>
-            <div class="client-details">
-              <h3>{{ testimonial.author }}</h3>
-              <p class="location">{{ testimonial.location }}</p>
-              <div class="service-badge">
-                {{ testimonial.service }}
+      @for (testimonial of filteredTestimonials; track testimonial) {
+        <div
+          class="testimonial-card"
+          appFadeIn
+          [fadeDelay]="200 + $index * 150"
+          [fadeDuration]="700"
+        >
+          <div class="testimonial-header">
+            <div class="client-info">
+              <div class="client-avatar">
+                <span>{{ testimonial.author.charAt(0) }}</span>
+              </div>
+              <div class="client-details">
+                <h3>{{ testimonial.author }}</h3>
+                <p class="location">{{ testimonial.location }}</p>
+                <div class="service-badge">
+                  {{ testimonial.service }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <blockquote class="testimonial-text">
-          <p>"{{ testimonial.text }}"</p>
-        </blockquote>
-      </div>
+          <blockquote class="testimonial-text">
+            <p>"{{ testimonial.text }}"</p>
+          </blockquote>
+        </div>
+      }
     </div>
   </div>
 </section>

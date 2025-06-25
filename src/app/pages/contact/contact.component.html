@@ -1,22 +1,26 @@
 <div class="contact-page">
   <!-- Success Message -->
-  <div class="success-message" *ngIf="isSubmitted">
-    <div class="container">
-      <div
-        class="success-content"
-        appFadeIn
-        [fadeDelay]="200"
-        [fadeDuration]="700"
-      >
-        <div class="success-icon">✅</div>
-        <h1>Message Sent!</h1>
-        <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+  @if (isSubmitted) {
+    <div class="success-message">
+      <div class="container">
+        <div
+          class="success-content"
+          appFadeIn
+          [fadeDelay]="200"
+          [fadeDuration]="700"
+        >
+          <div class="success-icon">✅</div>
+          <h1>Message Sent!</h1>
+          <p>
+            Thank you for reaching out. I'll get back to you within 24 hours.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  }
 
   <!-- Contact Content -->
-  <div *ngIf="!isSubmitted">
+  @if (!isSubmitted) {
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
@@ -56,9 +60,11 @@
                     [class.error]="getFieldError('name')"
                     placeholder="Your name"
                   />
-                  <div class="error-message" *ngIf="getFieldError('name')">
-                    {{ getFieldError("name") }}
-                  </div>
+                  @if (getFieldError("name")) {
+                    <div class="error-message">
+                      {{ getFieldError("name") }}
+                    </div>
+                  }
                 </div>
 
                 <div class="form-group">
@@ -70,9 +76,11 @@
                     [class.error]="getFieldError('email')"
                     placeholder="your.email@example.com"
                   />
-                  <div class="error-message" *ngIf="getFieldError('email')">
-                    {{ getFieldError("email") }}
-                  </div>
+                  @if (getFieldError("email")) {
+                    <div class="error-message">
+                      {{ getFieldError("email") }}
+                    </div>
+                  }
                 </div>
               </div>
 
@@ -85,9 +93,11 @@
                   [class.error]="getFieldError('subject')"
                   placeholder="What's this about?"
                 />
-                <div class="error-message" *ngIf="getFieldError('subject')">
-                  {{ getFieldError("subject") }}
-                </div>
+                @if (getFieldError("subject")) {
+                  <div class="error-message">
+                    {{ getFieldError("subject") }}
+                  </div>
+                }
               </div>
 
               <div class="form-group">
@@ -99,9 +109,11 @@
                   placeholder="Tell me about your culinary needs, questions, or how I can help you..."
                   rows="6"
                 ></textarea>
-                <div class="error-message" *ngIf="getFieldError('message')">
-                  {{ getFieldError("message") }}
-                </div>
+                @if (getFieldError("message")) {
+                  <div class="error-message">
+                    {{ getFieldError("message") }}
+                  </div>
+                }
               </div>
 
               <button
@@ -109,8 +121,11 @@
                 [disabled]="isLoading"
                 class="submit-button"
               >
-                <span *ngIf="!isLoading">Send Message</span>
-                <span *ngIf="isLoading">Sending...</span>
+                @if (!isLoading) {
+                  <span>Send Message</span>
+                } @else {
+                  <span>Sending...</span>
+                }
               </button>
             </form>
           </div>
@@ -192,5 +207,5 @@
         </div>
       </div>
     </section>
-  </div>
+  }
 </div>

@@ -10,14 +10,17 @@ import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
-    selector: 'app-contact',
-    imports: [ReactiveFormsModule, CommonModule, RouterLink, FadeInDirective],
-    templateUrl: './contact.component.html',
-    styleUrl: './contact.component.scss'
+  selector: 'app-contact',
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, FadeInDirective],
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.scss',
+  providers: [SnackbarService],
 })
 export class ContactComponent implements OnInit, OnDestroy {
+  private snackbar = inject(SnackbarService);
   private fb = inject(FormBuilder);
   private structuredDataService = inject(StructuredDataService);
   private meta = inject(Meta);
@@ -81,9 +84,11 @@ export class ContactComponent implements OnInit, OnDestroy {
       const headers = new Headers({
         'Content-Type': 'application/x-www-form-urlencoded',
       });
-      const body = new URLSearchParams(
-        this.contactForm.value as Record<string, string>,
-      ).toString();
+      let result = this.contactForm.value as Record<string, string>;
+      result['type'] = 'contact';
+      result['timestamp'] = new Date().toISOString();
+
+      const body = new URLSearchParams(result).toString();
 
       fetch(endpoint, {
         method: 'POST',
@@ -93,18 +98,20 @@ export class ContactComponent implements OnInit, OnDestroy {
         .then((response) => {
           if (response.ok) {
             console.log('Form submitted successfully.');
-            alert('Thank you! Your message has been sent.');
-            this.isLoading = false;
-            this.isSubmitted = true;
+            this.snackbar.showSuccess('Thank you! Your message has been sent.');
           } else {
-            throw new Error('Server error');
+            this.snackbar.showError(
+              'There was a problem submitting your form. Please try again later.',
+            );
           }
+          this.isLoading = false;
+          this.isSubmitted = true;
         })
         .catch((error) => {
           console.error('Form submission failed:', error);
           this.isLoading = false;
           this.isSubmitted = true;
-          alert(
+          this.snackbar.showError(
             'There was a problem submitting your form. Please try again later.',
           );
         });

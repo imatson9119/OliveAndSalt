@@ -1,30 +1,28 @@
-<div 
+<div
   class="snackbar"
   [class]="getTypeClass()"
   [@slideIn]="animationState"
   (@slideIn.done)="onAnimationDone($event)"
   [attr.role]="'alert'"
   [attr.aria-live]="'polite'"
-  (click)="onDismiss()">
-  
+  (click)="onDismiss()"
+>
   <!-- Icon -->
   <div class="snackbar__icon">
-    @if (config.type === 'emoji') {
+    @if (config.type === "emoji") {
       <span class="snackbar__emoji">{{ config.emoji }}</span>
     } @else {
-      <mat-icon [fontIcon]="getIcon()"></mat-icon>
+      <i class="material-icons">{{ getIcon() }}</i>
     }
   </div>
-  
+
   <!-- Message -->
   <div class="snackbar__message">
     {{ config.message }}
   </div>
-  
+
   <!-- Close button (optional) -->
   @if (config.dismissible) {
-  <div class="snackbar__close">
-    <mat-icon fontIcon="close"></mat-icon>
-  </div>
+    <i class="material-icons">close</i>
   }
-</div> 
+</div>
