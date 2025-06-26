@@ -20,7 +20,7 @@ export class FadeInDirective implements OnInit, AfterViewInit, OnDestroy {
   @Input() fadeDistance: number | string = 20; // Distance to slide from (in pixels)
   @Input() fadeDirection: 'up' | 'down' | 'left' | 'right' | 'none' = 'up';
   @Input() fadeEasing = 'cubic-bezier(0.4, 0.0, 0.2, 1)';
-  @Input() fadeThreshold: number | string = 0.1; // Intersection threshold (0-1)
+  @Input() fadeThreshold: number | string = 0; // Intersection threshold (0-1)
   @Input() fadeOnLoad: boolean | string = false; // Animate immediately on page load instead of on intersection
 
   private observer: IntersectionObserver | null = null;
