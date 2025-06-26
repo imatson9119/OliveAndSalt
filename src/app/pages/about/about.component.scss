@@ -222,10 +222,11 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
-    .icon {
+    .value-icon {
       font-size: 5rem;
+      width: fit-content;
+      height: fit-content;
       color: var(--olive-green);
-      margin: 2rem;
     }
 
     h3 {

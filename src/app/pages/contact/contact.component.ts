@@ -80,7 +80,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       this.isLoading = true;
 
       const endpoint =
-        'https://script.google.com/macros/s/AKfycby54K6wDeaphyByhOHeXUeHBuC9o8-Vpnl6ZjvTEWhP6CtMmK3-uoC30lDZM6a-zSu8yg/exec';
+        'https://script.google.com/macros/s/AKfycbxbjZGRVhZT62LJLKHC4aUWrBoqserqCZS3ygswVr9xTJgoLTsVD53BndlKa41YMHOt/exec';
       const headers = new Headers({
         'Content-Type': 'application/x-www-form-urlencoded',
       });

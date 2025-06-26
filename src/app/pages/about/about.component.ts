@@ -3,12 +3,13 @@ import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-about',
-    imports: [RouterLink, FadeInDirective],
-    templateUrl: './about.component.html',
-    styleUrl: './about.component.scss'
+  selector: 'app-about',
+  imports: [RouterLink, FadeInDirective, MatIconModule],
+  templateUrl: './about.component.html',
+  styleUrl: './about.component.scss',
 })
 export class AboutComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);

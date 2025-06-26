@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-home',
-    imports: [RouterLink, CommonModule, FadeInDirective],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [RouterLink, CommonModule, FadeInDirective, MatIconModule],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
   testimonials = [

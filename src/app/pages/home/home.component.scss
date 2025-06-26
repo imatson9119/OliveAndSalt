@@ -164,8 +164,9 @@
 
     .value-icon {
       font-size: 5rem;
+      width: fit-content;
+      height: fit-content;
       color: var(--olive-green);
-      margin: 2rem;
     }
 
     h3 {

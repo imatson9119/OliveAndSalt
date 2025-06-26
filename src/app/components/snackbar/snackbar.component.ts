@@ -7,6 +7,7 @@ import {
   animate,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface SnackbarConfig {
   message: string;
@@ -60,7 +61,7 @@ export interface SnackbarConfig {
       ]),
     ]),
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
 })
 export class SnackbarComponent implements OnInit {
   @Output() dismissed = new EventEmitter<void>();

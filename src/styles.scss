@@ -1,4 +1,103 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use "@angular/material" as mat;
+@use "sass:map";
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.m2-define-palette(
+            (
+              50: #f1f5e8,
+              100: #dde7c7,
+              200: #c4d49f,
+              300: #a8c174,
+              400: #7f9651,
+              500: #556b2f,
+              600: #4d602a,
+              700: #4a5a2a,
+              800: #3d4a22,
+              900: #2f3a1a,
+              A100: #c4d49f,
+              A200: #a8c174,
+              A400: #7f9651,
+              A700: #4a5a2a,
+              contrast: (
+                50: #000000,
+                100: #000000,
+                200: #000000,
+                300: #000000,
+                400: #000000,
+                500: #000000,
+                600: #000000,
+              ),
+            )
+          ),
+        secondary: mat.m2-define-palette(
+            (
+              50: #fefefe,
+              100: #faf9f6,
+              200: #f5f3ed,
+              300: #f0ede4,
+              400: #ede6d6,
+              500: #e8e0d0,
+              600: #d9d1c1,
+              700: #c8c0b0,
+              800: #b7af9f,
+              900: #9e968e,
+              A100: #faf9f6,
+              A200: #f5f3ed,
+              A400: #ede6d6,
+              A700: #c8c0b0,
+              contrast: (
+                50: #000000,
+                100: #000000,
+                200: #000000,
+                300: #000000,
+                400: #000000,
+                500: #000000,
+                600: #000000,
+              ),
+            )
+          ),
+        tertiary: mat.$blue-palette,
+        accent: mat.m2-define-palette(
+            (
+              50: #fdf5f2,
+              100: #f9e6de,
+              200: #f4d0c1,
+              300: #eeb59f,
+              400: #e0947b,
+              500: #c57b57,
+              600: #b8704e,
+              700: #a86143,
+              800: #985439,
+              900: #7f3f28,
+              A100: #f4d0c1,
+              A200: #eeb59f,
+              A400: #e0947b,
+              A700: #a86143,
+              contrast: (
+                50: #000000,
+                100: #000000,
+                200: #000000,
+                300: #000000,
+                400: #000000,
+                500: #000000,
+                600: #000000,
+              ),
+            )
+          ),
+      ),
+      typography: (
+        font-family: "Lato, sans-serif",
+      ),
+      density: 0,
+    )
+  );
+} /* You can add global styles to this file, and also import other style files */
 
 /* Olive and Salt Global Styles */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap");

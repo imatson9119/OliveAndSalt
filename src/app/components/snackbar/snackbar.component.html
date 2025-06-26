@@ -12,7 +12,7 @@
     @if (config.type === "emoji") {
       <span class="snackbar__emoji">{{ config.emoji }}</span>
     } @else {
-      <i class="material-icons">{{ getIcon() }}</i>
+      <mat-icon [fontIcon]="getIcon()"></mat-icon>
     }
   </div>
 
@@ -23,6 +23,8 @@
 
   <!-- Close button (optional) -->
   @if (config.dismissible) {
-    <i class="material-icons">close</i>
+    <div class="snackbar__close">
+      <mat-icon fontIcon="close"></mat-icon>
+    </div>
   }
 </div>
