@@ -9,7 +9,9 @@
           [fadeDelay]="200"
           [fadeDuration]="700"
         >
-          <div class="success-icon">✅</div>
+          <div class="success-icon">
+            <mat-icon>check_circle</mat-icon>
+          </div>
           <h1>Message Sent!</h1>
           <p>
             Thank you for reaching out. I'll get back to you within 24 hours.
@@ -143,7 +145,7 @@
             <div class="info-section">
               <h3>Direct Contact</h3>
               <div class="contact-item">
-                <i class="material-symbols-outlined contact-icon">mail</i>
+                <mat-icon class="contact-icon">mail</mat-icon>
                 <div class="contact-details">
                   <span class="label">Email</span>
                   <a href="mailto:hello&#64;olive-and-salt.com"
@@ -153,9 +155,7 @@
               </div>
 
               <div class="contact-item">
-                <i class="material-symbols-outlined contact-icon"
-                  >photo_camera</i
-                >
+                <mat-icon class="contact-icon">photo_camera</mat-icon>
                 <div class="contact-details">
                   <span class="label">Instagram</span>
                   <a

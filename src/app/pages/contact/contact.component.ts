@@ -8,13 +8,20 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-contact',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, FadeInDirective],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    RouterLink,
+    MatIconModule,
+    FadeInDirective,
+  ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
   providers: [SnackbarService],

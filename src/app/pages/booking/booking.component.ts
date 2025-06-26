@@ -7,16 +7,20 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
-    selector: 'app-booking',
-    imports: [ReactiveFormsModule, CommonModule, FadeInDirective],
-    templateUrl: './booking.component.html',
-    styleUrl: './booking.component.scss'
+  selector: 'app-booking',
+  imports: [ReactiveFormsModule, CommonModule, MatIconModule, FadeInDirective],
+  templateUrl: './booking.component.html',
+  styleUrl: './booking.component.scss',
+  providers: [SnackbarService],
 })
 export class BookingComponent implements OnInit, OnDestroy {
+  private snackbar = inject(SnackbarService);
   private fb = inject(FormBuilder);
   private structuredDataService = inject(StructuredDataService);
   private meta = inject(Meta);
@@ -91,6 +95,44 @@ export class BookingComponent implements OnInit, OnDestroy {
     if (this.bookingForm.valid) {
       this.isLoading = true;
 
+      const endpoint =
+        'https://script.google.com/macros/s/AKfycbxbjZGRVhZT62LJLKHC4aUWrBoqserqCZS3ygswVr9xTJgoLTsVD53BndlKa41YMHOt/exec';
+      const headers = new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      });
+      let result = this.bookingForm.value as Record<string, string>;
+      result['type'] = 'booking';
+      result['timestamp'] = new Date().toISOString();
+
+      const body = new URLSearchParams(result).toString();
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers,
+        body,
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log('Form submitted successfully.');
+            this.snackbar.showSuccess(
+              'Thank you! Your booking request has been sent.',
+            );
+          } else {
+            this.snackbar.showError(
+              'There was a problem submitting your booking request. Please try again later.',
+            );
+          }
+          this.isLoading = false;
+          this.isSubmitted = true;
+        })
+        .catch((error) => {
+          console.error('Form submission failed:', error);
+          this.isLoading = false;
+          this.isSubmitted = true;
+          this.snackbar.showError(
+            'There was a problem submitting your booking request. Please try again later.',
+          );
+        });
       // Simulate form submission
       setTimeout(() => {
         this.isLoading = false;
