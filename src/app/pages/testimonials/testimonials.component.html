@@ -1,10 +1,8 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="container">
-    <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">
-      Client Testimonials
-    </h1>
-    <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+    <h1 appFadeIn [fadeDelay]="0" [fadeDuration]="700">Client Testimonials</h1>
+    <p class="lead" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
       Hear from clients who have experienced the joy of personalized, in-home
       culinary service with Olive &amp; Salt.
     </p>
@@ -17,7 +15,7 @@
     <div
       class="filter-controls"
       appFadeIn
-      [fadeDelay]="300"
+      [fadeDelay]="200"
       [fadeDuration]="600"
     >
       <label for="service-filter">Filter by Service:</label>
@@ -44,7 +42,7 @@
         <div
           class="testimonial-card"
           appFadeIn
-          [fadeDelay]="200 + $index * 150"
+          [fadeDelay]="0 + $index * 100"
           [fadeDuration]="700"
         >
           <div class="testimonial-header">
@@ -75,19 +73,19 @@
 <section class="stats-section">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat-item" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
+      <div class="stat-item" appFadeIn [fadeDelay]="0" [fadeDuration]="600">
         <div class="stat-number">150+</div>
         <div class="stat-label">Happy Clients</div>
       </div>
-      <div class="stat-item" appFadeIn [fadeDelay]="300" [fadeDuration]="600">
+      <div class="stat-item" appFadeIn [fadeDelay]="100" [fadeDuration]="600">
         <div class="stat-number">2,500+</div>
         <div class="stat-label">Meals Prepared</div>
       </div>
-      <div class="stat-item" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+      <div class="stat-item" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
         <div class="stat-number">98%</div>
         <div class="stat-label">Client Satisfaction</div>
       </div>
-      <div class="stat-item" appFadeIn [fadeDelay]="500" [fadeDuration]="600">
+      <div class="stat-item" appFadeIn [fadeDelay]="300" [fadeDuration]="600">
         <div class="stat-number">5</div>
         <div class="stat-label">Years of Service</div>
       </div>
@@ -101,7 +99,7 @@
     <blockquote
       class="large-quote"
       appFadeIn
-      [fadeDelay]="200"
+      [fadeDelay]="0"
       [fadeDuration]="700"
     >
       <p>
@@ -124,7 +122,7 @@
     <div
       class="cta-content"
       appFadeIn
-      [fadeDelay]="200"
+      [fadeDelay]="0"
       [fadeDuration]="700"
       fadeDirection="up"
     >

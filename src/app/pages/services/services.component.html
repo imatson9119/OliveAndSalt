@@ -1,8 +1,8 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="container">
-    <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">Culinary Services</h1>
-    <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+    <h1 appFadeIn [fadeDelay]="0" [fadeDuration]="700">Culinary Services</h1>
+    <p class="lead" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
       From weekly meal preparation to special events, discover how Olive and
       Salt can transform your dining experience with personalized,
       nutrition-focused cuisine.
@@ -18,7 +18,7 @@
         <div
           class="service-card"
           appFadeIn
-          [fadeDelay]="200 + $index * 150"
+          [fadeDelay]="0 + $index * 100"
           [fadeDuration]="700"
         >
           <div class="service-header">
@@ -56,13 +56,13 @@
 <!-- Add-ons Section -->
 <section class="addons">
   <div class="container">
-    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+    <h2 appFadeIn [fadeDelay]="0" [fadeDuration]="600">
       Optional Add-On Services
     </h2>
     <p
       class="section-subtitle"
       appFadeIn
-      [fadeDelay]="200"
+      [fadeDelay]="100"
       [fadeDuration]="600"
     >
       Enhance your culinary experience with these additional services
@@ -73,7 +73,7 @@
         <div
           class="addon-card"
           appFadeIn
-          [fadeDelay]="300 + $index * 100"
+          [fadeDelay]="200 + $index * 100"
           [fadeDuration]="600"
         >
           <h3>{{ addon.title }}</h3>
@@ -88,9 +88,9 @@
 <!-- Process Section -->
 <section class="process">
   <div class="container">
-    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">How It Works</h2>
+    <h2 appFadeIn [fadeDelay]="0" [fadeDuration]="600">How It Works</h2>
     <div class="process-steps">
-      <div class="step" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
+      <div class="step" appFadeIn [fadeDelay]="100" [fadeDuration]="600">
         <div class="step-number">1</div>
         <div class="step-content">
           <h3>Consultation</h3>
@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <div class="step" appFadeIn [fadeDelay]="300" [fadeDuration]="600">
+      <div class="step" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
         <div class="step-number">2</div>
         <div class="step-content">
           <h3>Menu Planning</h3>
@@ -112,7 +112,7 @@
         </div>
       </div>
 
-      <div class="step" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+      <div class="step" appFadeIn [fadeDelay]="300" [fadeDuration]="600">
         <div class="step-number">3</div>
         <div class="step-content">
           <h3>Shopping & Prep</h3>
@@ -123,7 +123,7 @@
         </div>
       </div>
 
-      <div class="step" appFadeIn [fadeDelay]="500" [fadeDuration]="600">
+      <div class="step" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
         <div class="step-number">4</div>
         <div class="step-content">
           <h3>Cooking & Service</h3>
@@ -134,7 +134,7 @@
         </div>
       </div>
 
-      <div class="step" appFadeIn [fadeDelay]="600" [fadeDuration]="600">
+      <div class="step" appFadeIn [fadeDelay]="500" [fadeDuration]="600">
         <div class="step-number">5</div>
         <div class="step-content">
           <h3>Cleanup & Storage</h3>
@@ -151,7 +151,7 @@
 <!-- Testimonial -->
 <section class="testimonial-highlight">
   <div class="container">
-    <blockquote appFadeIn [fadeDelay]="200" [fadeDuration]="700">
+    <blockquote appFadeIn [fadeDelay]="0" [fadeDuration]="700">
       <p>
         "Sarah's weekly meal service has completely transformed how our family
         eats. The quality, creativity, and attention to our dietary needs is
@@ -172,7 +172,7 @@
     <div
       class="cta-content"
       appFadeIn
-      [fadeDelay]="200"
+      [fadeDelay]="0"
       [fadeDuration]="700"
       fadeDirection="up"
     >

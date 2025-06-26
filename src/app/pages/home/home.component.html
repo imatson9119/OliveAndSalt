@@ -1,11 +1,11 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-text" appFadeIn [fadeDelay]="200" [fadeDuration]="800">
-      <h1 appFadeIn [fadeDelay]="400" [fadeDuration]="700">
+    <div class="hero-text" appFadeIn [fadeDelay]="0" [fadeDuration]="800">
+      <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">
         Wholesome meals, personally prepared.
       </h1>
-      <p class="hero-subtitle" appFadeIn [fadeDelay]="600" [fadeDuration]="700">
+      <p class="hero-subtitle" appFadeIn [fadeDelay]="400" [fadeDuration]="700">
         Experience the joy of fresh, personalized cuisine crafted in the comfort
         of your own kitchen. Every meal is tailored to nourish your body and
         soul.
@@ -13,7 +13,7 @@
       <div
         class="hero-actions"
         appFadeIn
-        [fadeDelay]="800"
+        [fadeDelay]="600"
         [fadeDuration]="600"
       >
         <a routerLink="/book" class="cta-primary">Book Your Chef</a>
@@ -23,7 +23,7 @@
     <div
       class="hero-image"
       appFadeIn
-      [fadeDelay]="300"
+      [fadeDelay]="100"
       [fadeDuration]="800"
       fadeDirection="right"
     >
@@ -37,11 +37,11 @@
 <!-- Value Propositions -->
 <section class="values">
   <div class="container">
-    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
+    <h2 appFadeIn [fadeDelay]="0" [fadeDuration]="600">
       Why Choose Olive &amp; Salt?
     </h2>
     <div class="values-grid">
-      <div class="value-card" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
+      <div class="value-card" appFadeIn [fadeDelay]="0" [fadeDuration]="600">
         <mat-icon class="value-icon"> local_dining </mat-icon>
         <h3>Freshness</h3>
         <p>
@@ -49,7 +49,7 @@
           nature's bounty.
         </p>
       </div>
-      <div class="value-card" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+      <div class="value-card" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
         <mat-icon class="value-icon"> fingerprint </mat-icon>
         <h3>Personalization</h3>
         <p>
@@ -57,7 +57,7 @@
           wellness goals.
         </p>
       </div>
-      <div class="value-card" appFadeIn [fadeDelay]="600" [fadeDuration]="600">
+      <div class="value-card" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
         <mat-icon class="value-icon"> home_filled </mat-icon>
         <h3>In-Home Service</h3>
         <p>
@@ -76,7 +76,7 @@
       <div
         class="about-text"
         appFadeIn
-        [fadeDelay]="200"
+        [fadeDelay]="0"
         [fadeDuration]="700"
         fadeDirection="left"
       >
@@ -99,7 +99,7 @@
       <div
         class="about-image"
         appFadeIn
-        [fadeDelay]="400"
+        [fadeDelay]="200"
         [fadeDuration]="700"
         fadeDirection="right"
       >
@@ -114,13 +114,11 @@
 <!-- Testimonials -->
 <section class="testimonials">
   <div class="container">
-    <h2 appFadeIn [fadeDelay]="100" [fadeDuration]="600">
-      What Our Clients Say
-    </h2>
+    <h2 appFadeIn [fadeDelay]="0" [fadeDuration]="600">What Our Clients Say</h2>
     <div
       class="testimonial-slider"
       appFadeIn
-      [fadeDelay]="300"
+      [fadeDelay]="200"
       [fadeDuration]="700"
     >
       @for (testimonial of testimonials; track testimonial) {
@@ -141,7 +139,7 @@
     <div
       class="testimonial-nav"
       appFadeIn
-      [fadeDelay]="500"
+      [fadeDelay]="300"
       [fadeDuration]="600"
     >
       @for (testimonial of testimonials; track testimonial) {
@@ -156,7 +154,7 @@
       routerLink="/testimonials"
       class="view-all"
       appFadeIn
-      [fadeDelay]="600"
+      [fadeDelay]="400"
       [fadeDuration]="600"
       >View All Testimonials</a
     >
@@ -169,7 +167,7 @@
     <div
       class="cta-content"
       appFadeIn
-      [fadeDelay]="200"
+      [fadeDelay]="0"
       [fadeDuration]="700"
       fadeDirection="up"
     >

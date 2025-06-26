@@ -1,8 +1,8 @@
 <!-- Hero Section -->
 <section class="hero">
   <div class="container">
-    <h1 appFadeIn [fadeDelay]="200" [fadeDuration]="700">Gallery</h1>
-    <p class="lead" appFadeIn [fadeDelay]="400" [fadeDuration]="600">
+    <h1 appFadeIn [fadeDelay]="0" [fadeDuration]="700">Gallery</h1>
+    <p class="lead" appFadeIn [fadeDelay]="200" [fadeDuration]="600">
       A visual journey through the artistry and passion that goes into every
       Olive &amp; Salt meal experience.
     </p>
@@ -53,6 +53,7 @@
                   role="button"
                   [attr.aria-label]="'View larger image of ' + image.title"
                   appFadeIn
+                  [fadeOnLoad]="true"
                   [fadeDelay]="300 + $index * 100"
                   [fadeDuration]="600"
                 >
@@ -119,7 +120,7 @@
     <div
       class="cta-content"
       appFadeIn
-      [fadeDelay]="200"
+      [fadeDelay]="0"
       [fadeDuration]="700"
       fadeDirection="up"
     >

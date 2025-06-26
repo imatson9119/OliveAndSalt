@@ -156,7 +156,6 @@
 
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
         .image-placeholder {
           .image-title {
@@ -185,7 +184,7 @@
           bottom: 0;
           left: 0;
           right: 0;
-          background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.4));
           color: white;
           padding: 2rem 1rem 1rem;
           font-weight: 600;
