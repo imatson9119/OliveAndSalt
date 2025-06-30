@@ -91,7 +91,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       const headers = new Headers({
         'Content-Type': 'application/x-www-form-urlencoded',
       });
-      let result = this.contactForm.value as Record<string, string>;
+      const result = this.contactForm.value as Record<string, string>;
       result['type'] = 'contact';
       result['timestamp'] = new Date().toISOString();
 

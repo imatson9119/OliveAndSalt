@@ -2,17 +2,23 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
 import { FadeInDirective } from '../../directives';
+import {
+  ImageDialogComponent,
+  ImageDialogData,
+} from '../../components/image-dialog/image-dialog.component';
 
 @Component({
-    selector: 'app-gallery',
-    imports: [CommonModule, RouterLink, FadeInDirective],
-    templateUrl: './gallery.component.html',
-    styleUrl: './gallery.component.scss'
+  selector: 'app-gallery',
+  imports: [CommonModule, RouterLink, FadeInDirective],
+  templateUrl: './gallery.component.html',
+  styleUrl: './gallery.component.scss',
 })
 export class GalleryComponent implements OnInit {
   private meta = inject(Meta);
   private title = inject(Title);
+  private dialog = inject(MatDialog);
 
   ngOnInit() {
     // Update page title and meta tags
@@ -132,17 +138,24 @@ export class GalleryComponent implements OnInit {
   ];
 
   selectedCategory = 'Plated Dishes';
-  selectedImage: { title: string; description: string } | null = null;
 
   selectCategory(category: string) {
     this.selectedCategory = category;
   }
 
-  openLightbox(image: { title: string; description: string }) {
-    this.selectedImage = image;
-  }
+  openImageDialog(image: { title: string; description: string }) {
+    const dialogData: ImageDialogData = {
+      title: image.title,
+      description: image.description,
+    };
 
-  closeLightbox() {
-    this.selectedImage = null;
+    this.dialog.open(ImageDialogComponent, {
+      data: dialogData,
+      width: '90vw',
+      maxWidth: '800px',
+      maxHeight: '90vh',
+      autoFocus: false,
+      restoreFocus: true,
+    });
   }
 }

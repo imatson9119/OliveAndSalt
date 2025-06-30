@@ -6,6 +6,9 @@
   [attr.role]="'alert'"
   [attr.aria-live]="'polite'"
   (click)="onDismiss()"
+  (keyup.enter)="onDismiss()"
+  (keyup.space)="onDismiss()"
+  tabindex="0"
 >
   <!-- Icon -->
   <div class="snackbar__icon">

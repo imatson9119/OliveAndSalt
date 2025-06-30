@@ -3,10 +3,10 @@ import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-privacy',
-    imports: [RouterLink],
-    templateUrl: './privacy.component.html',
-    styleUrl: './privacy.component.scss'
+  selector: 'app-privacy',
+  imports: [RouterLink],
+  templateUrl: './privacy.component.html',
+  styleUrl: './privacy.component.scss',
 })
 export class PrivacyComponent implements OnInit {
   private meta = inject(Meta);

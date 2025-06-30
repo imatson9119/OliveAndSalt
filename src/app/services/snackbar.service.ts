@@ -1,7 +1,10 @@
-import { Injectable, ComponentRef, Injector } from '@angular/core';
+import { Injectable, ComponentRef, Injector, inject } from '@angular/core';
 import { Overlay, OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { SnackbarComponent } from '../components/snackbar/snackbar.component';
+import {
+  SnackbarComponent,
+  SNACKBAR_CONFIG,
+} from '../components/snackbar/snackbar.component';
 
 export interface SnackbarConfig {
   message: string;
@@ -21,20 +24,13 @@ interface ActiveSnackbar {
 })
 export class SnackbarService {
   private activeSnackbars: ActiveSnackbar[] = [];
-
-  constructor(
-    private overlay: Overlay,
-    private injector: Injector,
-  ) {}
+  private overlay = inject(Overlay);
+  private injector = inject(Injector);
 
   /**
    * Show a success snackbar with green check icon
    */
-  showSuccess(
-    message: string,
-    duration: number = 4000,
-    dismissible: boolean = true,
-  ): void {
+  showSuccess(message: string, duration = 4000): void {
     this.show({
       message,
       duration,
@@ -46,11 +42,7 @@ export class SnackbarService {
   /**
    * Show an info snackbar
    */
-  showInfo(
-    message: string,
-    duration: number = 4000,
-    dismissible: boolean = true,
-  ): void {
+  showInfo(message: string, duration = 4000, dismissible = true): void {
     this.show({
       message,
       duration,
@@ -62,11 +54,7 @@ export class SnackbarService {
   /**
    * Show a warning snackbar
    */
-  showWarning(
-    message: string,
-    duration: number = 5000,
-    dismissible: boolean = true,
-  ): void {
+  showWarning(message: string, duration = 5000, dismissible = true): void {
     this.show({
       message,
       duration,
@@ -78,8 +66,8 @@ export class SnackbarService {
   showEmoji(
     emoji: string,
     message: string,
-    duration: number = 5000,
-    dismissible: boolean = true,
+    duration = 5000,
+    dismissible = true,
   ): void {
     this.show({
       message,
@@ -93,11 +81,7 @@ export class SnackbarService {
   /**
    * Show an error snackbar
    */
-  showError(
-    message: string,
-    duration: number = 6000,
-    dismissible: boolean = true,
-  ): void {
+  showError(message: string, duration = 6000, dismissible = true): void {
     this.show({
       message,
       duration,
@@ -184,7 +168,7 @@ export class SnackbarService {
   private createInjector(config: SnackbarConfig): Injector {
     return Injector.create({
       parent: this.injector,
-      providers: [{ provide: 'snackbarConfig', useValue: config }],
+      providers: [{ provide: SNACKBAR_CONFIG, useValue: config }],
     });
   }
 

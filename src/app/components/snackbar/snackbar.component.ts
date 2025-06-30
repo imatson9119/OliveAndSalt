@@ -1,10 +1,18 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  InjectionToken,
+} from '@angular/core';
 import {
   trigger,
   state,
   style,
   transition,
   animate,
+  AnimationEvent,
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +24,10 @@ export interface SnackbarConfig {
   dismissible?: boolean;
   emoji?: string;
 }
+
+export const SNACKBAR_CONFIG = new InjectionToken<SnackbarConfig>(
+  'snackbarConfig',
+);
 
 @Component({
   selector: 'app-snackbar',
@@ -68,8 +80,7 @@ export class SnackbarComponent implements OnInit {
   @Output() animationDone = new EventEmitter<void>();
 
   animationState = 'in';
-
-  constructor(@Inject('snackbarConfig') public config: SnackbarConfig) {}
+  public config = inject(SNACKBAR_CONFIG);
 
   ngOnInit(): void {
     // Set default values if not provided
@@ -99,7 +110,7 @@ export class SnackbarComponent implements OnInit {
   /**
    * Handle animation events
    */
-  onAnimationDone(event: any): void {
+  onAnimationDone(event: AnimationEvent): void {
     if (event.toState === 'out') {
       this.dismissed.emit();
       this.animationDone.emit();

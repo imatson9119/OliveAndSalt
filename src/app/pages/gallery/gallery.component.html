@@ -46,9 +46,9 @@
               @for (image of gallery.images; track image) {
                 <div
                   class="image-card"
-                  (click)="openLightbox(image)"
-                  (keyup.enter)="openLightbox(image)"
-                  (keyup.space)="openLightbox(image)"
+                  (click)="openImageDialog(image)"
+                  (keyup.enter)="openImageDialog(image)"
+                  (keyup.space)="openImageDialog(image)"
                   tabindex="0"
                   role="button"
                   [attr.aria-label]="'View larger image of ' + image.title"
@@ -73,46 +73,6 @@
     }
   </div>
 </section>
-
-<!-- Lightbox Modal -->
-<div
-  class="lightbox-overlay"
-  *ngIf="selectedImage"
-  (click)="closeLightbox()"
-  (keyup.escape)="closeLightbox()"
-  tabindex="0"
-  role="dialog"
-  aria-modal="true"
-  [attr.aria-label]="'Image viewer for ' + selectedImage.title"
->
-  <div
-    class="lightbox-content"
-    (click)="$event.stopPropagation()"
-    (keyup.escape)="closeLightbox()"
-    tabindex="0"
-    role="document"
-  >
-    <button
-      class="lightbox-close"
-      (click)="closeLightbox()"
-      (keyup.enter)="closeLightbox()"
-      (keyup.space)="closeLightbox()"
-      tabindex="0"
-      aria-label="Close lightbox"
-    >
-      &times;
-    </button>
-    <div class="lightbox-image">
-      <div class="image-placeholder large">
-        <span>{{ selectedImage.title }}</span>
-      </div>
-    </div>
-    <div class="lightbox-info">
-      <h3>{{ selectedImage.title }}</h3>
-      <p>{{ selectedImage.description }}</p>
-    </div>
-  </div>
-</div>
 
 <!-- CTA Section -->
 <section class="cta-section">

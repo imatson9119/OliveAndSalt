@@ -6,10 +6,10 @@ import { FadeInDirective } from '../../directives';
 import { StructuredDataService } from '../../services/structured-data.service';
 
 @Component({
-    selector: 'app-testimonials',
-    imports: [CommonModule, RouterLink, FadeInDirective],
-    templateUrl: './testimonials.component.html',
-    styleUrl: './testimonials.component.scss'
+  selector: 'app-testimonials',
+  imports: [CommonModule, RouterLink, FadeInDirective],
+  templateUrl: './testimonials.component.html',
+  styleUrl: './testimonials.component.scss',
 })
 export class TestimonialsComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);

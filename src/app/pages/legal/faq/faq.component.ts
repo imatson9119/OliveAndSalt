@@ -4,10 +4,10 @@ import { Meta, Title } from '@angular/platform-browser';
 import { StructuredDataService } from '../../../services/structured-data.service';
 
 @Component({
-    selector: 'app-faq',
-    imports: [CommonModule],
-    templateUrl: './faq.component.html',
-    styleUrl: './faq.component.scss'
+  selector: 'app-faq',
+  imports: [CommonModule],
+  templateUrl: './faq.component.html',
+  styleUrl: './faq.component.scss',
 })
 export class FaqComponent implements OnInit, OnDestroy {
   private structuredDataService = inject(StructuredDataService);

@@ -100,7 +100,7 @@ export class BookingComponent implements OnInit, OnDestroy {
       const headers = new Headers({
         'Content-Type': 'application/x-www-form-urlencoded',
       });
-      let result = this.bookingForm.value as Record<string, string>;
+      const result = this.bookingForm.value as Record<string, string>;
       result['type'] = 'booking';
       result['timestamp'] = new Date().toISOString();
 
