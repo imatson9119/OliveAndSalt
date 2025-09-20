@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://olive-and-salt.com/sitemap.xml
-Crawl-delay: 1 
