@@ -7,14 +7,14 @@
 	import FloatingBadge from '$lib/components/ui/FloatingBadge.svelte';
 	import ContactInfo from '$lib/components/ui/ContactInfo.svelte';
 	import { onMount } from 'svelte';
-	import { 
-		PROCESS_STEPS, 
-		CONSULTATION_EXPECTATIONS, 
-		PRICING, 
-		COMPANY_INFO, 
-		IMAGES, 
-		MESSAGES, 
-		CONTACT_INFO 
+	import {
+		PROCESS_STEPS,
+		CONSULTATION_EXPECTATIONS,
+		PRICING,
+		COMPANY_INFO,
+		IMAGES,
+		MESSAGES,
+		CONTACT_INFO
 	} from '$lib/constants';
 	import { scrollToSection } from '$lib/utils/navigation';
 
@@ -55,11 +55,11 @@
 				<!-- Mobile Hero Image - Clean, no overlays -->
 				<div class="relative mb-6 overflow-hidden rounded-2xl shadow-2xl">
 					<div class="from-olive/20 via-terracotta/10 to-bone aspect-[4/3] bg-gradient-to-br">
-					<img
-						src={IMAGES.splash}
-						alt="Chef preparing fresh meals"
-						class="h-full w-full object-cover"
-					/>
+						<img
+							src={IMAGES.splash}
+							alt="Chef preparing fresh meals"
+							class="h-full w-full object-cover"
+						/>
 					</div>
 				</div>
 
@@ -116,17 +116,10 @@
 						</div>
 
 						<div class="flex flex-col gap-4 sm:flex-row">
-							<Button
-								size="lg"
-								onclick={() => scrollToSection('#consultation')}
-							>
+							<Button size="lg" onclick={() => scrollToSection('#consultation')}>
 								{#snippet children()}{MESSAGES.consultation.cta}{/snippet}
 							</Button>
-							<Button
-								variant="secondary"
-								size="lg"
-								onclick={() => scrollToSection('#process')}
-							>
+							<Button variant="secondary" size="lg" onclick={() => scrollToSection('#process')}>
 								{#snippet children()}See How It Works →{/snippet}
 							</Button>
 						</div>
@@ -208,7 +201,9 @@
 		{#snippet children()}
 			<div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
 				<div class="order-2 space-y-4 md:space-y-6 lg:order-1">
-					<h2 class="text-olive text-2xl font-bold sm:text-3xl md:text-4xl">Meet {COMPANY_INFO.founder}</h2>
+					<h2 class="text-olive text-2xl font-bold sm:text-3xl md:text-4xl">
+						Meet {COMPANY_INFO.founder}
+					</h2>
 					<div class="text-charcoal/80 space-y-3 text-sm leading-relaxed md:space-y-4 md:text-base">
 						<p>
 							It started quietly—cooking for coworkers and friends who were too busy to meal prep
@@ -270,7 +265,10 @@
 				<div class="bg-bone border-border rounded-xl border p-6 shadow-sm md:p-8">
 					<h3 class="text-olive mb-3 text-xl font-bold md:mb-4 md:text-2xl">Meal Prep Service</h3>
 					<div class="text-terracotta mb-3 text-2xl font-bold md:mb-2 md:text-3xl">
-						{PRICING.mealPrep.price} <span class="text-charcoal/70 text-sm font-normal md:text-base">{PRICING.mealPrep.period}</span>
+						{PRICING.mealPrep.price}
+						<span class="text-charcoal/70 text-sm font-normal md:text-base"
+							>{PRICING.mealPrep.period}</span
+						>
 					</div>
 					<ul class="text-charcoal/80 mb-4 space-y-2 text-sm md:mb-6 md:space-y-3 md:text-base">
 						{#each PRICING.mealPrep.features as feature}
@@ -296,7 +294,9 @@
 						{/each}
 					</div>
 					<div class="bg-olive/10 mt-4 rounded-lg p-3 md:mt-6 md:p-4">
-						<div class="text-olive text-xs font-medium md:text-sm">{PRICING.firstTimeOffer.title}</div>
+						<div class="text-olive text-xs font-medium md:text-sm">
+							{PRICING.firstTimeOffer.title}
+						</div>
 						<div class="text-charcoal/80 text-xs md:text-sm">
 							{PRICING.firstTimeOffer.description}
 						</div>

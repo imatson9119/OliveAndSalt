@@ -25,7 +25,9 @@
 </script>
 
 <div
-	class="absolute rounded-full px-3 py-1 text-xs font-medium shadow-lg md:text-sm {positions[position]} {variants[variant]} {className}"
+	class="absolute rounded-full px-3 py-1 text-xs font-medium shadow-lg md:text-sm {positions[
+		position
+	]} {variants[variant]} {className}"
 >
 	{text}
 </div>

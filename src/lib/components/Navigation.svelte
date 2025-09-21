@@ -42,10 +42,7 @@
 
 			<!-- Desktop CTA Button -->
 			<div class="hidden md:block">
-				<Button
-					variant="secondary"
-					onclick={() => scrollToSection('#consultation')}
-				>
+				<Button variant="secondary" onclick={() => scrollToSection('#consultation')}>
 					{#snippet children()}Book Consultation{/snippet}
 				</Button>
 			</div>

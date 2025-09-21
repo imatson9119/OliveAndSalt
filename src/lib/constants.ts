@@ -48,22 +48,26 @@ export const PROCESS_STEPS = [
 	{
 		step: '01',
 		title: 'Consultation',
-		description: 'We discuss your tastes, dietary needs, and schedule to create your perfect meal plan.'
+		description:
+			'We discuss your tastes, dietary needs, and schedule to create your perfect meal plan.'
 	},
 	{
 		step: '02',
 		title: 'Choose Your Style',
-		description: 'Shop yourself with our curated list, or let us handle the grocery shopping for you.'
+		description:
+			'Shop yourself with our curated list, or let us handle the grocery shopping for you.'
 	},
 	{
 		step: '03',
 		title: 'Cooking Day',
-		description: 'Emma comes to your kitchen and prepares fresh, delicious meals using quality ingredients.'
+		description:
+			'Emma comes to your kitchen and prepares fresh, delicious meals using quality ingredients.'
 	},
 	{
 		step: '04',
 		title: 'Organized & Ready',
-		description: 'Your fridge is organized with labeled, ready-to-eat meals that bring joy to your week.'
+		description:
+			'Your fridge is organized with labeled, ready-to-eat meals that bring joy to your week.'
 	}
 ];
 
@@ -75,11 +79,11 @@ export const CONSULTATION_EXPECTATIONS = [
 	},
 	{
 		step: '2.',
-		description: 'We\'ll schedule a free 30-minute consultation call'
+		description: "We'll schedule a free 30-minute consultation call"
 	},
 	{
 		step: '3.',
-		description: 'If it\'s a good fit, we\'ll plan your first cooking session'
+		description: "If it's a good fit, we'll plan your first cooking session"
 	}
 ];
 
@@ -115,7 +119,8 @@ export const COMPANY_INFO = {
 	copyright: '© 2025 Olive & Salt by Emma Matson. Made with care in your community.',
 	meta: {
 		title: 'Olive & Salt by Emma Matson - In-Home Meal Prep',
-		description: 'Fresh, personalized meal prep in your home. Food as it was meant to be - organic, unprocessed, and delicious.'
+		description:
+			'Fresh, personalized meal prep in your home. Food as it was meant to be - organic, unprocessed, and delicious.'
 	}
 };
 
@@ -137,6 +142,7 @@ export const MESSAGES = {
 	hero: {
 		title: 'Meals that feel',
 		subtitle: 'like home.',
-		description: 'Fresh, personalized meal prep in your own kitchen. Food as it was meant to be - organic, unprocessed, and delicious.'
+		description:
+			'Fresh, personalized meal prep in your own kitchen. Food as it was meant to be - organic, unprocessed, and delicious.'
 	}
 };
