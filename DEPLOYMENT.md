@@ -35,7 +35,7 @@ npm run build:gh-pages
 
 # Preview GitHub Pages build locally
 npm run preview:gh-pages
-```
+``` 
 
 ## Project Structure
 
