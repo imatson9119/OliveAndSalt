@@ -12,7 +12,7 @@
 		class?: string;
 		background?: 'default' | 'muted' | 'olive' | 'gradient';
 		padding?: 'none' | 'sm' | 'default' | 'lg';
-		children: any;
+		children: import('svelte').Snippet;
 	} = $props();
 
 	const backgrounds = {

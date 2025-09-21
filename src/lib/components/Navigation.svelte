@@ -29,7 +29,7 @@
 			<!-- Desktop Navigation -->
 			<div class="hidden md:block">
 				<div class="ml-10 flex items-baseline space-x-8">
-					{#each NAV_ITEMS as item}
+					{#each NAV_ITEMS as item (item.href)}
 						<button
 							onclick={() => handleNavClick(item.href)}
 							class="text-charcoal hover:text-olive px-3 py-2 text-sm font-medium transition-colors"
@@ -43,7 +43,7 @@
 			<!-- Desktop CTA Button -->
 			<div class="hidden md:block">
 				<Button variant="secondary" onclick={() => scrollToSection('#consultation')}>
-					{#snippet children()}Book Consultation{/snippet}
+					Book Consultation
 				</Button>
 			</div>
 
@@ -83,7 +83,7 @@
 		{#if mobileMenuOpen}
 			<div class="border-border bg-bone/95 border-t backdrop-blur-sm md:hidden">
 				<div class="space-y-1 px-2 pt-2 pb-3">
-					{#each NAV_ITEMS as item}
+					{#each NAV_ITEMS as item (item.href)}
 						<button
 							onclick={() => handleNavClick(item.href)}
 							class="text-charcoal hover:text-olive block w-full px-3 py-3 text-left text-base font-medium transition-colors"
@@ -100,7 +100,7 @@
 								scrollToSection('#consultation');
 							}}
 						>
-							{#snippet children()}Book Consultation{/snippet}
+							Book Consultation
 						</Button>
 					</div>
 				</div>

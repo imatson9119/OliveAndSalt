@@ -4,7 +4,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { toast } from 'svelte-sonner';
-	import { MESSAGES, CONTACT_INFO } from '$lib/constants';
+	import { MESSAGES } from '$lib/constants';
 
 	// Form state
 	let formData = $state({
@@ -54,7 +54,7 @@
 				preferences: '',
 				message: ''
 			};
-		} catch (error) {
+		} catch {
 			toast.error(MESSAGES.consultation.error);
 		} finally {
 			isSubmitting = false;
@@ -169,9 +169,7 @@
 				disabled={isSubmitting}
 				onclick={handleSubmit}
 			>
-				{#snippet children()}
-					{isSubmitting ? 'Sending...' : `Send Message & Schedule Consultation`}
-				{/snippet}
+				{isSubmitting ? 'Sending...' : `Send Message & Schedule Consultation`}
 			</Button>
 			<p class="text-charcoal/60 mt-3 text-center text-sm">
 				{MESSAGES.consultation.responseTime}

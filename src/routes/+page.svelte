@@ -4,7 +4,6 @@
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import Section from '$lib/components/ui/Section.svelte';
 	import BenefitsGrid from '$lib/components/ui/BenefitsGrid.svelte';
-	import FloatingBadge from '$lib/components/ui/FloatingBadge.svelte';
 	import ContactInfo from '$lib/components/ui/ContactInfo.svelte';
 	import { onMount } from 'svelte';
 	import {
@@ -84,7 +83,7 @@
 						class="h-14 w-full text-lg"
 						onclick={() => scrollToSection('#consultation')}
 					>
-						{#snippet children()}{MESSAGES.consultation.cta}{/snippet}
+						{MESSAGES.consultation.cta}
 					</Button>
 					<Button
 						variant="secondary"
@@ -92,7 +91,7 @@
 						class="h-12 w-full"
 						onclick={() => scrollToSection('#process')}
 					>
-						{#snippet children()}See How It Works →{/snippet}
+						See How It Works →
 					</Button>
 				</div>
 			</div>
@@ -117,10 +116,10 @@
 
 						<div class="flex flex-col gap-4 sm:flex-row">
 							<Button size="lg" onclick={() => scrollToSection('#consultation')}>
-								{#snippet children()}{MESSAGES.consultation.cta}{/snippet}
+								{MESSAGES.consultation.cta}
 							</Button>
 							<Button variant="secondary" size="lg" onclick={() => scrollToSection('#process')}>
-								{#snippet children()}See How It Works →{/snippet}
+								See How It Works →
 							</Button>
 						</div>
 
@@ -159,199 +158,191 @@
 
 	<!-- Process Section -->
 	<Section id="process" background="olive">
-		{#snippet children()}
-			<div class="mb-12 text-center md:mb-16">
-				<h2 class="text-bone mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
-					How It Works
-				</h2>
-				<p class="text-bone mx-auto max-w-2xl px-4 text-base md:text-lg">
-					Simple, transparent, and tailored to you. Here's how we bring fresh, home-cooked meals to
-					your table.
-				</p>
-			</div>
+		<div class="mb-12 text-center md:mb-16">
+			<h2 class="text-bone mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
+				How It Works
+			</h2>
+			<p class="text-bone mx-auto max-w-2xl px-4 text-base md:text-lg">
+				Simple, transparent, and tailored to you. Here's how we bring fresh, home-cooked meals to
+				your table.
+			</p>
+		</div>
 
-			<!-- Mobile: Stack vertically, Desktop: Grid layout -->
-			<div class="space-y-6 md:grid md:grid-cols-2 md:gap-8 md:space-y-0 lg:grid-cols-4">
-				{#each PROCESS_STEPS as process, index}
-					<div
-						bind:this={processCards[index]}
-						class="hover:bg-bone rounded-xl border-[3px] border-dashed border-white/[0.33] p-5 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg md:p-6"
-					>
-						<div class="flex items-center gap-4 md:block">
-							<div class="text-bone mb-0 flex-shrink-0 text-2xl font-bold md:mb-4 md:text-3xl">
-								{process.step}
-							</div>
-							<div class="flex-1 md:hidden">
-								<p class="mb-1 text-lg font-semibold text-[#ffffff99]">{process.title}</p>
-								<p class="process-text-bone text-sm">{process.description}</p>
-							</div>
+		<!-- Mobile: Stack vertically, Desktop: Grid layout -->
+		<div class="space-y-6 md:grid md:grid-cols-2 md:gap-8 md:space-y-0 lg:grid-cols-4">
+			{#each PROCESS_STEPS as process, index (process.title)}
+				<div
+					bind:this={processCards[index]}
+					class="hover:bg-bone rounded-xl border-[3px] border-dashed border-white/[0.33] p-5 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg md:p-6"
+				>
+					<div class="flex items-center gap-4 md:block">
+						<div class="text-bone mb-0 flex-shrink-0 text-2xl font-bold md:mb-4 md:text-3xl">
+							{process.step}
 						</div>
-						<div class="hidden md:block">
-							<p class="mb-3 text-xl font-semibold text-[#ffffff99]">{process.title}</p>
-							<p class="process-text-bone">{process.description}</p>
+						<div class="flex-1 md:hidden">
+							<p class="mb-1 text-lg font-semibold text-[#ffffff99]">{process.title}</p>
+							<p class="process-text-bone text-sm">{process.description}</p>
 						</div>
 					</div>
-				{/each}
-			</div>
-		{/snippet}
+					<div class="hidden md:block">
+						<p class="mb-3 text-xl font-semibold text-[#ffffff99]">{process.title}</p>
+						<p class="process-text-bone">{process.description}</p>
+					</div>
+				</div>
+			{/each}
+		</div>
 	</Section>
 
 	<!-- Emma's Story Section -->
 	<Section id="story">
-		{#snippet children()}
-			<div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
-				<div class="order-2 space-y-4 md:space-y-6 lg:order-1">
-					<h2 class="text-olive text-2xl font-bold sm:text-3xl md:text-4xl">
-						Meet {COMPANY_INFO.founder}
-					</h2>
-					<div class="text-charcoal/80 space-y-3 text-sm leading-relaxed md:space-y-4 md:text-base">
-						<p>
-							It started quietly—cooking for coworkers and friends who were too busy to meal prep
-							but craved something better than takeout. What began as a simple act of care grew into
-							something more meaningful.
-						</p>
-						<p>
-							My philosophy is simple: <span class="text-olive font-medium"
-								>great food comes from care, not complexity</span
-							>. I believe in fresh, unprocessed ingredients, bold flavors over blandness, and food
-							as a way to bring people together.
-						</p>
-						<p class="hidden md:block">
-							Every meal I prepare is rooted in family traditions—where cooking isn't a chore, but a
-							way to create connection and memories. When I organize your fridge with a week's worth
-							of nourishing meals, I'm giving you back time to enjoy what matters most.
-						</p>
-					</div>
-					<blockquote
-						class="border-terracotta text-olive border-l-4 pl-4 text-sm italic md:pl-6 md:text-base"
-					>
-						"Food is memory, comfort, and connection. Every meal should remind you that you're cared
-						for."
-					</blockquote>
+		<div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
+			<div class="order-2 space-y-4 md:space-y-6 lg:order-1">
+				<h2 class="text-olive text-2xl font-bold sm:text-3xl md:text-4xl">
+					Meet {COMPANY_INFO.founder}
+				</h2>
+				<div class="text-charcoal/80 space-y-3 text-sm leading-relaxed md:space-y-4 md:text-base">
+					<p>
+						It started quietly—cooking for coworkers and friends who were too busy to meal prep but
+						craved something better than takeout. What began as a simple act of care grew into
+						something more meaningful.
+					</p>
+					<p>
+						My philosophy is simple: <span class="text-olive font-medium"
+							>great food comes from care, not complexity</span
+						>. I believe in fresh, unprocessed ingredients, bold flavors over blandness, and food as
+						a way to bring people together.
+					</p>
+					<p class="hidden md:block">
+						Every meal I prepare is rooted in family traditions—where cooking isn't a chore, but a
+						way to create connection and memories. When I organize your fridge with a week's worth
+						of nourishing meals, I'm giving you back time to enjoy what matters most.
+					</p>
 				</div>
+				<blockquote
+					class="border-terracotta text-olive border-l-4 pl-4 text-sm italic md:pl-6 md:text-base"
+				>
+					"Food is memory, comfort, and connection. Every meal should remind you that you're cared
+					for."
+				</blockquote>
+			</div>
 
-				<div class="relative order-1 lg:order-2">
-					<div class="overflow-hidden rounded-2xl shadow-xl">
-						<div
-							class="from-olive/10 to-terracotta/10 flex aspect-[4/3] items-center justify-center bg-gradient-to-br md:aspect-[4/5]"
-						>
-							<div class="text-olive/60 text-4xl md:text-6xl">👩‍🍳</div>
-						</div>
-					</div>
-					<!-- Decorative quote - Hidden on mobile for cleaner look -->
+			<div class="relative order-1 lg:order-2">
+				<div class="overflow-hidden rounded-2xl shadow-xl">
 					<div
-						class="bg-terracotta text-bone absolute -right-6 -bottom-6 hidden rotate-3 transform rounded-lg p-4 shadow-lg md:block"
+						class="from-olive/10 to-terracotta/10 flex aspect-[4/3] items-center justify-center bg-gradient-to-br md:aspect-[4/5]"
 					>
-						<div class="text-sm font-medium">"Care, cooked into every bite."</div>
+						<div class="text-olive/60 text-4xl md:text-6xl">👩‍🍳</div>
 					</div>
+				</div>
+				<!-- Decorative quote - Hidden on mobile for cleaner look -->
+				<div
+					class="bg-terracotta text-bone absolute -right-6 -bottom-6 hidden rotate-3 transform rounded-lg p-4 shadow-lg md:block"
+				>
+					<div class="text-sm font-medium">"Care, cooked into every bite."</div>
 				</div>
 			</div>
-		{/snippet}
+		</div>
 	</Section>
 
 	<!-- Pricing Section -->
 	<Section id="pricing" background="muted">
-		{#snippet children()}
-			<div class="mb-12 text-center md:mb-16">
-				<h2 class="text-olive mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
-					Simple, Transparent Pricing
-				</h2>
-				<p class="text-charcoal/80 mx-auto max-w-2xl px-4 text-base md:text-lg">
-					No hidden fees, no long-term commitments. Pay for what you need, when you need it.
+		<div class="mb-12 text-center md:mb-16">
+			<h2 class="text-olive mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
+				Simple, Transparent Pricing
+			</h2>
+			<p class="text-charcoal/80 mx-auto max-w-2xl px-4 text-base md:text-lg">
+				No hidden fees, no long-term commitments. Pay for what you need, when you need it.
+			</p>
+		</div>
+
+		<div class="mx-auto max-w-4xl space-y-6 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
+			<div class="bg-bone border-border rounded-xl border p-6 shadow-sm md:p-8">
+				<h3 class="text-olive mb-3 text-xl font-bold md:mb-4 md:text-2xl">Meal Prep Service</h3>
+				<div class="text-terracotta mb-3 text-2xl font-bold md:mb-2 md:text-3xl">
+					{PRICING.mealPrep.price}
+					<span class="text-charcoal/70 text-sm font-normal md:text-base"
+						>{PRICING.mealPrep.period}</span
+					>
+				</div>
+				<ul class="text-charcoal/80 mb-4 space-y-2 text-sm md:mb-6 md:space-y-3 md:text-base">
+					{#each PRICING.mealPrep.features as feature (feature)}
+						<li class="flex items-center">
+							<span class="text-olive mr-2">✓</span>
+							{feature}
+						</li>
+					{/each}
+				</ul>
+				<p class="text-charcoal/70 text-xs md:text-sm">
+					{PRICING.mealPrep.note}
 				</p>
 			</div>
 
-			<div class="mx-auto max-w-4xl space-y-6 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
-				<div class="bg-bone border-border rounded-xl border p-6 shadow-sm md:p-8">
-					<h3 class="text-olive mb-3 text-xl font-bold md:mb-4 md:text-2xl">Meal Prep Service</h3>
-					<div class="text-terracotta mb-3 text-2xl font-bold md:mb-2 md:text-3xl">
-						{PRICING.mealPrep.price}
-						<span class="text-charcoal/70 text-sm font-normal md:text-base"
-							>{PRICING.mealPrep.period}</span
-						>
-					</div>
-					<ul class="text-charcoal/80 mb-4 space-y-2 text-sm md:mb-6 md:space-y-3 md:text-base">
-						{#each PRICING.mealPrep.features as feature}
-							<li class="flex items-center">
-								<span class="text-olive mr-2">✓</span>
-								{feature}
-							</li>
-						{/each}
-					</ul>
-					<p class="text-charcoal/70 text-xs md:text-sm">
-						{PRICING.mealPrep.note}
-					</p>
+			<div class="bg-bone border-border rounded-xl border p-6 shadow-sm md:p-8">
+				<h3 class="text-olive mb-3 text-xl font-bold md:mb-4 md:text-2xl">Add-On Services</h3>
+				<div class="space-y-3 text-sm md:space-y-4 md:text-base">
+						{#each PRICING.addOns as addOn (addOn.service)}
+						<div class="flex items-center justify-between">
+							<span class="text-charcoal">{addOn.service}</span>
+							<span class="text-terracotta font-semibold">{addOn.price}</span>
+						</div>
+					{/each}
 				</div>
-
-				<div class="bg-bone border-border rounded-xl border p-6 shadow-sm md:p-8">
-					<h3 class="text-olive mb-3 text-xl font-bold md:mb-4 md:text-2xl">Add-On Services</h3>
-					<div class="space-y-3 text-sm md:space-y-4 md:text-base">
-						{#each PRICING.addOns as addOn}
-							<div class="flex items-center justify-between">
-								<span class="text-charcoal">{addOn.service}</span>
-								<span class="text-terracotta font-semibold">{addOn.price}</span>
-							</div>
-						{/each}
+				<div class="bg-olive/10 mt-4 rounded-lg p-3 md:mt-6 md:p-4">
+					<div class="text-olive text-xs font-medium md:text-sm">
+						{PRICING.firstTimeOffer.title}
 					</div>
-					<div class="bg-olive/10 mt-4 rounded-lg p-3 md:mt-6 md:p-4">
-						<div class="text-olive text-xs font-medium md:text-sm">
-							{PRICING.firstTimeOffer.title}
-						</div>
-						<div class="text-charcoal/80 text-xs md:text-sm">
-							{PRICING.firstTimeOffer.description}
-						</div>
+					<div class="text-charcoal/80 text-xs md:text-sm">
+						{PRICING.firstTimeOffer.description}
 					</div>
 				</div>
 			</div>
-		{/snippet}
+		</div>
 	</Section>
 
 	<!-- Contact Form Section -->
 	<Section id="consultation" background="gradient">
-		{#snippet children()}
-			<div class="mx-auto max-w-4xl">
-				<div class="mb-8 text-center md:mb-12">
-					<h2 class="text-olive mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
-						Ready to Reclaim Your Kitchen?
-					</h2>
-					<p class="text-charcoal/80 mx-auto max-w-2xl px-4 text-base leading-relaxed md:text-xl">
-						Let's chat about your needs and create a meal plan that brings joy back to your table.
-						No pressure, just a friendly conversation about good food.
-					</p>
+		<div class="mx-auto max-w-4xl">
+			<div class="mb-8 text-center md:mb-12">
+				<h2 class="text-olive mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
+					Ready to Reclaim Your Kitchen?
+				</h2>
+				<p class="text-charcoal/80 mx-auto max-w-2xl px-4 text-base leading-relaxed md:text-xl">
+					Let's chat about your needs and create a meal plan that brings joy back to your table. No
+					pressure, just a friendly conversation about good food.
+				</p>
+			</div>
+
+			<div class="space-y-6 lg:grid lg:grid-cols-3 lg:items-start lg:gap-8 lg:space-y-0">
+				<!-- Contact Form -->
+				<div class="order-2 lg:order-1 lg:col-span-2">
+					<ContactForm />
 				</div>
 
-				<div class="space-y-6 lg:grid lg:grid-cols-3 lg:items-start lg:gap-8 lg:space-y-0">
-					<!-- Contact Form -->
-					<div class="order-2 lg:order-1 lg:col-span-2">
-						<ContactForm />
+				<!-- Contact Info Sidebar -->
+				<div class="order-1 space-y-4 md:space-y-6 lg:order-2">
+					<div class="bg-olive/10 rounded-xl p-4 md:p-6">
+						<h3 class="text-olive mb-3 text-base font-semibold md:mb-4 md:text-lg">
+							What to Expect
+						</h3>
+						<div class="text-charcoal/80 space-y-2 text-xs md:space-y-3 md:text-sm">
+							{#each CONSULTATION_EXPECTATIONS as expectation (expectation)}
+								<div class="flex items-start gap-2 md:gap-3">
+									<span class="text-terracotta font-bold">{expectation.step}</span>
+									<span>{expectation.description}</span>
+								</div>
+							{/each}
+						</div>
 					</div>
 
-					<!-- Contact Info Sidebar -->
-					<div class="order-1 space-y-4 md:space-y-6 lg:order-2">
-						<div class="bg-olive/10 rounded-xl p-4 md:p-6">
-							<h3 class="text-olive mb-3 text-base font-semibold md:mb-4 md:text-lg">
-								What to Expect
-							</h3>
-							<div class="text-charcoal/80 space-y-2 text-xs md:space-y-3 md:text-sm">
-								{#each CONSULTATION_EXPECTATIONS as expectation}
-									<div class="flex items-start gap-2 md:gap-3">
-										<span class="text-terracotta font-bold">{expectation.step}</span>
-										<span>{expectation.description}</span>
-									</div>
-								{/each}
-							</div>
-						</div>
-
-						<div class="bg-terracotta/10 rounded-xl p-4 md:p-6">
-							<h3 class="text-olive mb-3 text-base font-semibold md:mb-4 md:text-lg">
-								Prefer to Call?
-							</h3>
-							<ContactInfo />
-						</div>
+					<div class="bg-terracotta/10 rounded-xl p-4 md:p-6">
+						<h3 class="text-olive mb-3 text-base font-semibold md:mb-4 md:text-lg">
+							Prefer to Call?
+						</h3>
+						<ContactInfo />
 					</div>
 				</div>
 			</div>
-		{/snippet}
+		</div>
 	</Section>
 
 	<!-- Footer -->
