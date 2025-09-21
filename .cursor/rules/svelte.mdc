@@ -1,0 +1,52 @@
+---
+description: 
+globs: *.ts,*.svelte
+alwaysApply: false
+---
+
+## ✅ Svelte 5 Reactivity
+
+- Avoid direct assignments like `let count = ...`; use `$state()` for reactive state.
+- Replace reactive `$:` labels with `derived()` or `effect()` functions.
+- Migrate `on:click`, `on:input`, etc to `onclick`, `oninput` (HTML-native handlers in Svelte 5).
+
+## 🎨 Tailwind v4 Consistency
+
+- Use Tailwind utility classes; avoid `<style>` tags for component styling.
+- Ensure class names follow v4 conventions (e.g. `grid-cols-X`, `flex-auto`, etc).
+
+## 🧩 TypeScript + SvelteKit Patterns
+
+- Always use `<script lang="ts">` in `.svelte` for type safety.
+- Follow SvelteKit conventions: file-based routing, `export const load`, error-boundaries, SSR.
+
+## 🔍 Examples
+
+```svelte
+<script lang="ts">
+  // ✅ Correct (Svelte 5 + TS)
+  const count = $state(0);
+  derived(() => console.log(count));
+  function onclick() { count.set(count.get() + 1); }
+</script>
+
+<button onclick>+</button>
+<!-- ✅ Tailwind v4 syntax -->
+<div class="grid grid-cols-3 gap-4 flex-auto">
+  <!-- content -->
+</div>
+```
+
+🔧 Verification Checklist
+- No raw let foo = in .svelte—state defined with $state().
+- No $: reactive labels—instead use derived() or effect().
+- No on: event bindings—use native HTML event attributes.
+- No <style> tags in components—use Tailwind classes only.
+- All components use <script lang="ts">.
+- Component routes follow export const load and SvelteKit conventions.
+
+### 🧠 Why this matters
+
+- Enforces modern, idiomatic Svelte 5 patterns and reactive best practices (no `$:` or manual `let`)  
+- Keeps styling consistent with Tailwind v4 utility-first philosophy  
+- TypeScript + SvelteKit rules encourage maintainability, type safety, and SSR-ready code  
