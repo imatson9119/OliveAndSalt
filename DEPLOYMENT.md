@@ -25,7 +25,7 @@ env:
 
 ```json
 "build:gh-pages": "PUBLIC_BASE_PATH=/YOUR_REPO_NAME npm run build",
-"preview:gh-pages": "PUBLIC_BASE_PATH=/YOUR_REPO_NAME npm run build && npm run preview",
+"preview:gh-pages": "PUBLIC_BASE_PATH=/YOUR_REPO_NAME npm run build && npm run preview", 
 ```
 
 ### 3. Deploy
