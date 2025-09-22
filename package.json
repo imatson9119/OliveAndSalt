@@ -6,18 +6,12 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"build:dev": "vite build --mode dev",
-		"build:prod": "vite build --mode prod",
-		"build:gh-pages": "PUBLIC_BASE_PATH=/OliveAndSalt npm run build",
-		"preview": "vite preview",
-		"preview:gh-pages": "PUBLIC_BASE_PATH=/OliveAndSalt npm run build && npm run preview",
+		"preview": "npm run build && wrangler pages dev",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint .",
-		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"deploy": "npm run build && wrangler pages deploy",
+		"cf-typegen": "wrangler types src/worker-configuration.d.ts"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",

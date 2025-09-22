@@ -1,5 +1,0 @@
-name = "olive-and-salt"
-compatibility_date = "2024-09-23"
-
-# Configure Pages deployment
-pages_build_output_dir = ".svelte-kit/output/client"
