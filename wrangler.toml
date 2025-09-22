@@ -1,0 +1,9 @@
+name = "olive-and-salt"
+compatibility_date = "2024-09-23"
+
+# For Cloudflare Pages with Functions (hybrid deployment)
+main = ".svelte-kit/output/server/index.js"
+
+# Static assets directory
+[site]
+bucket = ".svelte-kit/output/client"
