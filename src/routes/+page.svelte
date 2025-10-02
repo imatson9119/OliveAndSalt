@@ -5,6 +5,7 @@
 	import Section from '$lib/components/ui/Section.svelte';
 	import BenefitsGrid from '$lib/components/ui/BenefitsGrid.svelte';
 	import ContactInfo from '$lib/components/ui/ContactInfo.svelte';
+	import * as Popover from '$lib/components/ui/popover';
 	import { onMount } from 'svelte';
 	import {
 		PROCESS_STEPS,
@@ -78,11 +79,7 @@
 
 				<!-- Mobile CTAs - Stack vertically -->
 				<div class="space-y-3">
-					<Button
-						size="lg"
-						class="h-14 w-full text-lg"
-						onclick={() => scrollToSection('#consultation')}
-					>
+					<Button size="lg" class="h-12 w-full" onclick={() => scrollToSection('#consultation')}>
 						{MESSAGES.consultation.cta}
 					</Button>
 					<Button
@@ -163,13 +160,13 @@
 				How It Works
 			</h2>
 			<p class="text-bone mx-auto max-w-2xl px-4 text-base md:text-lg">
-				Simple, transparent, and tailored to you. Here's how we bring fresh, home-cooked meals to
+				Simple, transparent, and custom-made for you! Here’s how I’ll bring fresh, homemade meals to
 				your table.
 			</p>
 		</div>
 
 		<!-- Mobile: Stack vertically, Desktop: Grid layout -->
-		<div class="space-y-6 md:grid md:grid-cols-2 md:gap-8 md:space-y-0 lg:grid-cols-4">
+		<div class="space-y-6 md:grid md:grid-cols-1 md:gap-8 md:space-y-0 lg:grid-cols-3">
 			{#each PROCESS_STEPS as process, index (process.title)}
 				<div
 					bind:this={processCards[index]}
@@ -202,28 +199,29 @@
 				</h2>
 				<div class="text-charcoal/80 space-y-3 text-sm leading-relaxed md:space-y-4 md:text-base">
 					<p>
-						It started quietly—cooking for coworkers and friends who were too busy to meal prep but
-						craved something better than takeout. What began as a simple act of care grew into
-						something more meaningful.
+						Since I can remember, I’ve been fascinated by cooking - experimenting with flavors,
+						learning which ingredients shine in different dishes, and finding creative ways to turn
+						simple items into something special. I grew up in a family where the kitchen was the
+						primary gathering space. We spent countless hours cooking together, sharing meals around
+						the table, and often ended the evening watching something on Food Network. Healthy,
+						from-scratch meals were our norm - though we happily made room for the occasional
+						homemade french fries or key lime pie.
 					</p>
 					<p>
-						My philosophy is simple: <span class="text-olive font-medium"
-							>great food comes from care, not complexity</span
-						>. I believe in fresh, unprocessed ingredients, bold flavors over blandness, and food as
-						a way to bring people together.
+						Nowadays my love for food and nutrition has only deepened. I’m always eager to try new
+						dishes, explore flavors from different cultures, and stay on top of the latest food
+						trends. Over time, I’ve even become a bit of a salt connoisseur - I even have a whole
+						PowerPoint about it! Most days you’ll find me with an iced espresso in hand, snacking on
+						celery (I love food with a good crunch!), and browsing recipe blogs for new ideas.
 					</p>
-					<p class="hidden md:block">
-						Every meal I prepare is rooted in family traditions—where cooking isn't a chore, but a
-						way to create connection and memories. When I organize your fridge with a week's worth
-						of nourishing meals, I'm giving you back time to enjoy what matters most.
+					<p>
+						What I love most about food is the way it nourishes the body while bringing people
+						together. Across every culture, sharing a meal with people you love is a tradition that
+						connects us all. <span class="text-olive font-semibold"
+							>I can’t wait to share that same joy and passion for cooking with you!</span
+						>
 					</p>
 				</div>
-				<blockquote
-					class="border-terracotta text-olive border-l-4 pl-4 text-sm italic md:pl-6 md:text-base"
-				>
-					"Food is memory, comfort, and connection. Every meal should remind you that you're cared
-					for."
-				</blockquote>
 			</div>
 
 			<div class="relative order-1 lg:order-2">
@@ -233,12 +231,6 @@
 					>
 						<div class="text-olive/60 text-4xl md:text-6xl">👩‍🍳</div>
 					</div>
-				</div>
-				<!-- Decorative quote - Hidden on mobile for cleaner look -->
-				<div
-					class="bg-terracotta text-bone absolute -right-6 -bottom-6 hidden rotate-3 transform rounded-lg p-4 shadow-lg md:block"
-				>
-					<div class="text-sm font-medium">"Care, cooked into every bite."</div>
 				</div>
 			</div>
 		</div>
@@ -251,7 +243,8 @@
 				Simple, Transparent Pricing
 			</h2>
 			<p class="text-charcoal/80 mx-auto max-w-2xl px-4 text-base md:text-lg">
-				No hidden fees, no long-term commitments. Pay for what you need, when you need it.
+				I believe in keeping things simple and straightforward - no surprises, no contracts, just
+				delicious meals when you want them.
 			</p>
 		</div>
 
@@ -280,9 +273,71 @@
 			<div class="bg-bone border-border rounded-xl border p-6 shadow-sm md:p-8">
 				<h3 class="text-olive mb-3 text-xl font-bold md:mb-4 md:text-2xl">Add-On Services</h3>
 				<div class="space-y-3 text-sm md:space-y-4 md:text-base">
-						{#each PRICING.addOns as addOn (addOn.service)}
+					{#each PRICING.addOns as addOn (addOn.service)}
 						<div class="flex items-center justify-between">
-							<span class="text-charcoal">{addOn.service}</span>
+							<div class="flex items-center gap-2">
+								<span class="text-charcoal">{addOn.service}</span>
+								<Popover.Root>
+									<Popover.Trigger
+										class="text-charcoal/60 hover:text-olive cursor-pointer transition-colors"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="lucide lucide-info"
+										>
+											<circle cx="12" cy="12" r="10"></circle>
+											<path d="M12 16v-4"></path>
+											<path d="M12 8h.01"></path>
+										</svg>
+									</Popover.Trigger>
+									<Popover.Content class="w-80 p-4">
+										<div class="space-y-3">
+											<div>
+												<h4 class="text-olive mb-1 text-base font-semibold">
+													{addOn.detailedInfo.title}
+												</h4>
+												<p class="text-charcoal/80 text-sm leading-relaxed">
+													{addOn.detailedInfo.overview}
+												</p>
+											</div>
+
+											{#if addOn.detailedInfo.includes}
+												<div>
+													<h5 class="text-charcoal mb-2 text-sm font-medium">What's Included:</h5>
+													<ul class="text-charcoal/80 space-y-1 text-xs">
+														{#each addOn.detailedInfo.includes as item}
+															<li class="flex items-start gap-1">
+																<span class="text-olive mt-0.5">•</span>
+																<span>{item}</span>
+															</li>
+														{/each}
+													</ul>
+												</div>
+											{/if}
+
+											<div class="border-t pt-2">
+												<div class="text-charcoal/70 text-xs">
+													<strong>Timeframe:</strong>
+													{addOn.detailedInfo.timeframe}
+												</div>
+												{#if addOn.detailedInfo.note}
+													<div class="text-charcoal/70 mt-1 text-xs">
+														<em>{addOn.detailedInfo.note}</em>
+													</div>
+												{/if}
+											</div>
+										</div>
+									</Popover.Content>
+								</Popover.Root>
+							</div>
 							<span class="text-terracotta font-semibold">{addOn.price}</span>
 						</div>
 					{/each}
@@ -304,7 +359,7 @@
 		<div class="mx-auto max-w-4xl">
 			<div class="mb-8 text-center md:mb-12">
 				<h2 class="text-olive mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">
-					Ready to Reclaim Your Kitchen?
+					Ready to Get Started?
 				</h2>
 				<p class="text-charcoal/80 mx-auto max-w-2xl px-4 text-base leading-relaxed md:text-xl">
 					Let's chat about your needs and create a meal plan that brings joy back to your table. No

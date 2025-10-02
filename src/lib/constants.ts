@@ -6,13 +6,13 @@
 // Contact Information
 export const CONTACT_INFO = {
 	phone: {
-		number: '+15551234567',
-		display: '(555) 123-COOK',
-		hours: 'Mon-Fri, 9am-6pm'
+		number: '+14095945718',
+		display: '(409) 594-5718',
+		hours: 'Mon-Fri, 9am-5pm'
 	},
 	email: {
-		address: 'emma@oliveandsalt.com',
-		responseTime: 'Usually responds within 4 hours'
+		address: 'emma@olive-and-salt.com',
+		responseTime: "I'll usually respond within 4 hours"
 	},
 	social: {
 		instagram: 'https://instagram.com/oliveandsalt',
@@ -49,25 +49,19 @@ export const PROCESS_STEPS = [
 		step: '01',
 		title: 'Consultation',
 		description:
-			'We discuss your tastes, dietary needs, and schedule to create your perfect meal plan.'
+			'We discuss your dietary needs, schedule, and assess your kitchen to create your perfect meal plan.'
 	},
 	{
 		step: '02',
-		title: 'Choose Your Style',
+		title: 'Book Your Service',
 		description:
-			'Shop yourself with our curated list, or let us handle the grocery shopping for you.'
+			'I come to your kitchen and prepare nourishing, delicious meals for you and your family.'
 	},
 	{
 		step: '03',
-		title: 'Cooking Day',
+		title: 'Enjoy',
 		description:
-			'Emma comes to your kitchen and prepares fresh, delicious meals using quality ingredients.'
-	},
-	{
-		step: '04',
-		title: 'Organized & Ready',
-		description:
-			'Your fridge is organized with labeled, ready-to-eat meals that bring joy to your week.'
+			'You’ve saved time and energy! Enjoy a fridge full or ready-to-eat meals and snacks.'
 	}
 ];
 
@@ -75,7 +69,7 @@ export const PROCESS_STEPS = [
 export const CONSULTATION_EXPECTATIONS = [
 	{
 		step: '1.',
-		description: 'Emma will review your information and reach out within 24 hours'
+		description: "I'll review your information and reach out within 24 hours"
 	},
 	{
 		step: '2.',
@@ -90,20 +84,70 @@ export const CONSULTATION_EXPECTATIONS = [
 // Pricing Information
 export const PRICING = {
 	mealPrep: {
-		price: '$150',
+		price: '$350',
 		period: 'per session',
 		features: [
 			'4-6 hours of in-home cooking',
-			'5-7 days of fresh meals',
+			'Grocery shopping',
 			'Customized to your preferences',
-			'Organized fridge & meal labels'
+			'Organized fridge & meal labels',
+			'Cleanup'
 		],
-		note: '*You provide ingredients or add shopping service'
+		note: '*Groceries are billed separately'
 	},
 	addOns: [
-		{ service: 'Grocery Shopping', price: '+$25' },
-		{ service: 'Special Dietary Prep', price: '+$20' },
-		{ service: 'Extra Meals (per portion)', price: '+$8' }
+		{
+			service: 'Pantry Refresh',
+			price: '+$100-200',
+			detailedInfo: {
+				title: 'Pantry Refresh',
+				overview:
+					"Let's get your kitchen stocked with healthy staples, condiments, snacks, and basics. $150 for a small refresh (pantry or fridge), $200 for a full refresh (both pantry and fridge), and $100 for each ongoing refresh after the initial full refresh.",
+				includes: [
+					'Assessment of current pantry items',
+					'Removal of expired or unhealthy products',
+					'Shopping for quality staples (grains, legumes, oils, vinegars)',
+					'Healthy snack selection',
+					'Condiments and spice upgrades'
+				],
+				timeframe: '2-3 hours'
+			}
+		},
+		{
+			service: 'Storage Container Shopping',
+			price: '+$75',
+			detailedInfo: {
+				title: 'Storage Container Shopping',
+				overview:
+					'I will shop for and purchase the food storage containers that you specifically need. Tailored to your specific needs - BPA free, glass, based on specific meals, etc. Note that cost of goods is billed separately.',
+				includes: [
+					'Assessment of your storage needs',
+					'Research and selection of optimal containers',
+					'Shopping for containers based on your preferences',
+					'Material selection (glass, BPA-free plastic, etc.)',
+					'Labeling system setup'
+				],
+				timeframe: '1-2 hours research + shopping time',
+				note: 'Container costs are billed separately based on your selections'
+			}
+		},
+		{
+			service: 'Local Ingredient Sourcing',
+			price: '+$25',
+			detailedInfo: {
+				title: 'Local Ingredient Sourcing',
+				overview:
+					'This service is an offering of locally sourced items (ex: organic sourdough bread, homemade yogurt, etc) from people in the area. You will receive an offering every few weeks and can choose to add-on to your weekly service.',
+				timeframe: 'Ongoing service with new offerings every few weeks',
+				examples: [
+					'Organic sourdough from local baker',
+					'Fresh goat cheese from nearby farm',
+					'Seasonal vegetables from farmers market',
+					'Homemade fermented foods',
+					'Local honey and preserves'
+				]
+			}
+		}
 	],
 	firstTimeOffer: {
 		title: 'First-time clients:',
@@ -115,12 +159,12 @@ export const PRICING = {
 export const COMPANY_INFO = {
 	name: 'Olive & Salt',
 	tagline: 'Fresh, personalized meal prep that brings the joy of home cooking back to your table.',
-	founder: 'Emma Matson',
+	founder: 'Emma',
 	copyright: '© 2025 Olive & Salt by Emma Matson. Made with care in your community.',
 	meta: {
 		title: 'Olive & Salt by Emma Matson - In-Home Meal Prep',
 		description:
-			'Fresh, personalized meal prep in your home. Food as it was meant to be - organic, unprocessed, and delicious.'
+			'Fresh, personalized meals in your own kitchen. Food as it was meant to be - simple, nourishing, and delicious.'
 	}
 };
 
@@ -135,14 +179,15 @@ export const IMAGES = {
 export const MESSAGES = {
 	consultation: {
 		cta: 'Book Free Consultation',
-		success: 'Thanks for reaching out! Emma will get back to you within 24 hours.',
-		error: 'Something went wrong. Please try again or email emma@oliveandsalt.com directly.',
-		responseTime: 'Emma will reach out within 24 hours to discuss your free consultation'
+		success:
+			'🎉 Your message has been sent! I will reach out within 24 hours to discuss your consultation.',
+		error: 'Something went wrong. Please try again or email emma@olive-and-salt.com directly.',
+		responseTime: "I'll reach out within 24 hours to discuss your free consultation."
 	},
 	hero: {
-		title: 'Meals that feel',
+		title: 'Meals that taste',
 		subtitle: 'like home.',
 		description:
-			'Fresh, personalized meal prep in your own kitchen. Food as it was meant to be - organic, unprocessed, and delicious.'
+			'Fresh, personalized meals in your own kitchen. Food as it was meant to be - simple, nourishing, and delicious.'
 	}
 };

@@ -26,8 +26,7 @@
 		if (!formData.name.trim()) newErrors.name = 'Name is required';
 		if (!formData.email.trim()) newErrors.email = 'Email is required';
 		else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Please enter a valid email';
-		if (!formData.household.trim())
-			newErrors.household = 'Please tell us about your household size';
+		if (!formData.household.trim()) newErrors.household = 'Household size is required';
 
 		errors = newErrors;
 		return Object.keys(newErrors).length === 0;
@@ -38,10 +37,22 @@
 		if (!validateForm()) return;
 
 		isSubmitting = true;
+		const endpoint =
+			'https://script.google.com/macros/s/AKfycbzppSeinNOxcHIDZLezKbQ4NrnCkbwZAWCE7EcTD6xDC4KLomHNo5vZ9coSeWgbArFPdg/exec';
+		const headers = new Headers({
+			'Content-Type': 'application/x-www-form-urlencoded'
+		});
+
+		const result = formData as Record<string, string>;
+		const body = new URLSearchParams(result).toString();
 
 		try {
 			// Simulate form submission (replace with actual endpoint)
-			await new Promise((resolve) => setTimeout(resolve, 1000));
+			await fetch(endpoint, {
+				method: 'POST',
+				headers,
+				body
+			});
 
 			toast.success(MESSAGES.consultation.success);
 
@@ -62,12 +73,12 @@
 	}
 </script>
 
-<div class="bg-bone border-border rounded-2xl border p-8 shadow-lg">
+<div class="bg-bone border-border rounded-2xl border p-4 py-8 shadow-lg sm:p-8">
 	<div class="mb-8 text-center">
 		<h3 class="text-olive mb-2 text-2xl font-bold">Let's Start the Conversation</h3>
 		<p class="text-charcoal/80">
-			Tell us about your household and food preferences. Emma will reach out within 24 hours to
-			discuss your personalized meal plan.
+			Tell me about your food preferences and household. I will reach out within 24 hours to discuss
+			your personalized service.
 		</p>
 	</div>
 
@@ -119,7 +130,7 @@
 
 		<!-- Household Size -->
 		<div class="space-y-2">
-			<Label for="household" class="text-charcoal">Tell us about your household *</Label>
+			<Label for="household" class="text-charcoal">Tell me about your household *</Label>
 			<Input
 				id="household"
 				type="text"
@@ -162,14 +173,8 @@
 
 		<!-- Submit Button -->
 		<div class="pt-4">
-			<Button
-				type="submit"
-				size="lg"
-				class="h-12 w-full text-lg"
-				disabled={isSubmitting}
-				onclick={handleSubmit}
-			>
-				{isSubmitting ? 'Sending...' : `Send Message & Schedule Consultation`}
+			<Button size="lg" class="h-12 w-full text-lg" disabled={isSubmitting} onclick={handleSubmit}>
+				{isSubmitting ? 'Sending...' : `Let's get cooking!`}
 			</Button>
 			<p class="text-charcoal/60 mt-3 text-center text-sm">
 				{MESSAGES.consultation.responseTime}
