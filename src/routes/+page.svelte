@@ -194,9 +194,7 @@
 	<Section id="story">
 		<div class="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
 			<div class="order-2 space-y-4 md:space-y-6 lg:order-1">
-				<h2 class="text-olive text-2xl font-bold sm:text-3xl md:text-4xl">
-					Meet {COMPANY_INFO.founder}
-				</h2>
+				<h2 class="text-olive text-2xl font-bold sm:text-3xl md:text-4xl">A Little About Me</h2>
 				<div class="text-charcoal/80 space-y-3 text-sm leading-relaxed md:space-y-4 md:text-base">
 					<p>
 						Since I can remember, I’ve been fascinated by cooking - experimenting with flavors,
@@ -224,12 +222,12 @@
 				</div>
 			</div>
 
-			<div class="relative order-1 lg:order-2">
+			<div class="relative">
 				<div class="overflow-hidden rounded-2xl shadow-xl">
 					<div
 						class="from-olive/10 to-terracotta/10 flex aspect-[4/3] items-center justify-center bg-gradient-to-br md:aspect-[4/5]"
 					>
-						<div class="text-olive/60 text-4xl md:text-6xl">👩‍🍳</div>
+						<img src={IMAGES.emma} alt="Emma" class="h-full w-full object-cover" />
 					</div>
 				</div>
 			</div>

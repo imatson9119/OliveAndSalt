@@ -172,7 +172,8 @@ export const COMPANY_INFO = {
 export const IMAGES = {
 	splash: 'images/splash.jpg',
 	logo: 'images/logo.png',
-	preview: 'images/preview.png'
+	preview: 'images/preview.png',
+	emma: 'images/emma.jpg'
 };
 
 // Common Messages
