@@ -10,4 +10,16 @@ declare global {
 	}
 }
 
+// Iconify type declaration
+declare module '@iconify/svelte' {
+	import { SvelteComponent } from 'svelte';
+	export default class Icon extends SvelteComponent {
+		icon: string;
+		width?: string | number;
+		height?: string | number;
+		color?: string;
+		class?: string;
+	}
+}
+
 export {};

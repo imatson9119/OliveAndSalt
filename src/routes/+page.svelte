@@ -6,6 +6,9 @@
 	import BenefitsGrid from '$lib/components/ui/BenefitsGrid.svelte';
 	import ContactInfo from '$lib/components/ui/ContactInfo.svelte';
 	import * as Popover from '$lib/components/ui/popover';
+	import * as HoverCard from '$lib/components/ui/hover-card';
+	import * as Dialog from '$lib/components/ui/dialog';
+	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
 	import {
 		PROCESS_STEPS,
@@ -14,7 +17,8 @@
 		COMPANY_INFO,
 		IMAGES,
 		MESSAGES,
-		CONTACT_INFO
+		CONTACT_INFO,
+		VALUES
 	} from '$lib/constants';
 	import { scrollToSection } from '$lib/utils/navigation';
 
@@ -170,7 +174,7 @@
 			{#each PROCESS_STEPS as process, index (process.title)}
 				<div
 					bind:this={processCards[index]}
-					class="hover:bg-bone rounded-xl border-[3px] border-dashed border-white/[0.33] p-5 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg md:p-6"
+					class="hover:bg-bone rounded-xl border-[3px] border-dashed border-white/[0.33] bg-white/20 p-5 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg md:p-6"
 				>
 					<div class="flex items-center gap-4 md:block">
 						<div class="text-bone mb-0 flex-shrink-0 text-2xl font-bold md:mb-4 md:text-3xl">
@@ -230,6 +234,115 @@
 						<img src={IMAGES.emma} alt="Emma" class="h-full w-full object-cover" />
 					</div>
 				</div>
+			</div>
+		</div>
+	</Section>
+
+	<!-- Values Section -->
+	<Section id="values" background="olive">
+		<div class="mb-12 text-center md:mb-16">
+			<h2 class="text-bone mb-3 text-2xl font-bold sm:text-3xl md:mb-4 md:text-4xl">My Values</h2>
+			<p class="text-bone mx-auto max-w-2xl px-4 text-base md:text-lg">
+				Quality ingredients and mindful preparation are at the heart of everything I do. Here's what
+				you can expect from every meal I prepare.
+			</p>
+		</div>
+
+		<!-- Values List -->
+		<div class="mx-auto max-w-4xl">
+			<div class="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+				{#each VALUES as value, index (value.title)}
+					<!-- Mobile: Dialog for touch interaction -->
+					<div class="lg:hidden {index === 6 ? '' : ''}">
+						<Dialog.Root>
+							<Dialog.Trigger
+								class="group hover:bg-bone relative flex w-full items-center gap-2 rounded-xl border-[3px] border-dashed border-white/[0.33] bg-white/20 p-3 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl sm:gap-4 sm:p-5"
+							>
+								<!-- Decorative background element -->
+								<div
+									class="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								></div>
+
+								<!-- Info icon with enhanced styling -->
+								<div class="relative flex-shrink-0">
+									<Icon
+										icon="lucide:info"
+										class="text-bone h-4 w-4 transition-colors duration-300 group-hover:text-white sm:h-6 sm:w-4"
+									/>
+								</div>
+
+								<!-- Value text with enhanced typography -->
+								<div class="relative flex-1">
+									<div
+										class="text-bone text-xs font-semibold transition-colors duration-300 group-hover:text-white sm:text-sm md:text-base"
+									>
+										{value.title}
+									</div>
+								</div>
+
+								<!-- Subtle corner accent -->
+								<div
+									class="bg-bone/40 absolute top-1 right-1 h-1.5 w-1.5 rounded-full transition-colors duration-300 group-hover:bg-white/60 sm:top-2 sm:right-2 sm:h-2 sm:w-2"
+								></div>
+							</Dialog.Trigger>
+							<Dialog.Content class="bg-bone text-charcoal max-w-md">
+								<Dialog.Header>
+									<Dialog.Title class="text-olive">{value.title}</Dialog.Title>
+									<Dialog.Description class="text-charcoal/80 leading-relaxed">
+										{value.description}
+									</Dialog.Description>
+								</Dialog.Header>
+							</Dialog.Content>
+						</Dialog.Root>
+					</div>
+
+					<!-- Desktop: HoverCard for hover interaction -->
+					<div class="hidden lg:block {index === 6 ? 'lg:col-start-2' : ''}">
+						<HoverCard.Root openDelay={100} closeDelay={100}>
+							<HoverCard.Trigger
+								class="group hover:bg-bone relative flex w-full cursor-pointer items-center gap-2 rounded-xl border-[3px] border-dashed border-white/[0.33] bg-white/20 p-3 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl sm:gap-4 sm:p-5"
+							>
+								<!-- Decorative background element -->
+								<div
+									class="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								></div>
+
+								<!-- Info icon with enhanced styling -->
+								<div class="relative flex-shrink-0">
+									<Icon
+										icon="lucide:info"
+										class="text-bone h-6 w-6 transition-colors duration-300 group-hover:text-white sm:h-8 sm:w-8"
+									/>
+								</div>
+
+								<!-- Value text with enhanced typography -->
+								<div class="relative flex-1">
+									<div
+										class="text-bone text-xs font-semibold transition-colors duration-300 group-hover:text-white sm:text-sm md:text-base"
+									>
+										{value.title}
+									</div>
+								</div>
+
+								<!-- Subtle corner accent -->
+								<div
+									class="bg-bone/40 absolute top-1 right-1 h-1.5 w-1.5 rounded-full transition-colors duration-300 group-hover:bg-white/60 sm:top-2 sm:right-2 sm:h-2 sm:w-2"
+								></div>
+							</HoverCard.Trigger>
+							<HoverCard.Content
+								class="bg-bone text-charcoal border-charcoal/20 z-50 w-80"
+								side="bottom"
+								align="center"
+								sideOffset={8}
+							>
+								<div class="space-y-2">
+									<h4 class="text-olive text-sm font-semibold">{value.title}</h4>
+									<p class="text-charcoal/80 text-sm leading-relaxed">{value.description}</p>
+								</div>
+							</HoverCard.Content>
+						</HoverCard.Root>
+					</div>
+				{/each}
 			</div>
 		</div>
 	</Section>

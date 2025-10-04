@@ -12,7 +12,7 @@ export const CONTACT_INFO = {
 	},
 	email: {
 		address: 'emma@olive-and-salt.com',
-		responseTime: "I'll usually respond within 4 hours"
+		responseTime: "I'll usually respond within 24 hours"
 	},
 	social: {
 		instagram: 'https://instagram.com/oliveandsalt',
@@ -24,6 +24,7 @@ export const CONTACT_INFO = {
 export const NAV_ITEMS = [
 	{ label: 'How it Works', href: '#process' },
 	{ label: 'About Emma', href: '#story' },
+	{ label: 'Values', href: '#values' },
 	{ label: 'Pricing', href: '#pricing' }
 ];
 
@@ -40,6 +41,45 @@ export const KEY_BENEFITS = [
 	{
 		title: '100% Custom',
 		description: 'Tailored to your tastes & schedule'
+	}
+];
+
+// Values
+export const VALUES = [
+	{
+		title: 'Grass-fed / Pasture-raised',
+		description:
+			'I prioritize meats from animals raised on pasture with access to their natural diet. This means better nutrition, more omega-3s, and meat from animals raised humanely and sustainably.'
+	},
+	{
+		title: 'Seed Oil-Free',
+		description:
+			'No canola, soybean, or vegetable oils here. Instead, I cook with quality fats like olive oil, avocado oil, butter, and ghee that support your health and enhance flavor.'
+	},
+	{
+		title: 'Organic',
+		description:
+			'When possible, I source organic produce and ingredients to minimize exposure to pesticides and chemicals while supporting sustainable farming practices.'
+	},
+	{
+		title: 'Minimally Processed',
+		description:
+			'Real food, simply prepared. I focus on whole ingredients you can recognize and pronounce, avoiding heavily processed foods with long ingredient lists.'
+	},
+	{
+		title: 'High-Protein',
+		description:
+			'Every meal is designed to include quality protein sources to keep you satisfied, support muscle health, and maintain steady energy throughout your day.'
+	},
+	{
+		title: 'Dietary Friendly',
+		description:
+			'Whether you follow paleo, keto, gluten-free, dairy-free, or have specific allergies, I customize every meal to fit your unique dietary needs and preferences.'
+	},
+	{
+		title: 'Refined Sugar-Free',
+		description:
+			'I avoid refined sugars and artificial sweeteners, instead using natural sweeteners like honey or maple syrup sparingly when needed for balanced, nourishing meals.'
 	}
 ];
 
