@@ -1,6 +1,7 @@
 {
 	"name": "Olive & Salt",
 	"short_name": "O & S",
+	"description": "Fresh, personalized in-home meal prep. Simple, nourishing, delicious.",
 	"icons": [
 		{
 			"src": "web-app-manifest-192x192.png",

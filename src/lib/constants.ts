@@ -201,10 +201,16 @@ export const COMPANY_INFO = {
 	tagline: 'Fresh, personalized meal prep that brings the joy of home cooking back to your table.',
 	founder: 'Emma',
 	copyright: '© 2025 Olive & Salt by Emma Matson. Made with care in your community.',
+	website: 'https://olive-and-salt.com',
 	meta: {
 		title: 'Olive & Salt by Emma Matson - In-Home Meal Prep',
 		description:
-			'Fresh, personalized meals in your own kitchen. Food as it was meant to be - simple, nourishing, and delicious.'
+			'Fresh, personalized meals in your own kitchen. Food as it was meant to be - simple, nourishing, and delicious.',
+		image: 'images/preview.png',
+		imageAlt: 'Olive & Salt social preview image',
+		imageWidth: '1200',
+		imageHeight: '630',
+		themeColor: '#f7f5ed'
 	}
 };
 
