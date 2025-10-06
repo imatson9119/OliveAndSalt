@@ -41,8 +41,57 @@
 </script>
 
 <svelte:head>
+	<!-- Essential SEO Meta Tags -->
 	<title>{COMPANY_INFO.meta.title}</title>
 	<meta name="description" content={COMPANY_INFO.meta.description} />
+	<link rel="canonical" href={COMPANY_INFO.website} />
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={COMPANY_INFO.website} />
+	<meta property="og:title" content={COMPANY_INFO.meta.title} />
+	<meta property="og:description" content={COMPANY_INFO.meta.description} />
+	<meta property="og:image" content={`${COMPANY_INFO.website}/${COMPANY_INFO.meta.image}`} />
+	<meta property="og:image:type" content="image/png" />
+	<meta
+		property="og:image:secure_url"
+		content={`${COMPANY_INFO.website}/${COMPANY_INFO.meta.image}`}
+	/>
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Olive & Salt social preview image" />
+	<meta property="og:site_name" content="Olive & Salt" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content={COMPANY_INFO.website} />
+	<meta name="twitter:title" content={COMPANY_INFO.meta.title} />
+	<meta name="twitter:description" content={COMPANY_INFO.meta.description} />
+	<meta name="twitter:image" content={`${COMPANY_INFO.website}/${COMPANY_INFO.meta.image}`} />
+	<meta name="twitter:image:alt" content="Olive & Salt social preview image" />
+
+	<!-- Additional SEO -->
+	<meta name="robots" content="index, follow" />
+	<meta name="author" content="Emma Matson" />
+	<meta name="theme-color" content="#f7f5ed" />
+
+	<!-- JSON-LD Structured Data -->
+	<script type="application/ld+json">
+		{JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "Olive & Salt",
+			"url": COMPANY_INFO.website,
+			"logo": `${COMPANY_INFO.website}/images/logo.png`,
+			"image": `${COMPANY_INFO.website}/${COMPANY_INFO.meta.image}`,
+			"sameAs": [CONTACT_INFO.social.instagram, CONTACT_INFO.social.facebook],
+			"founder": {
+				"@type": "Person",
+				"name": "Emma Matson"
+			}
+		})}
+	</script>
 </svelte:head>
 
 <div class="bg-bone min-h-screen">
@@ -53,6 +102,24 @@
 		bind:this={heroSection}
 		class="from-bone via-bone to-muted relative overflow-hidden bg-gradient-to-br"
 	>
+		<!-- Olive Branch Decorations -->
+		<!-- Curved branch - top right corner -->
+		<div class="pointer-events-none absolute top-[-5rem] left-0 z-[-1]">
+			<img
+				src="/images/olive-branch-curved.svg"
+				alt="Decorative olive branch"
+				class="h-40 w-auto rotate-[40deg] sm:h-48 md:h-56 lg:h-64 xl:h-72"
+			/>
+		</div>
+
+		<!-- Long branch - bottom right corner -->
+		<div class="pointer-events-none absolute right-0 bottom-0 z-[-1]">
+			<img
+				src="/images/olive-branch-long.svg"
+				alt="Decorative olive branch"
+				class="h-12 w-auto rotate-[10deg] sm:h-16 md:h-20 lg:h-24 xl:h-32"
+			/>
+		</div>
 		<!-- Mobile Hero Layout -->
 		<div class="lg:hidden">
 			<div class="container mx-auto px-4 py-8">
