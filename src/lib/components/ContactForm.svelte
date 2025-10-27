@@ -38,7 +38,7 @@
 
 		isSubmitting = true;
 		const endpoint =
-			'https://script.google.com/macros/s/AKfycbzppSeinNOxcHIDZLezKbQ4NrnCkbwZAWCE7EcTD6xDC4KLomHNo5vZ9coSeWgbArFPdg/exec';
+			'https://script.google.com/macros/s/AKfycbwOiVhIc0VjARTVINOL2qShHvc8XlzsNDbcXIo_fi5EC-WbgMxQKJNpgAVlJ2yl7u3lag/exec';
 		const headers = new Headers({
 			'Content-Type': 'application/x-www-form-urlencoded'
 		});
