@@ -6,6 +6,8 @@
 	import { toast } from 'svelte-sonner';
 	import { MESSAGES } from '$lib/constants';
 
+	const FORM_SUBMIT_URL = 'https://formsubmit.co/ajax/a570ca9c58c8c53d78e95c35b00d7fa6';
+
 	// Form state
 	let formData = $state({
 		name: '',
@@ -18,6 +20,8 @@
 
 	let isSubmitting = $state(false);
 	let errors = $state<Record<string, string>>({});
+	let submissionStatus = $state<'idle' | 'success' | 'error'>('idle');
+	let submissionMessage = $state('');
 
 	// Validation
 	function validateForm() {
@@ -33,30 +37,39 @@
 	}
 
 	// Form submission
-	async function handleSubmit() {
-		if (!validateForm()) return;
+	async function handleSubmit(event: SubmitEvent) {
+		event.preventDefault();
+
+		if (!validateForm()) {
+			return;
+		}
 
 		isSubmitting = true;
-		const endpoint =
-			'https://script.google.com/macros/s/AKfycbwOiVhIc0VjARTVINOL2qShHvc8XlzsNDbcXIo_fi5EC-WbgMxQKJNpgAVlJ2yl7u3lag/exec';
-		const headers = new Headers({
-			'Content-Type': 'application/x-www-form-urlencoded'
-		});
+		submissionStatus = 'idle';
+		submissionMessage = '';
 
-		const result = formData as Record<string, string>;
-		const body = new URLSearchParams(result).toString();
+		const formElement = event.currentTarget as HTMLFormElement;
+		const payload = new FormData(formElement);
 
 		try {
-			// Simulate form submission (replace with actual endpoint)
-			await fetch(endpoint, {
+			const response = await fetch(FORM_SUBMIT_URL, {
 				method: 'POST',
-				headers,
-				body
+				headers: {
+					Accept: 'application/json'
+				},
+				body: payload
 			});
 
-			toast.success(MESSAGES.consultation.success);
+			if (!response.ok) {
+				const errorData = (await response.json().catch(() => ({}))) as { message?: string };
+				throw new Error(errorData.message ?? 'Unable to send your message right now.');
+			}
 
-			// Reset form
+			submissionStatus = 'success';
+			submissionMessage = MESSAGES.consultation.success;
+			toast.success(submissionMessage);
+
+			formElement.reset();
 			formData = {
 				name: '',
 				email: '',
@@ -65,8 +78,11 @@
 				preferences: '',
 				message: ''
 			};
-		} catch {
-			toast.error(MESSAGES.consultation.error);
+			errors = {};
+		} catch (error) {
+			submissionStatus = 'error';
+			submissionMessage = error instanceof Error ? error.message : MESSAGES.consultation.error;
+			toast.error(submissionMessage);
 		} finally {
 			isSubmitting = false;
 		}
@@ -82,7 +98,17 @@
 		</p>
 	</div>
 
-	<form class="space-y-6">
+	<form
+		class="space-y-6"
+		action="https://formsubmit.co/imatson9@gmail.com"
+		method="POST"
+		onsubmit={handleSubmit}
+	>
+		<input type="hidden" name="_subject" value="New Olive & Salt inquiry" />
+		<input type="hidden" name="_captcha" value="false" />
+		<input type="hidden" name="_template" value="table" />
+		<!-- Update with actual thank-you page when available -->
+		<input type="hidden" name="_next" value="https://oliveandsalt.com/thanks" />
 		<!-- Name and Email Row -->
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="space-y-2">
@@ -90,6 +116,7 @@
 				<Input
 					id="name"
 					type="text"
+					name="name"
 					bind:value={formData.name}
 					class="h-12 {errors.name ? 'border-red-400' : ''}"
 					placeholder="Emma Smith"
@@ -104,6 +131,7 @@
 				<Input
 					id="email"
 					type="email"
+					name="email"
 					bind:value={formData.email}
 					class="h-12 {errors.email ? 'border-red-400' : ''}"
 					placeholder="emma@example.com"
@@ -122,6 +150,7 @@
 			<Input
 				id="phone"
 				type="tel"
+				name="phone"
 				bind:value={formData.phone}
 				class="h-12"
 				placeholder="(555) 123-4567"
@@ -134,6 +163,7 @@
 			<Input
 				id="household"
 				type="text"
+				name="household"
 				bind:value={formData.household}
 				class="h-12 {errors.household ? 'border-red-400' : ''}"
 				placeholder="Family of 4, 2 adults and 2 kids (ages 8 & 12)"
@@ -151,6 +181,7 @@
 			<Input
 				id="preferences"
 				type="text"
+				name="preferences"
 				bind:value={formData.preferences}
 				class="h-12"
 				placeholder="Vegetarian, gluten-free, nut allergies, etc."
@@ -160,20 +191,21 @@
 		<!-- Message -->
 		<div class="space-y-2">
 			<Label for="message" class="text-charcoal">
-				Anything else you'd like Emma to know? <span class="text-charcoal/60">(optional)</span>
+				Anything else you'd like me to know? <span class="text-charcoal/60">(optional)</span>
 			</Label>
 			<Textarea
 				id="message"
+				name="message"
 				bind:value={formData.message}
 				rows={4}
 				class="resize-y"
-				placeholder="Tell us about your schedule, favorite cuisines, cooking goals, or any questions you have..."
+				placeholder="Tell me about your schedule, favorite cuisines, cooking goals, or any questions you have..."
 			/>
 		</div>
 
 		<!-- Submit Button -->
 		<div class="pt-4">
-			<Button size="lg" class="h-12 w-full text-lg" disabled={isSubmitting} onclick={handleSubmit}>
+			<Button type="submit" size="lg" class="h-12 w-full text-lg" disabled={isSubmitting}>
 				{isSubmitting ? 'Sending...' : `Let's get cooking!`}
 			</Button>
 			<p class="text-charcoal/60 mt-3 text-center text-sm">
