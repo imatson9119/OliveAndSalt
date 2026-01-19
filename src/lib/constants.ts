@@ -124,7 +124,7 @@ export const CONSULTATION_EXPECTATIONS = [
 // Pricing Information
 export const PRICING = {
 	mealPrep: {
-		price: '$350',
+		price: '$500',
 		period: 'per session',
 		features: [
 			'4-6 hours of in-home cooking',
